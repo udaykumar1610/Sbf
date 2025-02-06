@@ -1,0 +1,103 @@
+<!-- 
+
+<div class="container">
+  <h2 class="text-center">Available Schemes</h2>
+
+  <div class="form-group mb-4 d-flex align-items-center">
+   
+    <label for="schemeDropdown" style="font-style: italic; font-weight: bold; margin-right: 10px;">Select a Scheme:</label>
+   
+    <div class="dropdown-wrapper">
+      <select id="schemeDropdown" class="form-control custom-dropdown" (change)="onSchemeSelect($event)">
+        <option value="" disabled selected>Select a scheme</option>
+       
+        <option *ngFor="let scheme of schemes" [value]="scheme.title">{{ scheme.title }}</option>
+      </select>
+    </div>
+  </div>
+  
+  
+  
+  
+
+ 
+  <div *ngIf="selectedScheme" class="row justify-content-center">
+    <div class="col-md-12 col-lg-12">
+      <div class="certificate-tile">
+        
+        <div class="certificate-header">
+          <h5>{{ selectedScheme.title }}</h5>
+        </div>
+
+       
+        <div class="certificate-image">
+          <img src="https://www.slideteam.net/media/catalog/product/cache/560x315/r/a/railway_powerpoint_ppt_template_bundles_slide01.jpg" alt="Scheme Image" class="img-fluid">
+        </div>
+
+       
+        <div class="certificate-body">
+          <p><strong>Valid Upto:</strong> {{ selectedScheme.valid_upto }}</p>
+          <p><strong>Scheme Details:</strong> {{ selectedScheme.scheme_details }}</p>
+          <p><strong>Beneficiaries Details:</strong> {{ selectedScheme.beneficiaries_details }}</p>
+        </div>
+
+       
+        <div class="certificate-footer">
+          <button class="btn btn-primary" (click)="viewSchemeDetails(selectedScheme)">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container">
+  <h2 class="text-center">Available Schemes</h2>
+
+  <div class="form-group mb-4 d-flex align-items-center">
+    <!-- Label on the left side -->
+    <label for="schemeDropdown" style="font-style: italic; font-weight: bold; margin-right: 10px;">Select a Scheme:</label>
+    
+    <!-- Dropdown with icon inside -->
+    <div class="dropdown-wrapper">
+      <select id="schemeDropdown" class="form-control custom-dropdown" (change)="onSchemeSelect($event)">
+        <option value="" disabled selected>Select a scheme</option>
+        <!-- Loop through all schemes to show titles in dropdown -->
+        <option *ngFor="let scheme of schemes" [value]="scheme.title">{{ scheme.title }}</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Show scheme tile layout for selected scheme -->
+  <div *ngIf="selectedScheme" class="row justify-content-center">
+    <div class="col-md-12 col-lg-8">
+      <div class="scheme-tile">
+        <!-- Scheme Title -->
+        <div class="scheme-header">
+          <h5>{{ selectedScheme.title }}</h5>
+        </div>
+
+        <!-- Scheme Image -->
+        <div class="scheme-image">
+          <img src="https://www.slideteam.net/media/catalog/product/cache/560x315/r/a/railway_powerpoint_ppt_template_bundles_slide01.jpg" alt="Scheme Image" class="img-fluid">
+        </div>
+
+        <!-- Scheme Details and Beneficiaries -->
+        <div class="scheme-body">
+          <p><strong>Valid Upto:</strong> {{ selectedScheme.valid_upto }}</p>
+          <p><strong>Scheme Details:</strong> {{ selectedScheme.scheme_details }}</p>
+          <p><strong>Beneficiaries Details:</strong> {{ selectedScheme.beneficiaries_details }}</p>
+        </div>
+
+        <!-- Click Button -->
+        <div class="scheme-footer">
+          <button class="btn btn-primary" (click)="viewSchemeDetails(selectedScheme)">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

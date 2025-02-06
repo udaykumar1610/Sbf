@@ -1,0 +1,36 @@
+/* Basic styling for navbar */
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+}
+
+.nav-links li {
+  margin: 0 15px; /* Add some space between the items */
+}
+
+.nav-items {
+  margin-left: auto; /* Push these items to the right */
+  display: flex;
+  gap: 20px; /* Space between Sign In, Sign Up, and Logout */
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  color: #ff9800; /* Change color on hover */
+}

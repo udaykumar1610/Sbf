@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <ul class="nav-links">
+    <!-- Always show Home link -->
+    <li><a routerLink="/">Home</a></li> 
+
+    <!-- Show Sign In and Sign Up links only if the user is NOT authenticated -->
+    <li><a routerLink="/login" *ngIf="!isAuthenticated">Sign In</a></li>  
+    <li><a routerLink="/register" *ngIf="!isAuthenticated">Sign Up</a></li> 
+
+    <!-- Show Logout link only if the user is authenticated -->
+    <li><a href="javascript:void(0)" (click)="logout()" *ngIf="isAuthenticated">Logout</a></li> 
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>

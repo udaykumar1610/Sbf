@@ -1,0 +1,39 @@
+/* header.component.css */
+
+/* General styling for the header */
+.header {
+    display: flex;
+    justify-content: center;  /* Center the content horizontally */
+    align-items: center;      /* Center the content vertically */
+    height: 80px;             /* Set the height of the header */
+    background-color: #073767; /* Light background color */
+    padding: 0 20px;           /* Add some horizontal padding */
+    position: relative;       /* Ensure content is positioned correctly */
+  }
+  
+  /* Container for the logo */
+  .logo-container {
+    width: 60px;              /* Set fixed size for the logo */
+    height: 60px;             /* Set fixed size for the logo */
+    border-radius: 50%;       /* Make it circular */
+    overflow: hidden;         /* Hide any part of the logo overflowing */
+    position: absolute;       /* Position logo at the left */
+    left: 20px;               /* Set a fixed margin from the left */
+  }
+  
+  /* Ensure logo fits perfectly in the circle */
+  .logo {
+    width: 100%;              /* Make sure the logo takes up full container size */
+    height: 100%;             
+    object-fit: cover;       
+  }
+  
+  /* Centered header title */
+  .header-title {
+    font-size: 24px;          /* Set the font size of the title */
+    font-weight: bold;        /* Make the title bold */
+    color: #ead6d6;              /* Set text color */
+    margin-left: 80px;        /* Add some margin to the left to avoid overlap with logo */
+    text-align: center;       /* Center align the text */
+  }
+  

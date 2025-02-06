@@ -1,0 +1,32 @@
+<div class="login-container">
+  <h2>Login</h2>
+  
+  <!-- UMID/Email Input -->
+  <input type="text" [(ngModel)]="credentials.identifier" placeholder="Enter UMID or Email" required />
+  
+  <!-- Password Input with Toggle Eye Icon -->
+  <div class="password-container">
+    <input 
+      [type]="isPasswordVisible ? 'text' : 'password'" 
+      [(ngModel)]="credentials.password" 
+      placeholder="Enter Password" 
+      required 
+    />
+    <i 
+      class="eye-icon" 
+      (click)="togglePasswordVisibility()" 
+      [class.hide]="!isPasswordVisible"
+      [class.show]="isPasswordVisible" >
+      👁️
+    </i>
+  </div>
+  
+  <button (click)="login()">Login</button>
+  
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+  
+  <!-- Registration link -->
+  <p class="register-link">
+    Don't have an account? <a routerLink="/register">Register here</a>
+  </p>
+</div>
