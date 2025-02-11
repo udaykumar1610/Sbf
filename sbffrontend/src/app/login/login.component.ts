@@ -1,39 +1,83 @@
 
 
 
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { CommonModule } from '@angular/common';
+
+// import { Component, OnInit } from '@angular/core';
+// import { Router, RouterLink } from '@angular/router';
+
+// import { FormsModule } from '@angular/forms';
+// import { CommonModule } from '@angular/common';
+// import { AuthService } from '../auth.service';
+
+// @Component({
+//   selector: 'app-login',
+//   standalone: true,
+//   imports: [FormsModule, CommonModule,RouterLink],
+//   templateUrl: './login.component.html',
+//   styleUrls: ['./login.component.css'],
+// })
+// export class LoginComponent {
+//   credentials = { hrms_id: '', password: '' };
+//   errorMessage: string = '';
+//   isPasswordVisible: boolean = false;
+
+//   constructor(private authService: AuthService, private router: Router) {}
+
+//   togglePasswordVisibility() {
+//     this.isPasswordVisible = !this.isPasswordVisible;
+//   }
+
+//   login() {
+//     this.authService.loginAndStoreData(this.credentials);
+//   }
+// }
+
+//-----------------------------------------------------------------
+
+import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
-  umid: string | null = null;
-  credentials = { identifier: '', password: '' }; // UMID or Email
+export class LoginComponent {
+  credentials = { hrms_id: '', password: '' };
   errorMessage: string = '';
-  isPasswordVisible: boolean = false; 
+  isPasswordVisible: boolean = false;
+
+  // Password pattern validation
+  passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    // this.umid = this.authService.umid ;
-   
-   
-  }
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
-  // Perform login action
+
   login() {
+    // Validate HRMS ID (exactly 6 characters)
+    if (this.credentials.hrms_id.length !== 6) {
+      this.errorMessage = 'HRMS ID must be exactly 6 characters long';
+      return;
+    }
+
+    // Validate Password
+    if (!this.passwordPattern.test(this.credentials.password)) {
+      this.errorMessage =
+        'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+        alert("login failed");
+      return;
+    }
+
     this.authService.loginAndStoreData(this.credentials);
-    // this.umid=this.authService.umid;
-    // console.log("uid",this.umid);
-   
+    //alert("login success")
   }
 }
+

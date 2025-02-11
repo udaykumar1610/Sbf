@@ -23,6 +23,10 @@ export class SchemesService {
     return this.http.get(this.apiUrl);
   }
 
+  getAllSchemesnames(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/names`);
+  }
+
   // Fetch a single scheme by ID (Public API)
   getSchemeById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);

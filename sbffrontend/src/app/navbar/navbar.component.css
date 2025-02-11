@@ -34,3 +34,36 @@
 .nav-links a:hover {
   color: #ff9800; /* Change color on hover */
 }
+
+/* Dropdown menu styling */
+.nav-item .dropdown-menu {
+  background-color: rgba(255, 255, 255, 0.9); /* Transparent background */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+  min-width: 200px; /* Ensure dropdown items have a reasonable width */
+  padding: 5px 0; /* Reduce padding to make the dropdown more compact */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Add a soft shadow effect */
+}
+
+.nav-links .nav-item .dropdown-menu .dropdown-item {
+  padding: 8px 16px; /* Reduced padding */
+  color: black;
+  font-size: 14px; /* Slightly smaller text */
+}
+
+.nav-links .nav-item .dropdown-menu .dropdown-item:hover {
+  background-color: #007BFF; /* Background color on hover */
+  color: white; /* Text color on hover */
+}
+
+.navbar .nav-item .dropdown-toggle::after {
+  content: '▼'; /* Arrow symbol for the dropdown */
+  margin-left: 5px;
+  font-size: 12px; /* Adjust the size of the arrow */
+  color: white; /* Match the arrow color with the navbar */
+}
+
+/* Optional: Add hover effect for dropdown arrow to indicate interactivity */
+.nav-item:hover .dropdown-toggle::after {
+  transform: rotate(180deg); /* Rotate the arrow when hovered */
+  transition: transform 0.3s ease;
+}

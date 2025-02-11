@@ -1,0 +1,98 @@
+/* General Styling for Cards */
+.scheme-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  background-color: #bbae82;
+  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column; /* Ensures the card contents are stacked vertically */
+  height: 100%; /* Ensures that the card stretches to fill the available space */
+  text-align: center; /* Center the content inside the card */
+}
+
+/* Hover effect for cards */
+.scheme-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Centering the header text */
+.scheme-header h5 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  text-align: center; /* Center the text of the header */
+}
+
+/* Styling for Scheme Image */
+.scheme-image img {
+  width: 100%;
+  height: 200px; /* Set a fixed height for the image to ensure uniformity */
+  object-fit: cover; /* Ensures the image covers the space while maintaining aspect ratio */
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Styling for the Scheme Details Section */
+.scheme-body {
+  margin-top: 10px;
+  text-align: left; /* Align text to the left for details */
+  flex-grow: 1; /* Makes sure the body section takes up the remaining space */
+}
+
+.scheme-body p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+}
+
+/* Footer Styling */
+.scheme-footer {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto; /* Pushes the footer to the bottom of the card */
+}
+
+/* Styling for the Apply Button */
+.scheme-footer button {
+  padding: 10px 20px;
+  background-color: #098381;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%; /* Ensure button takes full width for better aesthetics */
+}
+
+.scheme-footer button:hover {
+  background-color: #21586b;
+}
+
+/* Make sure all cards have the same height */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensure cards are evenly spaced */
+}
+
+.col-md-4 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex: 1 0 30%; /* Make sure the cards fill 3 columns and are responsive */
+}
+
+/* Ensures all scheme cards have the same height */
+.col-md-4 .scheme-card {
+  height: 100%; /* Ensures that the cards are the same height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensures that all rows are well aligned */
+.row > .col-md-4 {
+  display: flex;
+  align-items: stretch;
+}

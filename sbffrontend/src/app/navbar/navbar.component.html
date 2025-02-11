@@ -1,11 +1,29 @@
+
+
+
 <nav class="navbar">
   <ul class="nav-links">
     <li><a routerLink="/">Home</a></li>
+    <!-- <li><a routerLink="/schema">Schemes</a></li> -->
+
+    <!-- Schemes dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="schemesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Schemes
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="schemesDropdown">
+        <li><a class="dropdown-item" routerLink="/education"> Education Scheme</a></li>
+        <li><a class="dropdown-item" routerLink="/sickness">Sickness and Distress Scheme</a></li>
+        <li><a class="dropdown-item" routerLink="/skills">Skill Development</a></li>
+        <li><a class="dropdown-item" routerLink="/scheme4">Schemes</a></li>
+      </ul>
+    </li>
+  
 
     <div class="nav-items">
       <!-- Show Sign In and Sign Up links when not authenticated -->
       <li><a routerLink="/login" *ngIf="!isAuthenticated">Sign In</a></li>  
-      <li><a routerLink="/register" *ngIf="!isAuthenticated">Sign Up</a></li> 
+      <li><a routerLink="/register" *ngIf="!isAuthenticated">Register</a></li> 
 
       <!-- Show Logout link when authenticated -->
       <li><a href="javascript:void(0)" (click)="logout()" *ngIf="isAuthenticated">Logout</a></li> 

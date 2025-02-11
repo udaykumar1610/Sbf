@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 class="text-center" style="margin: 20px;">Education Schemes</h2> <!-- Center the heading -->
+  
+  <!-- Loop through the educationSchemes array and display each scheme -->
+  <div class="row">
+    
+
+        <div *ngFor="let scheme of educationSchemes; let i = index" class="col-md-4 mb-4">
+          <div class="scheme-card">
+            <!-- Scheme Index (Optional) -->
+            <div class="scheme-index">
+              <h5>{{scheme.scheme_name}} -> {{i + 1 }}</h5> 
+            </div>
+
+        <!-- Scheme Image (optional, use a default or provided image) -->
+        <div class="scheme-image">
+          <!-- <img src="https://cdn.cdnparenting.com/articles/2019/02/20174549/312215795-H.webp" alt="Scheme Image" class="img-fluid"> -->
+          <img src="" alt="Scheme Image" class="img-fluid">
+        </div>
+
+        <!-- Scheme Details -->
+        <div class="scheme-body">
+          <p><strong>Valid Upto:</strong> {{ scheme.valid_upto }}</p>
+          <p><strong>Scheme Details:</strong> {{ scheme.scheme_details }}</p>
+          <p><strong>Eligibility:</strong> {{ scheme.eligibility }}</p>
+          <p><strong>Eligibility Amount:</strong> ₹{{ scheme.eligibility_amount }}</p>
+        </div>
+
+        <!-- View Scheme Button -->
+        <div class="scheme-footer">
+          <button class="btn btn-primary" (click)="apply()">
+            Apply
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

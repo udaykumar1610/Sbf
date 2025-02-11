@@ -5,7 +5,7 @@ const { adminOnly } = require("../middlewares/roleMiddleware");
 
 const router = express.Router();
 
-router.get("/", protect, adminOnly, getAllUsers); // ✅ Ensure function exists
-router.delete("/:id", protect, adminOnly, deleteUser); // ✅ Ensure function exists
+router.get("/", protect, getAllUsers); // ✅ Ensure function exists
+router.delete("/:id", deleteUser); // ✅ Ensure function exists
 
 module.exports = router;

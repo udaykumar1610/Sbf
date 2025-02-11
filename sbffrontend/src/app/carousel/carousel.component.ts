@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -7,39 +7,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.css'
 })
-
-export class CarouselComponent implements OnInit {
-  currentIndex = 0;  // Track the current slide index
-  items = [
-    { src: 'https://via.placeholder.com/600x300?text=Slide+1', alt: 'Slide 1' },
-    { src: 'https://via.placeholder.com/600x300?text=Slide+2', alt: 'Slide 2' },
-    { src: 'https://via.placeholder.com/600x300?text=Slide+3', alt: 'Slide 3' },
-    { src: 'https://via.placeholder.com/600x300?text=Slide+4', alt: 'Slide 4' },
+export class CarouselComponent  {
+  slides = [
+    { imageUrl: 'https://screccs.com/wp-content/themes/screccs-ind/img/edu-loan.jpg', caption: 'Slide 1' },
+    { imageUrl: 'https://via.placeholder.com/800x400/7f7fff/333333?text=Slide+2', caption: 'Slide 2' },
+    { imageUrl: 'https://via.placeholder.com/800x400/7fff7f/333333?text=Slide+3', caption: 'Slide 3' },
+    { imageUrl: 'https://via.placeholder.com/800x400/ffff7f/333333?text=Slide+4', caption: 'Slide 4' }
   ];
-
-  ngOnInit() {
-    this.autoSlide();
-  }
-
-  // Automatic slide change
-  autoSlide() {
-    setInterval(() => {
-      this.next();
-    }, 3000); // Change slide every 3 seconds
-  }
-
-  // Go to the next slide
-  next() {
-    this.currentIndex = (this.currentIndex + 1) % this.items.length;
-  }
-
-  // Go to the previous slide
-  prev() {
-    this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
-  }
-
-  // Go to a specific slide
-  goToSlide(index: number) {
-    this.currentIndex = index;
-  }
 }

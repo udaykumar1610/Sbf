@@ -1,31 +1,117 @@
+<!-- 
+
+
 <div class="login-container">
   <h2>Login</h2>
-  
-  <!-- UMID/Email Input -->
-  <input type="text" [(ngModel)]="credentials.identifier" placeholder="Enter UMID or Email" required />
-  
-  <!-- Password Input with Toggle Eye Icon -->
+
+  <input type="text" [(ngModel)]="credentials.hrms_id" placeholder="Enter HRMS ID" required />
+
   <div class="password-container">
-    <input 
-      [type]="isPasswordVisible ? 'text' : 'password'" 
-      [(ngModel)]="credentials.password" 
-      placeholder="Enter Password" 
-      required 
+    <input
+      [type]="isPasswordVisible ? 'text' : 'password'"
+      [(ngModel)]="credentials.password"
+      placeholder="Enter Password"
+      required
     />
-    <i 
-      class="eye-icon" 
-      (click)="togglePasswordVisibility()" 
-      [class.hide]="!isPasswordVisible"
-      [class.show]="isPasswordVisible" >
+    <i class="eye-icon" (click)="togglePasswordVisibility()">
       👁️
     </i>
   </div>
-  
+
   <button (click)="login()">Login</button>
-  
+
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-  
-  <!-- Registration link -->
+
+  <p class="register-link">
+    Don't have an account? <a routerLink="/register">Register here</a>
+  </p>
+</div> -->
+
+<!-- 
+
+<div class="login-container">
+  <h2>Login</h2>
+
+  <div class="form-group">
+    <label for="hrms_id">HRMS ID</label>
+    <input
+      type="text"
+      id="hrms_id"
+      [(ngModel)]="credentials.hrms_id"
+      placeholder="Enter HRMS ID"
+      required
+    />
+    <div *ngIf="credentials.hrms_id && credentials.hrms_id.length !== 6" class="error-message">
+      HRMS ID must be exactly 6 characters long.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <div class="password-container">
+      <input
+        [type]="isPasswordVisible ? 'text' : 'password'"
+        id="password"
+        [(ngModel)]="credentials.password"
+        placeholder="Enter Password"
+        required
+      />
+      <i class="eye-icon" (click)="togglePasswordVisibility()">👁️</i>
+    </div>
+    <div *ngIf="credentials.password && !passwordPattern.test(credentials.password)" class="error-message">
+      Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+    </div>
+  </div>
+
+  <button (click)="login()">Login</button>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+  <p class="register-link">
+    Don't have an account? <a routerLink="/register">Register here</a>
+  </p>
+</div> -->
+
+
+<div class="login-container">
+  <h2>Login</h2>
+
+  <div class="form-group">
+    <label for="hrms_id">HRMS ID</label>
+    <input
+      type="text"
+      id="hrms_id"
+      [(ngModel)]="credentials.hrms_id"
+      placeholder="Enter HRMS ID"
+      required
+    />
+    <div *ngIf="credentials.hrms_id && credentials.hrms_id.length !== 6" class="error-message">
+      HRMS ID must be exactly 6 characters long.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <div class="password-container">
+      <input
+        [type]="isPasswordVisible ? 'text' : 'password'"
+        id="password"
+        [(ngModel)]="credentials.password"
+        type="password"
+        placeholder="Enter Password"
+        required
+      />
+      <i class="eye-icon" (click)="togglePasswordVisibility()">👁️</i>
+    </div>
+    <div *ngIf="credentials.password && !passwordPattern.test(credentials.password)" class="error-message">
+      Password must contain at least one uppercase,lowercase,number and one special character.
+    </div>
+  </div>
+
+  <button (click)="login()">Login</button>
+
+  <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
   <p class="register-link">
     Don't have an account? <a routerLink="/register">Register here</a>
   </p>

@@ -1,0 +1,37 @@
+<div class="container">
+    <h2  style="text-align: center; margin: 20px;">Distress and Sickness scheme</h2>
+    
+    <!-- Loop through the sicknessSchemes array and display each scheme -->
+    <div class="row">
+      <div *ngFor="let scheme of sicknessSchemes; let i = index" class="col-md-4 mb-4">
+        <div class="scheme-card">
+          <!-- Scheme Index (Optional) -->
+          <div class="scheme-index">
+            <h6 style="font-size:15px;;"><b>{{scheme.scheme_name}} -> {{i + 1 }}</b></h6> 
+          </div>
+          <!-- Scheme Image (optional, use a default or provided image) -->
+          <div class="scheme-image">
+            <img src="https://via.placeholder.com/300x200" alt="Scheme Image" class="img-fluid">
+          </div>
+  
+          <!-- Scheme Details -->
+          <div class="scheme-body">
+            <p><strong>Scheme Details:</strong> {{ scheme.scheme_details }}</p>
+            
+            <!-- Use pipe to format the eligibility text with line breaks -->
+            <p><strong>Eligibility:</strong> <span [innerHTML]="scheme.eligibility "></span></p>
+            <p><strong>Eligibility Amount:</strong> ₹{{ scheme.eligibility_amount }}</p>
+            <!-- <p><strong>Valid Upto:</strong> {{ scheme.valid_upto }}</p> -->
+          </div>
+  
+          <!-- View Scheme Button -->
+          <div class="scheme-footer">
+            <button class="btn btn-primary" (click)="apply()">
+              apply
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
