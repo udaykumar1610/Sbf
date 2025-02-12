@@ -1,149 +1,3 @@
-<!-- <div class="container">
-    <h2>Scholarship Application Form</h2>
-
-    <form #form="ngForm" (submit)="submitForm()">
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="empname">Employee Name:</label>
-          <input type="text" id="empname" name="empname" [(ngModel)]="userdata.empname" placeholder="Enter Employee Name" required />
-        </div>
-
-        <div class="form-group">
-          <label for="scholar_name">Scholar Name:</label>
-          <input type="text" id="scholar_name" name="scholar_name" [(ngModel)]="scholarshipData.scholar_name" placeholder="Enter Scholar Name" required />
-        </div>
-      </div>
-
-     
-      <div class="form-row">
-        <div class="form-group">
-          <label for="relationship">Relationship:</label>
-          <select id="relationship" name="relationship" [(ngModel)]="scholarshipData.relationship" required>
-            <option value="" disabled selected>Select Relationship</option>
-            <option value="Son">Son</option>
-            <option value="Daughter">Daughter</option>
-            <option value="Twins">Twins</option>
-            <option value="Dependant">Dependant</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="spouse_govt_employee_details">Spouse Govt. Employee Details:</label>
-          <input type="text" id="spouse_govt_employee_details" name="spouse_govt_employee_details" [(ngModel)]="scholarshipData.spouse_govt_employee_details" placeholder="Enter Spouse Government Employee Details" />
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="date_of_appointment">Date of Appointment:</label>
-          <input type="date" id="date_of_appointment" name="date_of_appointment" [(ngModel)]="userdata.date_of_appointment" required />
-        </div>
-
-        <div class="form-group">
-          <label for="bill_unit_no">Bill Unit No:</label>
-          <input type="text" id="bill_unit_no" name="bill_unit_no" [(ngModel)]="scholarshipData.bill_unit_no" placeholder="Enter Bill Unit Number" />
-        </div>
-      </div>
-
-     
-      <div class="form-row">
-        <div class="form-group">
-          <label for="designation">Designation:</label>
-          <input type="text" id="designation" name="designation" [(ngModel)]="userdata.designation" placeholder="Enter Designation" required />
-        </div>
-
-        <div class="form-group">
-          <label for="office">Office:</label>
-          <input type="text" id="office" name="office" [(ngModel)]="userdata.office" placeholder="Enter Office" required />
-        </div>
-      </div>
-
-   
-      <div class="form-row">
-        <div class="form-group">
-          <label for="division">Division:</label>
-          <input type="text" id="division" name="division" [(ngModel)]="userdata.division" placeholder="Enter Division" required />
-        </div>
-
-        <div class="form-group">
-          <label for="telephone_number">Telephone Number:</label>
-          <input type="text" id="telephone_number" name="telephone_number" [(ngModel)]="scholarshipData.telephone_number" placeholder="Enter Telephone Number" />
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="mobile_number">Mobile Number:</label>
-          <input type="text" id="mobile_number" name="mobile_number" [(ngModel)]="userdata.mobilenumber" placeholder="Enter Mobile Number" required />
-        </div>
-
-        <div class="form-group">
-          <label for="pf_no">PF Number:</label>
-          <input type="text" id="pf_no" name="pf_no" [(ngModel)]="userdata.pf_no" placeholder="Enter PF Number" required />
-        </div>
-      </div>
-
-  
-      <div class="form-row">
-        <div class="form-group">
-          <label for="pay_level">Pay Level:</label>
-          <input type="text" id="pay_level" name="pay_level" [(ngModel)]="scholarshipData.pay_level" placeholder="Enter Pay Level" required />
-        </div>
-
-        <div class="form-group">
-          <label for="macp_pay_level">MACP Pay Level:</label>
-          <input type="text" id="macp_pay_level" name="macp_pay_level" [(ngModel)]="scholarshipData.macp_pay_level" placeholder="Enter MACP Pay Level" />
-        </div>
-      </div>
-
-   
-      <div class="form-row">
-        <div class="form-group">
-          <label for="basic_pay">Basic Pay:</label>
-          <input type="text" id="basic_pay" name="basic_pay" [(ngModel)]="scholarshipData.basic_pay" placeholder="Enter Basic Pay" required />
-        </div>
-
-        <div class="form-group">
-          <label for="course_of_study">Course of Study:</label>
-          <input type="text" id="course_of_study" name="course_of_study" [(ngModel)]="scholarshipData.course_of_study" placeholder="Enter Course of Study" required />
-        </div>
-      </div>
-
-
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="year_of_study">Year of Study:</label>
-          <input type="text" id="year_of_study" name="year_of_study" [(ngModel)]="scholarshipData.year_of_study" placeholder="Enter Year of Study" required />
-        </div>
-
-        <div class="form-group">
-          <label for="institution_name">Institution Name:</label>
-          <input type="text" id="institution_name" name="institution_name" [(ngModel)]="scholarshipData.institution_name" placeholder="Enter Institution Name" required />
-        </div>
-      </div>
-
-     
-      <div class="form-row">
-        <div class="form-group">
-          <label for="tuition_fee_exemption">Tuition Fee Exemption:</label>
-          <input type="text" id="tuition_fee_exemption" name="tuition_fee_exemption" [(ngModel)]="scholarshipData.tuition_fee_exemption" placeholder="Enter Tuition Fee Exemption" />
-        </div>
-
-        <div class="form-group">
-          <label for="student_employment_status">Student Employment Status:</label>
-          <input type="text" id="student_employment_status" name="student_employment_status" [(ngModel)]="scholarshipData.student_employment_status" placeholder="Enter Student Employment Status" />
-        </div>
-      </div>
-
-     
-      <button type="submit" [disabled]="!form.valid">Submit Application</button>
-    </form>
-
-    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
-    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-</div> -->
 
 
 <div class="container">
@@ -225,7 +79,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="mobile_number">Mobile Number:</label>
-          <input type="text" id="mobile_number" name="mobile_number" [(ngModel)]="userdata.mobile_number" placeholder="Enter Mobile Number" required />
+          <input type="text" id="mobile_number" name="mobile_number" [(ngModel)]="userdata.mobilenumber" placeholder="Enter Mobile Number" required />
         </div>
 
         <div class="form-group">
@@ -291,7 +145,7 @@
       <div class="form-row">
         <div class="form-group">
           <!-- <label for="tuition_fee_exemption">Tuition Fee Exemption:</label> -->
-          <label for="tuition_fee_exemption">"Is the child exempt from tuition fees? If yes, specify the amount:</label>
+          <label for="tuition_fee_exemption">Is the child exempt from tuition fees? If yes, specify the amount:</label>
           <input type="text" id="tuition_fee_exemption" name="tuition_fee_exemption" [(ngModel)]="scholarshipData.tuition_fee_exemption" placeholder="Enter Tuition Fee Exemption" />
         </div>
 
@@ -308,7 +162,21 @@
           <label for="other_scholarships_value">Is the child receiving any other scholarship? If yes, specify the amount:</label>
           <input type="text" id="other_scholarships_value" name="other_scholarships_value" [(ngModel)]="scholarshipData.other_scholarships_value" placeholder="Enter Value of Other Scholarships" />
         </div>
-      </div>
+
+        <!-- <div class="form-group">
+          <label for="file">Upload Document:</label>
+          <input type="file" id="file" name="file" (change)="onFileChange($event)" />
+        </div> -->
+        <!-- <div class="upload">
+          <label for="Upload">Enclosure</label>
+          <input type="file" id="Upload" (change)="onFileChange($event)" />
+        </div>
+   -->
+  </div>
+  <div class="form-group">
+   <label>Upload Supporting Document (EMPIDCard,EmpPlaySlip,Student_marks_memos,student_bonafide,studentId,merge all in one pdf, Max 5MB):</label>
+   <input type="file" (change)="onFileSelected($event)" accept="application/pdf" />
+ </div>
 
       <!-- Submit Button -->
       <button type="submit" [disabled]="!form.valid">Submit Application</button>
@@ -316,4 +184,4 @@
 
     <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-</div>
+</div><br/><br/>
