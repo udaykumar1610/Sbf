@@ -1,0 +1,137 @@
+<div class="container mt-4">
+    <div class="card shadow-sm">
+      <div class="card-header text-center" >
+        <h3>Medical Assistance Form</h3>
+      </div>
+      <div class="card-body">
+        <form #medicalForm="ngForm" (ngSubmit)="onSubmit(medicalForm)">
+    
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="empname" class="form-label">Employee Name</label>
+              <input type="text" id="empname" class="form-control" [(ngModel)]="userdata.empname" name="empname" placeholder="Enter employee name" required>
+            </div>
+    
+            <div class="col-md-6">
+              <label for="guardian_name" class="form-label">S/O (Wife of -> In case of female employee)</label>
+              <input type="text" id="guardian_name" class="form-control" [(ngModel)]="userdata.guardian_name" name="guardian_name" placeholder="Enter name" required>
+            </div>
+          </div>
+    
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="date_of_appointment" class="form-label">Date of Appointment</label>
+              <input type="date" id="date_of_appointment" class="form-control" [(ngModel)]="userdata.date_of_appointment" name="date_of_appointment" required>
+            </div>
+    
+            <div class="col-md-6">
+              <label for="bill_unit_number" class="form-label">Bill Unit Number</label>
+              <input type="text" id="bill_unit_number" class="form-control" [(ngModel)]="medicalData.bill_unit_number" name="bill_unit_number" placeholder="Enter bill unit number" required>
+            </div>
+          </div>
+    
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="community" class="form-label">Community</label>
+              <select id="community" class="form-control" [(ngModel)]="medicalData.community" name="community" required>
+                <option value="" disabled selected>Select Community</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="OBC">OBC</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Christian">Christian</option>
+                <option value="UR">UR</option>
+              </select>
+            </div>
+    
+            <div class="col-md-6">
+              <label for="designation" class="form-label">Designation</label>
+              <input type="text" id="designation" class="form-control" [(ngModel)]="userdata.designation" name="designation" placeholder="Enter designation" required>
+            </div>
+          </div>
+    
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="office" class="form-label">Office</label>
+              <input type="text" id="office" class="form-control" [(ngModel)]="userdata.office" name="office" placeholder="Enter office name" required>
+            </div>
+    
+            <div class="col-md-6">
+              <label for="division" class="form-label">Division</label>
+              <input type="text" id="division" class="form-control" [(ngModel)]="userdata.division" name="division" placeholder="Enter division" required>
+            </div>
+          </div>
+    
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="pf_no" class="form-label">PF Number</label>
+              <input type="text" id="pf_no" class="form-control" [(ngModel)]="userdata.pf_no" name="pf_no" placeholder="Enter PF number" required>
+            </div>
+    
+            <div class="col-md-6">
+              <label for="pay_band" class="form-label">Pay Band</label>
+              <input type="text" id="pay_band" class="form-control" [(ngModel)]="userdata.payband" name="pay_band" placeholder="Enter pay band" required>
+            </div>
+          </div>
+    
+          <div class="row mb-3">
+            <!-- <div class="col-md-6">
+              <label for="running_allowance" class="form-label">Running Allowance</label>
+              <input type="text" id="running_allowance" class="form-control" [(ngModel)]="medicalData.running_allowance" name="running_allowance" placeholder="Enter running allowance" required>
+            </div> -->
+            <div class="col-md-6 mb-3">
+                <label>Running Allowance</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  name="running_allowance" 
+                  [(ngModel)]="medicalData.running_allowance" 
+                  placeholder="Running Allowance"
+                  required 
+                  pattern="^[0-9]{1,8}$" 
+                  maxlength="8" 
+                  title="Please enter a number with up to 8 digits"
+                  #runningAllowance="ngModel">
+                <div *ngIf="runningAllowance.invalid && runningAllowance.touched" class="text-danger">
+                  Running allowance must be a number with up to 8 digits.
+                </div>
+              </div>
+    
+            <div class="col-md-6">
+              <label for="grade_pay_substantive" class="form-label">Grade Pay Substantive</label>
+              <input type="text" id="grade_pay_substantive" class="form-control" [(ngModel)]="medicalData.grade_pay_substantive" name="grade_pay_substantive" placeholder="Enter grade pay substantive" required>
+            </div>
+          </div>
+    
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="grade_pay_officiating_macp" class="form-label">Grade Pay Officiating/MACP</label>
+              <input type="text" id="grade_pay_officiating_macp" class="form-control" [(ngModel)]="medicalData.grade_pay_officiating_macp" name="grade_pay_officiating_macp" placeholder="Enter officiating MACP grade pay" required>
+            </div>
+    
+            <div class="col-md-6">
+              <label for="assistance_for" class="form-label">For whom the assistance is applied for</label>
+              <input type="text" id="assistance_for" class="form-control" [(ngModel)]="medicalData.assistance_for" name="assistance_for" placeholder="Enter assistance type" required>
+            </div>
+          </div>
+    
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="dependent_name_relation" class="form-label">Dependent's Name & Relation(If the assistance is for dependent)</label>
+              <input type="text" id="dependent_name_relation" class="form-control" [(ngModel)]="medicalData.dependent_name_relation" name="dependent_name_relation" placeholder="Enter dependent's name and relation" required>
+            </div>
+    
+            <div class="col-md-6">
+              <label for="pdfFile" class="form-label">Upload PDF(EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB)</label>
+              <input type="file" id="pdfFile" class="form-control" (change)="onFileSelected($event)" required>
+            </div>
+          </div>
+    
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -170,6 +170,7 @@ export class ScholarshipFormComponent {
   
   successMessage: string = '';
   errorMessage: string = '';
+basicPay: any;
 
   constructor(
     private scholarshipService: ScholarshipService,
@@ -277,7 +278,21 @@ fetchUserDetails() {
 
 // Submit form data
 submitForm() {
+
+
+  // Check if basic_pay is valid (number and max 8 digits)
+  const basicPay = this.scholarshipData.basic_pay;
+  const basicPayValid = /^\d{1,8}$/.test(basicPay);
+
+  if (!basicPayValid) {
+    this.errorMessage = 'Basic Pay must be a valid number with a maximum of 8 digits.';
+    alert(this.errorMessage);
+    return;  // Prevent submission
+  }
   this.scholarshipData.date_of_appointment = this.formatDate(this.scholarshipData.date_of_appointment);
+
+
+
 
   this.scholarshipService.createScholarship(this.scholarshipData, this.selectedFile).subscribe(
     () => {

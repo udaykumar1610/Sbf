@@ -15,6 +15,14 @@ import { DycpodashboardComponent } from './dashboard/dycpodashboard/dycpodashboa
 import { PcpodashboardComponent } from './dashboard/pcpodashboard/pcpodashboard.component';
 import { SupervisordashboardComponent } from './dashboard/supervisordashboard/supervisordashboard.component';
 import { DivisiondashboardComponent } from './dashboard/divisiondashboard/divisiondashboard.component';
+import { ScholarshipFormComponent } from './forms/scholarship-form/scholarship-form.component';
+import { DenturesFormComponent } from './forms/dentures-form/dentures-form.component';
+import { SpectaclesFormComponent } from './forms/spectacles-form/spectacles-form.component';
+import { MedicalFormComponent } from './forms/medical-form/medical-form.component';
+import { MaintenanceGrantFormComponent } from './forms/maintenance-grant-form/maintenance-grant-form.component';
+import { MotorizedTricycleFormComponent } from './forms/motorized-tricycle-form/motorized-tricycle-form.component';
+import { PhysicallyChallengedFormComponent } from './forms/physically-challenged-form/physically-challenged-form.component';
+import { DeafMentalFormComponent } from './forms/deaf-mental-form/deaf-mental-form.component';
 
 // export const routes: Routes = [];
 export const routes: Routes = [
@@ -31,6 +39,15 @@ export const routes: Routes = [
     { path: 'spo-dashboard', component: SpodashboardComponent },
     { path: 'dypco-dashboard', component: DycpodashboardComponent },
     { path: 'pcpo-dashboard', component: PcpodashboardComponent },
+    { path: 'scholarship', component: ScholarshipFormComponent },
+    { path: 'denture', component: DenturesFormComponent },
+    { path: 'spectacle', component: SpectaclesFormComponent },
+    { path: 'medical', component: MedicalFormComponent },
+    { path: 'maintenance', component: MaintenanceGrantFormComponent },
+    { path: 'motor', component: MotorizedTricycleFormComponent },
+    { path: 'physically', component: PhysicallyChallengedFormComponent },
+    { path: 'deafmental', component: DeafMentalFormComponent },
+
     { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
     { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'home',pathMatch: 'full'  }

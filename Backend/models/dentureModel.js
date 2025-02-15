@@ -1,132 +1,40 @@
-const pool = require("../config/db");
+const db = require("../config/db");
 
-// Create a new denture claim
-const createDenture = async (data) => {
-  const {
-    empname,
-    date_of_birth,
-    guardian_name,
-    date_of_appointment,
-    bill_unit_number,
-    community,
-    designation,
-    office,
-    division,
-    pf_no,
-    pay_band,
-    running_allowance,
-    grade_pay_substantive,
-    grade_pay_officiating_macp,
-    dentures_recommended,
-    receipt_number,
-    receipt_date,
-    cost_incurred,
-  } = data;
-
-  await pool.query(
-    `INSERT INTO Dentures 
-    (empname, date_of_birth, guardian_name, date_of_appointment, bill_unit_number, community, 
-    designation, office, division, pf_no, pay_band, running_allowance, grade_pay_substantive, 
-    grade_pay_officiating_macp, dentures_recommended, receipt_number, receipt_date, cost_incurred) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    [
-      empname,
-      date_of_birth,
-      guardian_name,
-      date_of_appointment,
-      bill_unit_number,
-      community,
-      designation,
-      office,
-      division,
-      pf_no,
-      pay_band,
-      running_allowance,
-      grade_pay_substantive,
-      grade_pay_officiating_macp,
-      dentures_recommended,
-      receipt_number,
-      receipt_date,
-      cost_incurred,
-    ]
-  );
+// Get all dentures
+const getAllDentures = () => {
+  return db.query("SELECT * FROM Dentures");
 };
 
-// Get all denture claims
-const getAllDentures = async () => {
-  const [rows] = await pool.query("SELECT * FROM Dentures");
-  return rows;
+// Get dentures by status
+const getDenturesByStatus = (status) => {
+  return db.query("SELECT * FROM Dentures WHERE status = ?", [status]);
 };
 
-// Get a single denture claim by ID
-const getDentureById = async (id) => {
-  const [rows] = await pool.query("SELECT * FROM Dentures WHERE id = ?", [id]);
-  return rows.length ? rows[0] : null;
+// Get single denture
+const getDentureById = (id) => {
+  return db.query("SELECT * FROM Dentures WHERE id = ?", [id]);
 };
 
-// Update a denture claim by ID
-const updateDenture = async (id, data) => {
-  const {
-    empname,
-    date_of_birth,
-    guardian_name,
-    date_of_appointment,
-    bill_unit_number,
-    community,
-    designation,
-    office,
-    division,
-    pf_no,
-    pay_band,
-    running_allowance,
-    grade_pay_substantive,
-    grade_pay_officiating_macp,
-    dentures_recommended,
-    receipt_number,
-    receipt_date,
-    cost_incurred,
-  } = data;
-
-  await pool.query(
-    `UPDATE Dentures SET 
-      empname = ?, date_of_birth = ?, guardian_name = ?, date_of_appointment = ?, bill_unit_number = ?, 
-      community = ?, designation = ?, office = ?, division = ?, pf_no = ?, pay_band = ?, 
-      running_allowance = ?, grade_pay_substantive = ?, grade_pay_officiating_macp = ?, 
-      dentures_recommended = ?, receipt_number = ?, receipt_date = ?, cost_incurred = ? 
-    WHERE id = ?`,
-    [
-      empname,
-      date_of_birth,
-      guardian_name,
-      date_of_appointment,
-      bill_unit_number,
-      community,
-      designation,
-      office,
-      division,
-      pf_no,
-      pay_band,
-      running_allowance,
-      grade_pay_substantive,
-      grade_pay_officiating_macp,
-      dentures_recommended,
-      receipt_number,
-      receipt_date,
-      cost_incurred,
-      id,
-    ]
-  );
+// Create new denture
+const createDenture = (dentureData) => {
+  return db.query("INSERT INTO Dentures SET ?", dentureData);
 };
 
-// Delete a denture claim by ID
-const deleteDenture = async (id) => {
-  await pool.query("DELETE FROM Dentures WHERE id = ?", [id]);
+// Update denture
+const updateDenture = (id, updatedData) => {
+  return db.query("UPDATE Dentures SET ? WHERE id = ?", [updatedData, id]);
+};
+
+// Delete denture
+const deleteDenture = (id) => {
+  return db.query("DELETE FROM Dentures WHERE id = ?", [id]);
 };
 
 module.exports = {
-  createDenture,
   getAllDentures,
+  getDenturesByStatus,
   getDentureById,
+  createDenture,
   updateDenture,
   deleteDenture,
 };

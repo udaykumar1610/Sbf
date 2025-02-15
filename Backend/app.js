@@ -9,6 +9,13 @@ const adminRoutes = require("./routes/adminRoutes");
 const schemeRoutes = require("./routes/schemeRoutes");
 const scholarshipRoutes = require("./routes/scholarshipRoutes");
 const dentureRoutes = require("./routes/dentureRoutes");
+const medicalAssistanceRoutes = require("./routes/medicalAssistanceRoutes");
+const spectaclesRoutes = require("./routes/spectaclesRoutes");
+const maintenanceGrantRoutes = require("./routes/maintenanceGrantRoutes");
+const motorizedTricycleRoutes = require("./routes/motorizedTricycleRoutes");
+const physicallyChallengedRoutes = require("./routes/physicallyChallengedRoutes");
+const deafMentalyRoutes = require("./routes/deafMentalRoute");
+
 const app = express();
 
 app.use(cors());
@@ -21,11 +28,18 @@ app.use("/api/schemes", schemeRoutes);
 app.use("/api/scholar", scholarshipRoutes);
 
 app.use("/api/uploads/scholarships", scholarshipRoutes);
+app.use("/api/dentures", dentureRoutes);
+app.use("/api/medical", medicalAssistanceRoutes);
+app.use("/api/spectacles", spectaclesRoutes);
+
+app.use("/api/maintenance", maintenanceGrantRoutes);
+
+app.use("/api/motorizedtricycle", motorizedTricycleRoutes);
+app.use("/api/physicallychallenged", physicallyChallengedRoutes);
+app.use("/api/deafmentaly", deafMentalyRoutes);
 
 const path = require("path");
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-app.use("/api/dentures", dentureRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

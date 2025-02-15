@@ -1,0 +1,122 @@
+const pool = require("../config/db");
+
+const PhysicallyChallenged = {
+  getAll: async () => {
+    const [rows] = await pool.query("SELECT * FROM physicallyChallenged");
+    return rows;
+  },
+
+  getById: async (id) => {
+    const [rows] = await pool.query(
+      "SELECT * FROM physicallyChallenged WHERE id = ?",
+      [id]
+    );
+    return rows[0];
+  },
+
+  getByStatus: async (status) => {
+    const [rows] = await pool.query(
+      "SELECT * FROM physicallyChallenged WHERE status = ?",
+      [status]
+    );
+    return rows;
+  },
+
+  create: async (data) => {
+    const sql = `
+      INSERT INTO physicallyChallenged (
+        empname, son_wife_of, spouse_details, date_of_appointment, 
+        bill_unit_number, community, designation, office, division, pf_no, 
+        pay_band, running_allowance, grade_pay_substantive, 
+        grade_pay_officiating_macp, physically_challenged_student_name, 
+        relationship_with_employee, school_child_dob, class_studying, 
+        school_name, nature_of_disability, 
+        financial_assistance_received_upto, financial_assistance_period_from, 
+        financial_assistance_period_to, status, pdf_file
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const params = [
+      data.empname,
+      data.son_wife_of,
+      data.spouse_details,
+      data.date_of_appointment,
+      data.bill_unit_number,
+      data.community,
+      data.designation,
+      data.office,
+      data.division,
+      data.pf_no,
+      data.pay_band,
+      data.running_allowance,
+      data.grade_pay_substantive,
+      data.grade_pay_officiating_macp,
+      data.physically_challenged_student_name,
+      data.relationship_with_employee,
+      data.school_child_dob,
+      data.class_studying,
+      data.school_name,
+      data.nature_of_disability,
+      data.financial_assistance_received_upto,
+      data.financial_assistance_period_from,
+      data.financial_assistance_period_to,
+      data.status || "Submitted",
+      data.pdf_file || null,
+    ];
+
+    const [result] = await pool.query(sql, params);
+    return result.insertId;
+  },
+
+  update: async (id, data) => {
+    const sql = `
+      UPDATE physicallyChallenged SET 
+        empname=?, son_wife_of=?, spouse_details=?, date_of_appointment=?, 
+        bill_unit_number=?, community=?, designation=?, office=?, division=?, 
+        pf_no=?, pay_band=?, running_allowance=?, grade_pay_substantive=?, 
+        grade_pay_officiating_macp=?, physically_challenged_student_name=?, 
+        relationship_with_employee=?, school_child_dob=?, class_studying=?, 
+        school_name=?, nature_of_disability=?, 
+        financial_assistance_received_upto=?, financial_assistance_period_from=?, 
+        financial_assistance_period_to=?, status=?, pdf_file=? 
+      WHERE id=?
+    `;
+
+    const params = [
+      data.empname,
+      data.son_wife_of,
+      data.spouse_details,
+      data.date_of_appointment,
+      data.bill_unit_number,
+      data.community,
+      data.designation,
+      data.office,
+      data.division,
+      data.pf_no,
+      data.pay_band,
+      data.running_allowance,
+      data.grade_pay_substantive,
+      data.grade_pay_officiating_macp,
+      data.physically_challenged_student_name,
+      data.relationship_with_employee,
+      data.school_child_dob,
+      data.class_studying,
+      data.school_name,
+      data.nature_of_disability,
+      data.financial_assistance_received_upto,
+      data.financial_assistance_period_from,
+      data.financial_assistance_period_to,
+      data.status,
+      data.pdf_file,
+      id,
+    ];
+
+    await pool.query(sql, params);
+  },
+
+  delete: async (id) => {
+    await pool.query("DELETE FROM physicallyChallenged WHERE id = ?", [id]);
+  },
+};
+
+module.exports = PhysicallyChallenged;

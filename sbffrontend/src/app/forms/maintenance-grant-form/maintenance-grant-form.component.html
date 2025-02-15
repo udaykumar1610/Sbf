@@ -1,0 +1,306 @@
+<!-- <div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>Maintenance Grant Form</h3>
+      </div>
+      <div class="card-body">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="empname">Employee Name</label>
+              <input type="text" class="form-control" id="empname" name="empname" [(ngModel)]="userdata.empname" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="son_or_wife_of">Son or Wife of</label>
+              <input type="text" class="form-control" id="son_or_wife_of" name="son_or_wife_of" [(ngModel)]="maintenanceGrantData.son_or_wife_of" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="date_of_appointment">Date of Appointment</label>
+              <input type="date" class="form-control" id="date_of_appointment" name="date_of_appointment" [(ngModel)]="userdata.date_of_appointment" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="bill_unit_number">Bill Unit Number</label>
+              <input type="text" class="form-control" id="bill_unit_number" name="bill_unit_number" [(ngModel)]="maintenanceGrantData.bill_unit_number" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="community">Community</label>
+              <select class="form-control" id="community" name="community" [(ngModel)]="maintenanceGrantData.community" required>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="OBC">OBC</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Christian">Christian</option>
+                <option value="UR">UR</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="designation">Designation</label>
+              <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="userdata.designation" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="office">Office</label>
+              <input type="text" class="form-control" id="office" name="office" [(ngModel)]="userdata.office" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="division">Division</label>
+              <input type="text" class="form-control" id="division" name="division" [(ngModel)]="userdata.division" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="pf_no">PF Number</label>
+              <input type="text" class="form-control" id="pf_no" name="pf_no" [(ngModel)]="userdata.pf_no" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="pay_band">Pay Band</label>
+              <input type="text" class="form-control" id="pay_band" name="pay_band" [(ngModel)]="userdata.payband" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="running_allowance">Running Allowance</label>
+              <input type="text" class="form-control" id="running_allowance" name="running_allowance" [(ngModel)]="maintenanceGrantData.running_allowance" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="grade_pay_substantive">Grade Pay (Substantive)</label>
+              <input type="text" class="form-control" id="grade_pay_substantive" name="grade_pay_substantive" [(ngModel)]="maintenanceGrantData.grade_pay_substantive" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="grade_pay_officiating_macp">Grade Pay (Officiating MACP)</label>
+              <input type="text" class="form-control" id="grade_pay_officiating_macp" name="grade_pay_officiating_macp" [(ngModel)]="maintenanceGrantData.grade_pay_officiating_macp" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_pay_from">Sickness with Pay (From)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_pay_from" name="period_of_sickness_with_pay_from" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_pay_from">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_pay_to">Sickness with Pay (To)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_pay_to" name="period_of_sickness_with_pay_to" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_pay_to">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_half_pay_from">Sickness with Half Pay (From)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_half_pay_from" name="period_of_sickness_with_half_pay_from" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_half_pay_from">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_half_pay_to">Sickness with Half Pay (To)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_half_pay_to" name="period_of_sickness_with_half_pay_to" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_half_pay_to">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_without_pay_from">Sickness without Pay (From)</label>
+              <input type="date" class="form-control" id="period_of_sickness_without_pay_from" name="period_of_sickness_without_pay_from" [(ngModel)]="maintenanceGrantData.period_of_sickness_without_pay_from">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_without_pay_to">Sickness without Pay (To)</label>
+              <input type="date" class="form-control" id="period_of_sickness_without_pay_to" name="period_of_sickness_without_pay_to" [(ngModel)]="maintenanceGrantData.period_of_sickness_without_pay_to">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="sick_certificate_number_date">Sick Certificate No/Date</label>
+              <input type="text" class="form-control" id="sick_certificate_number_date" name="sick_certificate_number_date" [(ngModel)]="maintenanceGrantData.sick_certificate_number_date">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="sick_certificate_issued_by">Sick Certificate Issued By</label>
+              <input type="text" class="form-control" id="sick_certificate_issued_by" name="sick_certificate_issued_by" [(ngModel)]="maintenanceGrantData.sick_certificate_issued_by">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="pdfFile">Upload PDF File</label>
+              <input type="file" class="form-control" id="pdfFile" (change)="onFileSelected($event)" accept=".pdf">
+            </div>
+          </div>
+  
+          <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+   -->
+
+
+   <div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header">
+        <h3>Maintenance Grant Form</h3>
+      </div>
+      <div class="card-body">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="empname">Employee Name</label>
+              <input type="text" class="form-control" id="empname" name="empname" [(ngModel)]="userdata.empname" placeholder="Enter Employee Name" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>S/O (Wife of -> In case of female employee)</label>
+              <input type="text" class="form-control" id="son_or_wife_of" name="son_or_wife_of" [(ngModel)]="maintenanceGrantData.son_or_wife_of" placeholder="Enter Son or Wife of" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="date_of_appointment">Date of Appointment</label>
+              <input type="date" class="form-control" id="date_of_appointment" name="date_of_appointment" [(ngModel)]="userdata.date_of_appointment" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="bill_unit_number">Bill Unit Number</label>
+              <input type="text" class="form-control" id="bill_unit_number" name="bill_unit_number" [(ngModel)]="maintenanceGrantData.bill_unit_number" placeholder="Enter Bill Unit Number" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="community"> Select Community</label>
+              <select class="form-control" id="community" name="community" placeholder="Select Community" [(ngModel)]="maintenanceGrantData.community" required>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="OBC">OBC</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Christian">Christian</option>
+                <option value="UR">UR</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="designation">Designation</label>
+              <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="userdata.designation" placeholder="Enter Designation" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="office">Office</label>
+              <input type="text" class="form-control" id="office" name="office" [(ngModel)]="userdata.office" placeholder="Enter Office Name" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="division">Division</label>
+              <input type="text" class="form-control" id="division" name="division" [(ngModel)]="userdata.division" placeholder="Enter Division" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="pf_no">PF Number</label>
+              <input type="text" class="form-control" id="pf_no" name="pf_no" [(ngModel)]="userdata.pf_no" placeholder="Enter PF Number" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="pay_band">Pay Band</label>
+              <input type="text" class="form-control" id="pay_band" name="pay_band" [(ngModel)]="userdata.payband" placeholder="Enter Pay Band" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <!-- <div class="col-md-6 mb-3">
+              <label for="running_allowance">Running Allowance</label>
+              <input type="text" class="form-control" id="running_allowance" name="running_allowance" [(ngModel)]="maintenanceGrantData.running_allowance" placeholder="Enter Running Allowance" required>
+            </div> -->
+
+            <div class="col-md-6 mb-3">
+              <label>Running Allowance</label>
+              <input 
+                type="number" 
+                class="form-control" 
+                name="running_allowance" 
+                [(ngModel)]="maintenanceGrantData.running_allowance" 
+                placeholder="Running Allowance"
+                required 
+                pattern="^[0-9]{1,8}$" 
+                maxlength="8" 
+                title="Please enter a number with up to 8 digits"
+                #runningAllowance="ngModel">
+              <div *ngIf="runningAllowance.invalid && runningAllowance.touched" class="text-danger">
+                Running allowance must be a number with up to 8 digits.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="grade_pay_substantive">Grade Pay (Substantive)</label>
+              <input type="text" class="form-control" id="grade_pay_substantive" name="grade_pay_substantive" [(ngModel)]="maintenanceGrantData.grade_pay_substantive" placeholder="Enter Grade Pay (Substantive)" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="grade_pay_officiating_macp">Grade Pay (Officiating MACP)</label>
+              <input type="text" class="form-control" id="grade_pay_officiating_macp" name="grade_pay_officiating_macp" [(ngModel)]="maintenanceGrantData.grade_pay_officiating_macp" placeholder="Enter Grade Pay (Officiating MACP)" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_pay_from">Sickness with Pay (From)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_pay_from" name="period_of_sickness_with_pay_from" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_pay_from">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_pay_to">Sickness with Pay (To)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_pay_to" name="period_of_sickness_with_pay_to" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_pay_to">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_half_pay_from">Sickness with Half Pay (From)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_half_pay_from" name="period_of_sickness_with_half_pay_from" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_half_pay_from">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_with_half_pay_to">Sickness with Half Pay (To)</label>
+              <input type="date" class="form-control" id="period_of_sickness_with_half_pay_to" name="period_of_sickness_with_half_pay_to" [(ngModel)]="maintenanceGrantData.period_of_sickness_with_half_pay_to">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_without_pay_from">Sickness without Pay (From)</label>
+              <input type="date" class="form-control" id="period_of_sickness_without_pay_from" name="period_of_sickness_without_pay_from" [(ngModel)]="maintenanceGrantData.period_of_sickness_without_pay_from">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="period_of_sickness_without_pay_to">Sickness without Pay (To)</label>
+              <input type="date" class="form-control" id="period_of_sickness_without_pay_to" name="period_of_sickness_without_pay_to" [(ngModel)]="maintenanceGrantData.period_of_sickness_without_pay_to">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="sick_certificate_number_date">Sick Certificate No/Date</label>
+              <input type="text" class="form-control" id="sick_certificate_number_date" name="sick_certificate_number_date" [(ngModel)]="maintenanceGrantData.sick_certificate_number_date" placeholder="Enter Sick Certificate Number/Date">
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="sick_certificate_issued_by">Sick Certificate Issued By</label>
+              <input type="text" class="form-control" id="sick_certificate_issued_by" name="sick_certificate_issued_by" [(ngModel)]="maintenanceGrantData.sick_certificate_issued_by" placeholder="Enter Name of Issuer">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="pdfFile">Upload PDF (EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB)</label>
+              <input type="file" class="form-control" id="pdfFile" (change)="onFileSelected($event)" accept=".pdf">
+            </div>
+          </div>
+  
+          <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-          <label for="spouse_govt_employee_details">Spouse Govt. Employee Details:</label>
+          <label for="spouse_govt_employee_details">If spouse is a Railway/Government employee, details thereof.</label>
           <input type="text" id="spouse_govt_employee_details" name="spouse_govt_employee_details" [(ngModel)]="scholarshipData.spouse_govt_employee_details" placeholder="Enter Spouse Government Employee Details" />
         </div>
       </div>
@@ -117,9 +117,27 @@
       
       <!-- Eighth Row -->
       <div class="form-row">
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="basic_pay">Basic Pay:</label>
           <input type="text" id="basic_pay" name="basic_pay" [(ngModel)]="scholarshipData.basic_pay" placeholder="Enter Basic Pay" required />
+        </div> -->
+        <div class="form-group">
+          <label for="basic_pay">Basic Pay:</label>
+          <input 
+            type="text" 
+            id="basic_pay" 
+            name="basic_pay" 
+            [(ngModel)]="scholarshipData.basic_pay" 
+            placeholder="Enter Basic Pay" 
+            required 
+            maxlength="8" 
+            pattern="^\d{1,8}$" 
+            title="Basic Pay should be a maximum of 8 digits" 
+          />
+          <!-- Optional message to indicate validation -->
+          <div *ngIf="form.submitted && !basicPay.valid" class="error-message">
+            Basic Pay must be a valid number with a maximum of 8 digits.
+          </div>
         </div>
 
         <div class="form-group">
@@ -131,7 +149,7 @@
       <!-- Ninth Row -->
       <div class="form-row">
         <div class="form-group">
-          <label for="year_of_study">Year of Study:</label>
+          <label for="year_of_study">Year of Study(ex:1st,2nd year..etc):</label>
           <input type="text" id="year_of_study" name="year_of_study" [(ngModel)]="scholarshipData.year_of_study" placeholder="Enter Year of Study" required />
         </div>
 

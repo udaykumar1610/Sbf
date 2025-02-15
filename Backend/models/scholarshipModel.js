@@ -272,24 +272,44 @@ const getAllScholarships = async () => {
 };
 
 // Get scholarship by ID (with PDF path)
+// const getScholarshipById = async (id) => {
+//   const [rows] = await pool.query(
+//     `SELECT *, CONCAT('${process.env.BASE_URL}/', pdf_file_path) AS pdf_url
+//      FROM scholarships WHERE id = ?`,
+//     [id]
+//   );
+//   return rows.length ? rows[0] : null;
+// };
+
+// Get scholarship by ID (with PDF path)
 const getScholarshipById = async (id) => {
+  const baseUrl = process.env.BASE_URL; // Access the environment variable here
   const [rows] = await pool.query(
-    `SELECT *, CONCAT('${process.env.BASE_URL}/', pdf_file_path) AS pdf_url 
-     FROM scholarships WHERE id = ?`,
-    [id]
+    "SELECT *, CONCAT(?, '/', pdf_file_path) AS pdf_url FROM scholarships WHERE id = ?",
+    [baseUrl, id] // Pass the BASE_URL and id as parameters
   );
   return rows.length ? rows[0] : null;
 };
 
 // Get scholarships by status
 const getScholarshipsByStatus = async (status) => {
+  const baseUrl = process.env.BASE_URL; // Access the environment variable here
   const [rows] = await pool.query(
-    `SELECT *, CONCAT('${process.env.BASE_URL}/', pdf_file_path) AS pdf_url 
-     FROM scholarships WHERE status = ?`,
-    [status]
+    "SELECT *, CONCAT(?, '/', pdf_file_path) AS pdf_url FROM scholarships WHERE status = ?",
+    [baseUrl, status] // Pass the BASE_URL and status as parameters
   );
   return rows;
 };
+
+// Get scholarships by status
+// const getScholarshipsByStatus = async (status) => {
+//   const [rows] = await pool.query(
+//     `SELECT *, CONCAT('${process.env.BASE_URL}/', pdf_file_path) AS pdf_url
+//      FROM scholarships WHERE status = ?`,
+//     [status]
+//   );
+//   return rows;
+// };
 
 // Delete scholarship by ID
 const deleteScholarship = async (id) => {

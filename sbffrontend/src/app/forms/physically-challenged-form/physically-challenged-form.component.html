@@ -1,0 +1,182 @@
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header text-center">
+        <h3 class="card-title">Physically Challenged Form</h3>
+      </div>
+      <div class="card-body">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  
+          <!-- Row 1 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="empname" class="form-label">Employee Name</label>
+              <input type="text" class="form-control" id="empname" name="empname" [(ngModel)]="userdata.empname" placeholder="Enter Employee Name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="son_wife_of" class="form-label">S/O (Wife of -> In case of female employee)</label>
+              <input type="text" class="form-control" id="son_wife_of" name="son_wife_of" [(ngModel)]="physicallyChallengedData.son_wife_of" placeholder="Enter Son/Wife of">
+            </div>
+          </div>
+  
+          <!-- Row 2 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="spouse_details" class="form-label">If spouse is a Railway/Government employee, details thereof.</label>
+              <input type="text" class="form-control" id="spouse_details" name="spouse_details" [(ngModel)]="physicallyChallengedData.spouse_details" placeholder="Enter Spouse Details">
+            </div>
+            <div class="col-md-6">
+              <label for="date_of_appointment" class="form-label">Date of Appointment</label>
+              <input type="date" class="form-control" id="date_of_appointment" name="date_of_appointment" [(ngModel)]="userdata.date_of_appointment" placeholder="Select Date of Appointment">
+            </div>
+          </div>
+  
+          <!-- Row 3 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="bill_unit_number" class="form-label">Bill Unit Number</label>
+              <input type="text" class="form-control" id="bill_unit_number" name="bill_unit_number" [(ngModel)]="physicallyChallengedData.bill_unit_number" placeholder="Enter Bill Unit Number">
+            </div>
+            <div class="col-md-6">
+              <label for="community" class="form-label">Community</label>
+              <select class="form-select" id="community" name="community" [(ngModel)]="physicallyChallengedData.community">
+                <option value="">Select Community</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="OBC">OBC</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Christian">Christian</option>
+                <option value="UR">UR</option>
+              </select>
+            </div>
+          </div>
+  
+          <!-- Row 4 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="designation" class="form-label">Designation</label>
+              <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="userdata.designation" placeholder="Enter Designation">
+            </div>
+            <div class="col-md-6">
+              <label for="office" class="form-label">Office</label>
+              <input type="text" class="form-control" id="office" name="office" [(ngModel)]="userdata.office" placeholder="Enter Office">
+            </div>
+          </div>
+  
+          <!-- Row 5 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="division" class="form-label">Division</label>
+              <input type="text" class="form-control" id="division" name="division" [(ngModel)]="userdata.division" placeholder="Enter Division">
+            </div>
+            <div class="col-md-6">
+              <label for="pf_no" class="form-label">PF Number</label>
+              <input type="text" class="form-control" id="pf_no" name="pf_no" [(ngModel)]="userdata.pf_no" placeholder="Enter PF Number">
+            </div>
+          </div>
+  
+          <!-- Row 6 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="pay_band" class="form-label">Pay Band</label>
+              <input type="text" class="form-control" id="pay_band" name="pay_band" [(ngModel)]="userdata.payband" placeholder="Enter Pay Band">
+            </div>
+            <div class="col-md-6">
+              <label for="running_allowance" class="form-label">Running Allowance</label>
+              <input type="text" class="form-control" id="running_allowance" name="running_allowance" [(ngModel)]="physicallyChallengedData.running_allowance" placeholder="Enter Running Allowance">
+            </div>
+          </div>
+  
+          <!-- Row 7 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="grade_pay_substantive" class="form-label">Grade Pay Substantive</label>
+              <input type="text" class="form-control" id="grade_pay_substantive" name="grade_pay_substantive" [(ngModel)]="physicallyChallengedData.grade_pay_substantive" placeholder="Enter Grade Pay Substantive">
+            </div>
+            <div class="col-md-6">
+              <label for="grade_pay_officiating_macp" class="form-label">Grade Pay Officiating  / MACP</label>
+              <input type="text" class="form-control" id="grade_pay_officiating_macp" name="grade_pay_officiating_macp" [(ngModel)]="physicallyChallengedData.grade_pay_officiating_macp" placeholder="Enter Grade Pay Officiating MACP">
+            </div>
+          </div>
+  
+          <!-- Row 8 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="physically_challenged_student_name" class="form-label">Physically Challenged Student Name</label>
+              <input type="text" class="form-control" id="physically_challenged_student_name" name="physically_challenged_student_name" [(ngModel)]="physicallyChallengedData.physically_challenged_student_name" placeholder="Enter Student Name">
+            </div>
+            <div class="col-md-6">
+              <label for="relationship_with_employee" class="form-label">Relationship with Employee</label>
+              <input type="text" class="form-control" id="relationship_with_employee" name="relationship_with_employee" [(ngModel)]="physicallyChallengedData.relationship_with_employee" placeholder="Enter Relationship">
+            </div>
+          </div>
+  
+          <!-- Row 9 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="school_child_dob" class="form-label">Child Date of Birth</label>
+              <input type="date" class="form-control" id="school_child_dob" name="school_child_dob" [(ngModel)]="physicallyChallengedData.school_child_dob">
+            </div>
+            <div class="col-md-6">
+              <label for="class_studying" class="form-label">Class Studying</label>
+              <input type="text" class="form-control" id="class_studying" name="class_studying" [(ngModel)]="physicallyChallengedData.class_studying" placeholder="Enter Class Studying">
+            </div>
+          </div>
+  
+          <!-- Row 10 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="school_name" class="form-label">School Name</label>
+              <input type="text" class="form-control" id="school_name" name="school_name" [(ngModel)]="physicallyChallengedData.school_name" placeholder="Enter School Name">
+            </div>
+            <div class="col-md-6">
+              <label for="nature_of_disability" class="form-label">Nature of Disability</label>
+              <input type="text" class="form-control" id="nature_of_disability" name="nature_of_disability" [(ngModel)]="physicallyChallengedData.nature_of_disability" placeholder="Enter Nature of Disability">
+            </div>
+          </div>
+  
+          <!-- Row 11 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="financial_assistance_received_upto" class="form-label">Financial Assistance Received Upto</label>
+              <input type="date" class="form-control" id="financial_assistance_received_upto" name="financial_assistance_received_upto" [(ngModel)]="physicallyChallengedData.financial_assistance_received_upto" placeholder="Enter Financial Assistance">
+            </div>
+            <div class="col-md-6">
+              <label for="financial_assistance_period_from" class="form-label">Financial Assistance Period From</label>
+              <input type="date" class="form-control" id="financial_assistance_period_from" name="financial_assistance_period_from" [(ngModel)]="physicallyChallengedData.financial_assistance_period_from">
+            </div>
+          </div>
+  
+          <!-- Row 12 -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="financial_assistance_period_to" class="form-label">Financial Assistance Period To</label>
+              <input type="date" class="form-control" id="financial_assistance_period_to" name="financial_assistance_period_to" [(ngModel)]="physicallyChallengedData.financial_assistance_period_to">
+            </div>
+            <!-- <div class="col-md-6">
+              <label for="status" class="form-label">Status</label>
+              <select class="form-select" id="status" name="status" [(ngModel)]="physicallyChallengedData.status">
+                <option value="Submitted">Submitted</option>
+                <option value="Approved">Approved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div> -->
+          </div>
+  
+          <!-- Row 13 -->
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label for="pdf_file" class="form-label">Upload PDF (EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB)</label>
+              <input type="file" class="form-control" id="pdf_file" (change)="onFileSelected($event)">
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+  

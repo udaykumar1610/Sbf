@@ -1,0 +1,271 @@
+<div class="form-card">
+    <h2>Create Spectacle</h2>
+    <form #spectaclesForm="ngForm" (ngSubmit)="onSubmit(spectaclesForm)">
+      <!-- Employee Details -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="empname">Employee Name</label>
+          <input
+            id="empname"
+            type="text"
+            name="empname"
+            [(ngModel)]="userdata.empname"
+            placeholder="Enter Employee Name"
+            required
+          />
+        </div>
+        <div class="form-field">
+          <label for="date_of_birth">Date of Birth</label>
+          <input
+            id="date_of_birth"
+            type="date"
+            name="date_of_birth"
+            [(ngModel)]="userdata.date_of_birth"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- Guardian and Appointment Details -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="guardian_name">Guardian Name</label>
+          <input
+            id="guardian_name"
+            type="text"
+            name="guardian_name"
+            [(ngModel)]="spectacle.guardian_name"
+            placeholder="Enter Guardian Name"
+            required
+          />
+        </div>
+        <div class="form-field">
+          <label for="date_of_appointment">Date of Appointment</label>
+          <input
+            id="date_of_appointment"
+            type="date"
+            name="date_of_appointment"
+            [(ngModel)]="userdata.date_of_appointment"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- Bill Unit and Designation Details -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="bill_unit_number">Bill Unit Number</label>
+          <input
+            id="bill_unit_number"
+            type="text"
+            name="bill_unit_number"
+            [(ngModel)]="spectacle.bill_unit_number"
+            placeholder="Enter Bill Unit Number"
+            required
+          />
+        </div>
+        <div class="form-field">
+          <label for="designation">Designation</label>
+          <input
+            id="designation"
+            type="text"
+            name="designation"
+            [(ngModel)]="userdata.designation"
+            placeholder="Enter Designation"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- Office, Division, PF Number -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="office">Office</label>
+          <input
+            id="office"
+            type="text"
+            name="office"
+            [(ngModel)]="userdata.office"
+            placeholder="Enter Office Name"
+            required
+          />
+        </div>
+        <div class="form-field">
+          <label for="division">Division</label>
+          <input
+            id="division"
+            type="text"
+            name="division"
+            [(ngModel)]="userdata.division"
+            placeholder="Enter Division"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- PF Number, Pay Band, Running Allowance -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="pf_no">PF Number</label>
+          <input
+            id="pf_no"
+            type="text"
+            name="pf_no"
+            [(ngModel)]="userdata.pf_no"
+            placeholder="Enter PF Number"
+            required
+          />
+        </div>
+        <div class="form-field">
+          <label for="pay_band">Pay Band</label>
+          <input
+            id="pay_band"
+            type="text"
+            name="pay_band"
+            [(ngModel)]="userdata.payband"
+            placeholder="Enter Pay Band"
+            required
+          />
+        </div>
+        <!-- <div class="form-field">
+          <label for="running_allowance">Running Allowance</label>
+          <input
+            id="running_allowance"
+            type="text"
+            name="running_allowance"
+            [(ngModel)]="spectacle.running_allowance"
+            placeholder="Enter Running Allowance"
+            required
+          />
+        </div> -->
+        <div class="col-md-6 mb-3">
+          <label>Running Allowance</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            name="running_allowance" 
+            [(ngModel)]="spectacle.running_allowance" 
+            placeholder="Running Allowance"
+            required 
+            pattern="^[0-9]{1,8}$" 
+            maxlength="8" 
+            
+            title="Please enter a number with up to 8 digits"
+            #runningAllowance="ngModel">
+          <div *ngIf="runningAllowance.invalid && runningAllowance.touched" class="text-danger">
+            Running allowance must be a number with up to 8 digits.
+          </div>
+        </div>
+      </div>
+  
+      <!-- Grade Pay, Previous Application, Cost Incurred -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="grade_pay_substantive">Grade Pay (Substantive)</label>
+          <input
+            id="grade_pay_substantive"
+            type="text"
+            name="grade_pay_substantive"
+            [(ngModel)]="spectacle.grade_pay_substantive"
+            placeholder="Enter Grade Pay (Substantive)"
+            required
+          />
+        </div>
+        <div class="form-field">
+          <label for="grade_pay_officiating_macp">Grade Pay (Officiating MACP)</label>
+          <input
+            id="grade_pay_officiating_macp"
+            type="text"
+            name="grade_pay_officiating_macp"
+            [(ngModel)]="spectacle.grade_pay_officiating_macp"
+            placeholder="Enter Grade Pay (Officiating MACP)"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- Receipt Number, Previous Application Details -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="previous_application_details">Previous Application Details</label>
+          <textarea
+            id="previous_application_details"
+            name="previous_application_details"
+            [(ngModel)]="spectacle.previous_application_details"
+            placeholder="Enter Previous Application Details"
+            required
+          ></textarea>
+        </div>
+        <div class="form-field">
+          <label for="receipt_number_date">Receipt Number & Date</label>
+          <input
+            id="receipt_number_date"
+            type="text"
+            name="receipt_number_date"
+            [(ngModel)]="spectacle.receipt_number_date"
+            placeholder="Enter Receipt Number & Date"
+            required
+          />
+        </div>
+      </div>
+  
+      <!-- Cost Incurred and Status -->
+      <div class="form-row">
+        <!-- <div class="form-field">
+          <label for="cost_incurred">Cost Incurred</label>
+          <input
+            id="cost_incurred"
+            type="number"
+            name="cost_incurred"
+            [(ngModel)]="spectacle.cost_incurred"
+            placeholder="Enter Cost Incurred"
+            required
+          />
+        </div> -->
+        <div class="col-md-6 mb-3">
+          <label>Cost Incurred</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            name="cost_incurred" 
+            [(ngModel)]="spectacle.cost_incurred" 
+            placeholder="Cost Incurred" 
+            required
+            pattern="^[0-9]{1,8}$" 
+            maxlength="8" 
+            title="Please enter a number with up to 8 digits"
+            #costIncurred="ngModel">
+          <div *ngIf="costIncurred.invalid && costIncurred.touched" class="text-danger">
+            Cost incurred must be a number with up to 8 digits.
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="status">Status</label>
+          <select id="status" name="status" [(ngModel)]="spectacle.status" required>
+            <option value="submitted">Submitted</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- File Upload -->
+      <div class="form-row">
+        <div class="form-field">
+          <label for="pdf_file">Upload PDF</label>
+          <input
+            id="pdf_file"
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="application/pdf"
+            required
+          />
+        </div>
+      </div>
+  
+      <div class="form-submit">
+        <button type="submit" [disabled]="!spectaclesForm.form.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,139 @@
+
+
+   <div class="container">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="card-header text-center" style="margin-bottom: 20px;">
+            <h3>Motorized Tricycle Form</h3>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <label for="empname">Employee Name:</label>
+                <input type="text" id="empname" [(ngModel)]="userdata.empname" name="empname" placeholder="Enter Employee Name" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="date_of_birth">Date of Birth:</label>
+                <input type="date" id="date_of_birth" [(ngModel)]="userdata.date_of_birth" name="date_of_birth" placeholder="Select Date of Birth" required class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="relation_with_employee">S/O (Wife of -> In case of female employee):</label>
+                <input type="text" id="relation_with_employee" [(ngModel)]="motorizedTricycleData.relation_with_employee" name="relation_with_employee" placeholder="Enter Relation" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="date_of_appointment">Date of Appointment:</label>
+                <input type="date" id="date_of_appointment" [(ngModel)]="userdata.date_of_appointment" name="date_of_appointment" placeholder="Select Date of Appointment" required class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="bill_unit_number">Bill Unit Number:</label>
+                <input type="text" id="bill_unit_number" [(ngModel)]="motorizedTricycleData.bill_unit_number" name="bill_unit_number" placeholder="Enter Bill Unit Number" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="community">Community:</label>
+                <select id="community" [(ngModel)]="motorizedTricycleData.community" name="community" placeholder="Select Community" required class="form-control">
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                    <option value="OBC">OBC</option>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Christian">Christian</option>
+                    <option value="UR">UR</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="designation">Designation:</label>
+                <input type="text" id="designation" [(ngModel)]="userdata.designation" name="designation" placeholder="Enter Designation" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="office">Office:</label>
+                <input type="text" id="office" [(ngModel)]="userdata.office" name="office" placeholder="Enter Office" required class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="division">Division:</label>
+                <input type="text" id="division" [(ngModel)]="userdata.division" name="division" placeholder="Enter Division" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="pf_no">PF Number:</label>
+                <input type="text" id="pf_no" [(ngModel)]="userdata.pf_no" name="pf_no" placeholder="Enter PF Number" required class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="payband">Payband:</label>
+                <input type="text" id="payband" [(ngModel)]="userdata.payband" name="payband" placeholder="Enter Payband" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="running_allowance">Running Allowance:</label>
+                <input type="number" id="running_allowance" [(ngModel)]="motorizedTricycleData.running_allowance" name="running_allowance" placeholder="Enter Running Allowance" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="grade_pay_substantive">Grade Pay Substantive:</label>
+                <input type="number" id="grade_pay_substantive" [(ngModel)]="motorizedTricycleData.grade_pay_substantive" name="grade_pay_substantive" placeholder="Enter Grade Pay Substantive" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="grade_pay_officiating_macp">Grade Pay Officiating / MACP:</label>
+                <input type="number" id="grade_pay_officiating_macp" [(ngModel)]="motorizedTricycleData.grade_pay_officiating_macp" name="grade_pay_officiating_macp" placeholder="Enter Grade Pay Officiating MACP" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="account_number">Account Number:</label>
+                <input type="text" id="account_number" [(ngModel)]="motorizedTricycleData.account_number" name="account_number" placeholder="Enter Account Number" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="bank_name">Bank Name:</label>
+                <input type="text" id="bank_name" [(ngModel)]="motorizedTricycleData.bank_name" name="bank_name" placeholder="Enter Bank Name" required class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="branch_name">Branch Name:</label>
+                <input type="text" id="branch_name" [(ngModel)]="motorizedTricycleData.branch_name" name="branch_name" placeholder="Enter Branch Name" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="ifsc_number">IFSC Number:</label>
+                <input type="text" id="ifsc_number" [(ngModel)]="motorizedTricycleData.ifsc_number" name="ifsc_number" placeholder="Enter IFSC Number" required class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="cost_of_tricycle">Cost of Tricycle (ORIGINAL QUOTATION to be enclosed):</label>
+                <input type="number" id="cost_of_tricycle" [(ngModel)]="motorizedTricycleData.cost_of_tricycle" name="cost_of_tricycle" placeholder="Enter Tricycle Cost" required class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="percentage_of_handicap">Percentage of Handicap (Certificate issued by the Govt. Orthopaedic Surgeon to be enclosed) :</label>
+                <input type="number" id="percentage_of_handicap" [(ngModel)]="motorizedTricycleData.percentage_of_handicap" name="percentage_of_handicap" placeholder="Enter Handicap Percentage" required class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="pdf_file">Upload PDF(EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB):</label>
+                <input type="file" id="pdf_file" (change)="onFileSelected($event)" accept="application/pdf" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
