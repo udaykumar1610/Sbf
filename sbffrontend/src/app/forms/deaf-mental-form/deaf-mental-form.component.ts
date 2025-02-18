@@ -126,6 +126,15 @@ export class DeafMentalFormComponent {
   }
 
   onSubmit(form: NgForm) {
+
+
+    // Validate running allowance to ensure it doesn't exceed 8 digits
+    if (this.deafMentalData.running_allowance && !/^\d{1,8}$/.test(this.deafMentalData.running_allowance.toString())) {
+      alert('Running allowance must be a number with up to 8 digits.');
+      return;
+    }
+
+
     this.deafMentalData.date_of_appointment = this.formatDateForInput(this.userdata.date_of_appointment);
     this.deafMentalData.empname = this.userdata.empname;
     

@@ -1,0 +1,47 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  h2 {
+    color: #ffffff;
+    background-color: #007bff; /* Set background color of header */
+    padding: 10px;
+    font-weight: bold;
+    text-align: center; /* Center align text in header */
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+  }
+  
+  .mb-3 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+    display: block; /* Make button block-level */
+    margin: 0 auto; /* Center button */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  
+  :disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  

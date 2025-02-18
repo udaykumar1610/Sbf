@@ -80,10 +80,28 @@
               <label for="pay_band" class="form-label">Pay Band</label>
               <input type="text" class="form-control" id="pay_band" name="pay_band" [(ngModel)]="userdata.payband" placeholder="Enter Pay Band">
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <label for="running_allowance" class="form-label">Running Allowance</label>
               <input type="text" class="form-control" id="running_allowance" name="running_allowance" [(ngModel)]="physicallyChallengedData.running_allowance" placeholder="Enter Running Allowance">
             </div>
+          </div> -->
+          <div class="col-md-6 mb-3">
+            <label>Running Allowance</label>
+            <input 
+              type="number" 
+              class="form-control" 
+              name="running_allowance" 
+              [(ngModel)]="physicallyChallengedData.running_allowance" 
+              placeholder="Running Allowance"
+              required 
+              pattern="^[0-9]{1,8}$" 
+              maxlength="8" 
+              title="Please enter a number with up to 8 digits"
+              #runningAllowance="ngModel">
+            <div *ngIf="runningAllowance.invalid && runningAllowance.touched" class="text-danger">
+              Running allowance must be a number with up to 8 digits.
+            </div>
+          </div>
           </div>
   
           <!-- Row 7 -->

@@ -15,6 +15,8 @@ const maintenanceGrantRoutes = require("./routes/maintenanceGrantRoutes");
 const motorizedTricycleRoutes = require("./routes/motorizedTricycleRoutes");
 const physicallyChallengedRoutes = require("./routes/physicallyChallengedRoutes");
 const deafMentalyRoutes = require("./routes/deafMentalRoute");
+const kithkinRoutes = require("./routes/kithkinRoutes");
+const familyDetails = require("./routes/familyDetailsRoutes");
 
 const app = express();
 
@@ -37,6 +39,8 @@ app.use("/api/maintenance", maintenanceGrantRoutes);
 app.use("/api/motorizedtricycle", motorizedTricycleRoutes);
 app.use("/api/physicallychallenged", physicallyChallengedRoutes);
 app.use("/api/deafmentaly", deafMentalyRoutes);
+app.use("/api/kithkin", kithkinRoutes);
+app.use("/api/familyDetails", familyDetails);
 
 const path = require("path");
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

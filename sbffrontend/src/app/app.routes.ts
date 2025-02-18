@@ -23,6 +23,8 @@ import { MaintenanceGrantFormComponent } from './forms/maintenance-grant-form/ma
 import { MotorizedTricycleFormComponent } from './forms/motorized-tricycle-form/motorized-tricycle-form.component';
 import { PhysicallyChallengedFormComponent } from './forms/physically-challenged-form/physically-challenged-form.component';
 import { DeafMentalFormComponent } from './forms/deaf-mental-form/deaf-mental-form.component';
+import { KithkinFormComponent } from './forms/kithkin-form/kithkin-form.component';
+import { FamilyDetailsFormComponent } from './forms/family-details-form/family-details-form.component';
 
 // export const routes: Routes = [];
 export const routes: Routes = [
@@ -47,6 +49,8 @@ export const routes: Routes = [
     { path: 'motor', component: MotorizedTricycleFormComponent },
     { path: 'physically', component: PhysicallyChallengedFormComponent },
     { path: 'deafmental', component: DeafMentalFormComponent },
+    { path: 'kithkin', component: KithkinFormComponent },
+    { path: 'familyNorms', component: FamilyDetailsFormComponent },
 
     { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
     { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },

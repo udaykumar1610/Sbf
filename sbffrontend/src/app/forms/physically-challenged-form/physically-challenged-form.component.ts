@@ -117,6 +117,13 @@ export class PhysicallyChallengedFormComponent {
   }
 
   onSubmit(form: NgForm) {
+
+
+     // Validate running allowance to ensure it doesn't exceed 8 digits
+     if (this.physicallyChallengedData.running_allowance && !/^\d{1,8}$/.test(this.physicallyChallengedData.running_allowance.toString())) {
+      alert('Running allowance must be a number with up to 8 digits.');
+      return;
+    }
     this.physicallyChallengedData.date_of_appointment = this.formatDateForInput(this.userdata.date_of_appointment);
     this.physicallyChallengedData.empname = this.userdata.empname;
     this.physicallyChallengedData.designation = this.userdata.designation;

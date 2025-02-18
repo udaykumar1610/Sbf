@@ -1,0 +1,111 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Kith & kin Form</h2>
+    <form #kithkinForm="ngForm" (ngSubmit)="onSubmit(kithkinForm)">
+      
+      <!-- Employee Name -->
+      <div class="mb-3">
+        <label for="empname" class="form-label">Employee Name:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="empname" 
+          name="empname" 
+          [(ngModel)]="userdata.empname" 
+          required 
+          readonly>
+      </div>
+  
+      <!-- Designation -->
+      <div class="mb-3">
+        <label for="designation" class="form-label">Designation:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="designation" 
+          name="designation" 
+          [(ngModel)]="userdata.designation" 
+          required 
+          readonly>
+      </div>
+  
+      <!-- Office -->
+      <div class="mb-3">
+        <label for="office" class="form-label">Office:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="office" 
+          name="office" 
+          [(ngModel)]="userdata.office" 
+          required 
+          readonly>
+      </div>
+  
+      <!-- Division -->
+      <div class="mb-3">
+        <label for="division" class="form-label">Division:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="division" 
+          name="division" 
+          [(ngModel)]="userdata.division" 
+          required 
+          readonly>
+      </div>
+  
+      <!-- PF Number -->
+      <div class="mb-3">
+        <label for="pf_no" class="form-label">PF Number:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="pf_no" 
+          name="pf_no" 
+          [(ngModel)]="userdata.pf_no" 
+          required 
+          readonly>
+      </div>
+  
+      <!-- Date of Birth -->
+      <div class="mb-3">
+        <label for="date_of_death" class="form-label">Date of Death:</label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="date_of_death" 
+          name="date_of_death" 
+          [(ngModel)]="kithkinData.date_of_death" 
+          required>
+      </div>
+  
+      <!-- Address Last Rites -->
+      <div class="mb-3">
+        <label for="AaddressLastRites" class="form-label">Address for Last Rites:</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="AaddressLastRites" 
+          name="AaddressLastRites" 
+          [(ngModel)]="kithkinData.AaddressLastRites" 
+          required>
+      </div>
+  
+      <!-- PDF Upload -->
+      <div class="mb-3">
+        <label for="pdf_file" class="form-label">Upload PDF (EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB):</label>
+        <input 
+          type="file" 
+          class="form-control" 
+          id="pdf_file" 
+          name="pdf_file" 
+          (change)="onFileSelected($event)" 
+          accept=".pdf">
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary" [disabled]="!kithkinForm.valid">Submit</button>
+  
+    </form>
+  </div>
+  

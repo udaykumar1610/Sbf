@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 //import { Router } from 'express';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-educationscheme',
@@ -15,10 +16,13 @@ import { Router, RouterLink } from '@angular/router';
 export class EducationschemeComponent {
   educationSchemes: any[] = [];  // Array to hold the education schemes
 
-
-  constructor(private schemesService: SchemesService,  private router: Router,) {}
+  isAuthenticated: boolean = false; 
+  constructor(private schemesService: SchemesService,  private router: Router,private authService:AuthService) {}
 
   ngOnInit(): void {
+    this.authService.isAuthenticated$.subscribe((status) => {
+      this.isAuthenticated = status;
+    });
     this.loadEducationSchemes();  // Fetch education schemes when component initializes
   }
 
@@ -34,6 +38,12 @@ export class EducationschemeComponent {
 
 
   apply(){
-    this.router.navigate(['/login']);
+    if(this.isAuthenticated){
+      this.router.navigate(['/user-dashboard']);
+      console.log(this.isAuthenticated)
+    }else{
+
+      this.router.navigate(['/login']);
+    }
   }
 }

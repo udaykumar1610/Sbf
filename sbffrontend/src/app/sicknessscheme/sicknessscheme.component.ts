@@ -3,6 +3,7 @@ import { SchemesService } from '../schemes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sicknessscheme',
@@ -13,8 +14,8 @@ import { Router } from '@angular/router';
 })
 export class SicknessschemeComponent {
   sicknessSchemes: any[] = [];  // Array to hold the sickness schemes
-
-  constructor(private schemesService: SchemesService,private router:Router) {}
+  isAuthenticated: boolean = false; 
+  constructor(private schemesService: SchemesService,private router:Router,private authService:AuthService) {}
 
   ngOnInit(): void {
     this.loadSicknessSchemes();  // Fetch sickness schemes when component initializes
@@ -30,7 +31,13 @@ export class SicknessschemeComponent {
     });
   }
   apply(){
-    this.router.navigate(['/login']);
+    if(this.isAuthenticated){
+      this.router.navigate(['/user-dashboard']);
+      console.log(this.isAuthenticated)
+    }else{
+
+      this.router.navigate(['/login']);
+    }
   }
 
 }

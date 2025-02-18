@@ -7,7 +7,7 @@
 
 /* Dropdown Button Styles */
 .dropdown-toggle {
-  background-color: #007bff; /* Primary color */
+/* background-color: #007bff;  */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -55,8 +55,8 @@
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-  background-color: #f8f9fa; /* Light gray on hover/focus */
-  color: #007bff; /* Blue text color on hover/focus */
+  color: #f8f9fa; /* Light gray on hover/focus */
+  background-color: #007bff; /* Blue text color on hover/focus */
 }
 
 /* Active Link Styles */
