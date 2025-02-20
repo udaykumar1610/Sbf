@@ -61,6 +61,26 @@ exports.update = async (req, res) => {
   }
 };
 
+exports.updateStatus = async (req, res) => {
+  try {
+    const { status } = req.body;
+    const id = req.params.id;
+
+    if (!status) {
+      return res.status(400).json({ message: "Status is required" });
+    }
+
+    // Call the model method to update the status only
+    await Kithkin.updateStatus(id, status);
+
+    res.json({
+      message: "Kithkin status updated successfully",
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.delete = async (req, res) => {
   try {
     await Kithkin.delete(req.params.id);

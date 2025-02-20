@@ -1,43 +1,45 @@
 
 
+<div class="bgImg">  
 
-<div class="container">
-    <h2 style="text-align: center; margin: 20px;"> Occupational Skill Development Schemes</h2>
+  <div class="container">
+      <h2  class="text-center" style="padding: 30px; font-style: italic ; font-weight: bold;color: black;"> Occupational Skill Development Schemes</h2>
+      
+      <!-- Loop through the skillDevelopmentSchemes array and display each scheme -->
+      <div class="row">
+       
+  
+            <div *ngFor="let scheme of skillDevelopmentSchemes; let i = index" class="col-md-4 mb-4">
+              <div class="scheme-card">
+                <!-- Scheme Index (Optional) -->
+                <div class="scheme-index">
+                  <h5>{{scheme.scheme_name}} -> {{i + 1 }}</h5> 
+                </div>
     
-    <!-- Loop through the skillDevelopmentSchemes array and display each scheme -->
-    <div class="row">
-     
-
-          <div *ngFor="let scheme of skillDevelopmentSchemes; let i = index" class="col-md-4 mb-4">
-            <div class="scheme-card">
-              <!-- Scheme Index (Optional) -->
-              <div class="scheme-index">
-                <h5>{{scheme.scheme_name}} -> {{i + 1 }}</h5> 
-              </div>
-  
-          <!-- Scheme Image (optional, use a default or provided image) -->
-          <div class="scheme-image">
-            <img src="https://via.placeholder.com/300x200" alt="Scheme Image" class="img-fluid">
-          </div>
-  
-          <!-- Scheme Details -->
-          <div class="scheme-body">
-            <p><strong>Scheme Details:</strong> {{ scheme.scheme_details }}</p>
-            
-            <!-- Use pipe to format the eligibility text with line breaks -->
-            <p><strong>Eligibility:</strong> <span [innerHTML]="scheme.eligibility "></span></p>
-            <p><strong>Eligibility Amount:</strong> ₹{{ scheme.eligibility_amount }}</p>
-            <!-- <p><strong>Valid Upto:</strong> {{ scheme.valid_upto }}</p> -->
-          </div>
-  
-          <!-- View Scheme Button -->
-          <div class="scheme-footer">
-            <button class="btn btn-primary" (click)="apply()">
-             Apply
-            </button>
+            <!-- Scheme Image (optional, use a default or provided image) -->
+            <!-- <div class="scheme-image">
+              <img src="https://via.placeholder.com/300x200" alt="Scheme Image" class="img-fluid">
+            </div> -->
+    
+            <!-- Scheme Details -->
+            <div class="scheme-body">
+              <p><strong>Scheme Details:</strong> {{ scheme.scheme_details }}</p>
+              
+              <!-- Use pipe to format the eligibility text with line breaks -->
+              <p><strong>Eligibility:</strong> <span [innerHTML]="scheme.eligibility "></span></p>
+              <p><strong>Eligibility Amount:</strong> ₹{{ scheme.eligibility_amount }}</p>
+              <!-- <p><strong>Valid Upto:</strong> {{ scheme.valid_upto }}</p> -->
+            </div>
+    
+            <!-- View Scheme Button -->
+            <div class="scheme-footer">
+              <button class="btn btn-primary" (click)="apply()">
+               Apply
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+</div>
   

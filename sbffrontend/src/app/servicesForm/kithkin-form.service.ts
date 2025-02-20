@@ -74,6 +74,23 @@ export class KithkinFormService {
     return this.http.put<any>(`${this.apiUrl}/${id}`, formData, { headers: this.getAuthHeaders(true) });
   }
 
+
+//update status
+
+ // Method to update the status of a Kithkin record by ID
+ updateStatus(id: number, status: string): Observable<any> {
+
+
+  
+  const url = `${this.apiUrl}/status/${id}`;
+  const body = { status };
+
+
+
+  return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
+}
+
+
   // Delete a Kithkin record
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getAuthHeaders() });

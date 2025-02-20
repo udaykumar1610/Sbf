@@ -25,6 +25,7 @@ import { PhysicallyChallengedFormComponent } from './forms/physically-challenged
 import { DeafMentalFormComponent } from './forms/deaf-mental-form/deaf-mental-form.component';
 import { KithkinFormComponent } from './forms/kithkin-form/kithkin-form.component';
 import { FamilyDetailsFormComponent } from './forms/family-details-form/family-details-form.component';
+import { SrdpodashboardComponent } from './dashboard/srdpodashboard/srdpodashboard.component';
 
 // export const routes: Routes = [];
 export const routes: Routes = [
@@ -35,12 +36,15 @@ export const routes: Routes = [
     { path: 'education', component: EducationschemeComponent },
     { path: 'sickness', component: SicknessschemeComponent },
     { path: 'skills', component: SkilldevelopmentschemeComponent },
+
     { path: 'supervisor-dashboard', component: SupervisordashboardComponent },
     { path: 'division-dashboard', component: DivisiondashboardComponent },
     { path: 'pc-dashboard', component: PersonnelDepartmentDashboardComponent },
     { path: 'spo-dashboard', component: SpodashboardComponent },
     { path: 'dypco-dashboard', component: DycpodashboardComponent },
     { path: 'pcpo-dashboard', component: PcpodashboardComponent },
+    { path: 'srdpo-dashboard', component: SrdpodashboardComponent },
+
     { path: 'scholarship', component: ScholarshipFormComponent },
     { path: 'denture', component: DenturesFormComponent },
     { path: 'spectacle', component: SpectaclesFormComponent },

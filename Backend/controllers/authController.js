@@ -166,7 +166,8 @@ exports.login = async (req, res) => {
       token,
       role: user.role,
       hrms_id: user.hrms_id,
-      payband: user.payband, // Included payband in login response
+      payband: user.payband,
+      empname: user.empname, // Included payband in login response
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });

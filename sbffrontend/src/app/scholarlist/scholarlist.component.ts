@@ -52,6 +52,7 @@ export class ScholarlistComponent implements OnInit {
     this.scholarService.getAllScholarships().subscribe(
       (data) => {
         console.log("Data fetched:", data);
+        
         this.scholarships = data; // Assign the fetched data to scholarships array
         this.baseurl=data.pdf_url;
       },

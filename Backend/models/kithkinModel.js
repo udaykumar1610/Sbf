@@ -1,8 +1,17 @@
 const pool = require("../config/db");
 
 const Kithkin = {
+  // getAll: async () => {
+  //   const [rows] = await pool.query("SELECT * FROM kithkin");
+  //   return rows;
+  // },
+
   getAll: async () => {
-    const [rows] = await pool.query("SELECT * FROM kithkin");
+    const baseUrl = process.env.BASE_URL; // Access the environment variable here
+    const [rows] = await pool.query(
+      "SELECT *, CONCAT(?, pdf_file) AS pdf_url FROM kithkin",
+      [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+    );
     return rows;
   },
 
@@ -16,6 +25,16 @@ const Kithkin = {
       status,
     ]);
     return rows;
+  },
+
+  updateStatus: async (id, status) => {
+    const sql = `
+      UPDATE kithkin SET status=? WHERE id=?
+    `;
+
+    const params = [status, id];
+
+    await pool.query(sql, params);
   },
 
   create: async (data) => {

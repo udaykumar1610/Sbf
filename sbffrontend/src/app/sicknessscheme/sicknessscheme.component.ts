@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { SchemesService } from '../schemes.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sicknessscheme',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,RouterLink],
   templateUrl: './sicknessscheme.component.html',
   styleUrl: './sicknessscheme.component.css'
 })
@@ -18,6 +18,9 @@ export class SicknessschemeComponent {
   constructor(private schemesService: SchemesService,private router:Router,private authService:AuthService) {}
 
   ngOnInit(): void {
+    this.authService.isAuthenticated$.subscribe((status) => {
+      this.isAuthenticated = status;
+    });
     this.loadSicknessSchemes();  // Fetch sickness schemes when component initializes
   }
 
@@ -33,7 +36,7 @@ export class SicknessschemeComponent {
   apply(){
     if(this.isAuthenticated){
       this.router.navigate(['/user-dashboard']);
-      console.log(this.isAuthenticated)
+      console.log(this.isAuthenticated);
     }else{
 
       this.router.navigate(['/login']);

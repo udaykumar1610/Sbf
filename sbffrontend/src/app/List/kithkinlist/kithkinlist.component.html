@@ -1,0 +1,98 @@
+<!-- 
+
+<div class="container">
+    <h2>Kithkin Records</h2>
+  
+    <div *ngIf="loading">Loading...</div>
+  
+    
+    <table *ngIf="!loading && !errorMessage" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Employee Name</th>
+          <th>Designation</th>
+          <th>Office</th>
+          <th>Division</th>
+          <th>PF No</th>
+          <th>Date of Death</th>
+          <th>Last Rites Address</th>
+          <th>Status</th>
+          <th>PDF File</th>
+    
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of kithkinRecords">
+          <td>{{ record.id }}</td>
+          <td>{{ record.empname }}</td>
+          <td>{{ record.designation }}</td>
+          <td>{{ record.office }}</td>
+          <td>{{ record.division }}</td>
+          <td>{{ record.pf_no }}</td>
+          <td>{{ record.date_of_death }}</td> 
+          <td>{{ record.AaddressLastRites }}</td>
+          <td>{{ record.status }}</td>
+          <td>
+            <a [href]="record.pdf_url" target="_blank">View PDF</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   -->
+
+
+
+
+   <!-- kithkin-list.component.html -->
+<div class="container">
+    <h2>Kithkin Records</h2>
+  
+    <!-- Show loading indicator while data is being fetched -->
+    <div *ngIf="loading">Loading...</div>
+  
+    <!-- Show error message if there's an issue fetching data -->
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  
+    <!-- Display data in a table once it's available -->
+    <table *ngIf="!loading && !errorMessage" class="table table-bordered table-striped table-hover">
+        <thead class="table thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Employee Name</th>
+          <th>Designation</th>
+          <th>Office</th>
+          <th>Division</th>
+          <th>PF No</th>
+          <th>Date of Death</th>
+          <th>Last Rites Address</th>
+          <th>Status</th>
+          <th>PDF File</th>
+          <th>Action</th> <!-- Column for action buttons -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of kithkinRecords">
+          <td>{{ record.id }}</td>
+          <td>{{ record.empname }}</td>
+          <td>{{ record.designation }}</td>
+          <td>{{ record.office }}</td>
+          <td>{{ record.division }}</td>
+          <td>{{ record.pf_no }}</td>
+          <td>{{ record.date_of_death }}</td> <!-- Using Angular's date pipe -->
+          <td>{{ record.AaddressLastRites }}</td>
+          <td>{{ record.status }}</td>
+          <td>
+            <a [href]="record.pdf_url" target="_blank">View PDF</a>
+          </td>
+          <td class="button"> 
+            <button (click)="updateStatus(record.id, 'Forward')" class="btn btn-success">Forward</button>
+            <button (click)="updateStatus(record.id, 'Submitted')" class="btn btn-danger">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
