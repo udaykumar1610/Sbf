@@ -51,6 +51,27 @@ export class AuthService {
 
   // Register a new user
   register(userData: any): Observable<any> {
+    //const formData = new FormData();
+
+    // Append all form fields to FormData
+    // Object.keys(data).forEach((key) => {
+    //   formData.append(key, data[key]);
+    // });
+
+
+    console.log("userdata service:",userData)
+    // Object.keys(userData).forEach((key) => {
+    //   const value = userData[key];
+    //   if (Array.isArray(value)) {
+    //     // If the value is an array, add it as a JSON string
+    //     formData.append(key, JSON.stringify(value));
+    //   } else {
+    //     // Append the key-value pair to FormData
+    //     formData.append(key, value);
+    //   }
+    // });
+    // console.log("authser :",formData)
+
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
 

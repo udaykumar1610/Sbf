@@ -70,9 +70,6 @@ export class FamilyDetailsService {
     });
 
    
-
-
-
     // formData.append(data)
     // Append file if it exists
     if (file) {

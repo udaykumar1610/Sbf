@@ -79,7 +79,7 @@ label {
 }
 
 
-input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="date"],input[type="number"] {
   width: 100%;
   padding: 12px;
   margin: 8px 0;
@@ -179,7 +179,7 @@ button:hover {
     width: 100%;
   }
 }
-/* Add these styles to show error/success messages more clearly */
+
 .success-message {
   color: #28a745;
   font-size: 16px;
@@ -192,4 +192,114 @@ button:hover {
   font-size: 16px;
   margin-top: 15px;
   text-align: center;
+}
+
+
+
+/* Family Data Section */
+.family-Data {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.family-Data h3 {
+  text-align: center;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.family-row {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+}
+
+.family-row .form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.family-row .form-group {
+  width: 48%;
+}
+
+.family-row input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.family-row input:focus {
+  border-color: #007BFF;
+  background-color: #fff;
+  outline: none;
+}
+
+.family-row button {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.family-row .btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.family-row .btn-danger:hover {
+  background-color: #b02a37;
+}
+
+.btn-success, .btn-danger {
+  padding: 6px 12px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+
+.btn-success {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .family-row .form-row {
+    flex-direction: column;
+  }
+
+  .family-row .form-group {
+    width: 100%;
+  }
 }

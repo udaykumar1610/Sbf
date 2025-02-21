@@ -185,12 +185,16 @@
    <input type="file" (change)="onFileSelected($event)" accept="application/pdf" />
  </div>
  <div class="form-row">
-  <div class="form-group">
-    <label>
+  <div class="form-group1">
+    <label class="checkbox-container">
       <input type="checkbox" [(ngModel)]="isChecked" name="declaration" required />
-      I hereby declare that all the above particulars furnished by me are true and correct.If any irregularities noticed at any stage, I am liable for disciplinary action by the administration.
+      <span class="checkbox-text">
+        I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+      </span>
     </label>
   </div>
+  
+
 </div>
       
       <button type="submit" [disabled]="!form.valid || !isChecked">Submit Application</button>

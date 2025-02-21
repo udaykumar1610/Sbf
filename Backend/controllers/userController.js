@@ -25,24 +25,6 @@ const update_User = async (req, res) => {
   // Controller method to get user by HRMS ID
 };
 
-// const getUserByHrmsId = async (req, res) => {
-//   const { hrms_id } = req.params; // Get HRMS ID from URL params
-
-//   try {
-//     // Fetch user from the model
-//     const user = await findUserByHrmsId(hrms_id);
-
-//     if (!user) {
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     return res.status(200).json(user); // Return the user data as a response
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ message: "Server error" }); // Handle any errors
-//   }
-// };
-
 const getUserByHrmsId = async (req, res) => {
   const { hrms_id } = req.params; // Get HRMS ID from URL params
 
