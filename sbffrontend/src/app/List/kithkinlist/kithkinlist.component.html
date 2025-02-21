@@ -80,7 +80,7 @@
           <td>{{ record.office }}</td>
           <td>{{ record.division }}</td>
           <td>{{ record.pf_no }}</td>
-          <td>{{ record.date_of_death }}</td> <!-- Using Angular's date pipe -->
+          <td>{{ record.date_of_death | date:"yyyy-MM-dd" }}</td> <!-- Using Angular's date pipe -->
           <td>{{ record.AaddressLastRites }}</td>
           <td>{{ record.status }}</td>
           <td>

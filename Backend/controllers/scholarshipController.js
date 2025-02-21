@@ -142,20 +142,55 @@ const upload = multer({
 });
 
 // Create Scholarship
+// exports.createScholarship = async (req, res) => {
+//   upload.single("pdf")(req, res, async (err) => {
+//     if (err) return res.status(400).json({ message: err.message });
+
+//     try {
+//       const filePath = req.file
+//         ? `uploads/scholarships/${req.file.filename}`
+//         : null;
+//       await createScholarship(req.body, filePath);
+//       res
+//         .status(201)
+//         .json({ message: "Scholarship entry created successfully" });
+//     } catch (error) {
+//       res.status(500).json({ message: "Server error", error: error.message });
+//     }
+//   });
+// };
+
 exports.createScholarship = async (req, res) => {
   upload.single("pdf")(req, res, async (err) => {
-    if (err) return res.status(400).json({ message: err.message });
+    if (err) {
+      return res.status(400).json({ message: err.message });
+    }
 
     try {
+      // Handle the file upload, get the file path if a file is uploaded
       const filePath = req.file
         ? `uploads/scholarships/${req.file.filename}`
         : null;
+
+      // Call the createScholarship function from your service logic
       await createScholarship(req.body, filePath);
-      res
-        .status(201)
-        .json({ message: "Scholarship entry created successfully" });
+
+      // Send a success response back to the frontend
+      return res.status(201).json({
+        message: "Scholarship entry created successfully",
+        status: "success",
+        data: req.body, // You can send the data back if needed for confirmation
+      });
     } catch (error) {
-      res.status(500).json({ message: "Server error", error: error.message });
+      // If there's an error in the process, send the error message back to the frontend
+      console.error(error); // Optional: log the error for debugging
+
+      // Handle the scholarship creation failure, return an error response
+      return res.status(500).json({
+        message: "Server error occurred while creating scholarship",
+        status: "error",
+        error: error.message,
+      });
     }
   });
 };

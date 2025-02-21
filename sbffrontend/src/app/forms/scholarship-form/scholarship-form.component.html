@@ -4,7 +4,7 @@
     <h2>Scholarship Application Form</h2>
 
     <form #form="ngForm" (submit)="submitForm()">
-      <!-- First Row -->
+      
       <div class="form-row">
         <div class="form-group">
           <label for="empname">Employee Name:</label>
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <!-- Second Row -->
+    
       <div class="form-row">
         <div class="form-group">
           <label for="relationship">Relationship:</label>
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <!-- Third Row -->
+   
       <div class="form-row">
         <div class="form-group">
           <label for="date_of_appointment">Date of Appointment:</label>
@@ -49,7 +49,7 @@
         </div>
       </div>
 
-      <!-- Fourth Row -->
+      
       <div class="form-row">
         <div class="form-group">
           <label for="designation">Designation:</label>
@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <!-- Fifth Row -->
+      
       <div class="form-row">
         <div class="form-group">
           <label for="division">Division:</label>
@@ -75,7 +75,7 @@
         </div>
       </div>
 
-      <!-- Sixth Row -->
+    
       <div class="form-row">
         <div class="form-group">
           <label for="mobile_number">Mobile Number:</label>
@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <!-- Seventh Row -->
+     
       <div class="form-row">
         <div class="form-group">
           <label for="pay_level">Pay Level:</label>
@@ -115,12 +115,9 @@
       </div>
 
       
-      <!-- Eighth Row -->
+     
       <div class="form-row">
-        <!-- <div class="form-group">
-          <label for="basic_pay">Basic Pay:</label>
-          <input type="text" id="basic_pay" name="basic_pay" [(ngModel)]="scholarshipData.basic_pay" placeholder="Enter Basic Pay" required />
-        </div> -->
+       
         <div class="form-group">
           <label for="basic_pay">Basic Pay:</label>
           <input 
@@ -134,7 +131,7 @@
             pattern="^\d{1,8}$" 
             title="Basic Pay should be a maximum of 8 digits" 
           />
-          <!-- Optional message to indicate validation -->
+          
           <div *ngIf="form.submitted && !basicPay.valid" class="error-message">
             Basic Pay must be a valid number with a maximum of 8 digits.
           </div>
@@ -146,7 +143,7 @@
         </div>
       </div>
 
-      <!-- Ninth Row -->
+      
       <div class="form-row">
         <div class="form-group">
           <label for="year_of_study">Year of Study(ex:1st,2nd year..etc):</label>
@@ -159,10 +156,10 @@
         </div>
       </div>
 
-      <!-- Tenth Row -->
+     
       <div class="form-row">
         <div class="form-group">
-          <!-- <label for="tuition_fee_exemption">Tuition Fee Exemption:</label> -->
+    
           <label for="tuition_fee_exemption">Is the child exempt from tuition fees? If yes, specify the amount:</label>
           <input type="text" id="tuition_fee_exemption" name="tuition_fee_exemption" [(ngModel)]="scholarshipData.tuition_fee_exemption" placeholder="Enter Tuition Fee Exemption" />
         </div>
@@ -173,31 +170,30 @@
         </div>
       </div>
 
-      <!-- Eleventh Row -->
+    
       <div class="form-row">
         <div class="form-group">
-          <!-- <label for="other_scholarships_value">Other Scholarships Value:</label> -->
+       
           <label for="other_scholarships_value">Is the child receiving any other scholarship? If yes, specify the amount:</label>
           <input type="text" id="other_scholarships_value" name="other_scholarships_value" [(ngModel)]="scholarshipData.other_scholarships_value" placeholder="Enter Value of Other Scholarships" />
         </div>
 
-        <!-- <div class="form-group">
-          <label for="file">Upload Document:</label>
-          <input type="file" id="file" name="file" (change)="onFileChange($event)" />
-        </div> -->
-        <!-- <div class="upload">
-          <label for="Upload">Enclosure</label>
-          <input type="file" id="Upload" (change)="onFileChange($event)" />
-        </div>
-   -->
+      
   </div>
   <div class="form-group">
    <label>Upload Supporting Document (EMPIDCard,EmpPlaySlip,Student_marks_memos,student_bonafide,studentId,merge all in one pdf, Max 5MB):</label>
    <input type="file" (change)="onFileSelected($event)" accept="application/pdf" />
  </div>
-
-      <!-- Submit Button -->
-      <button type="submit" [disabled]="!form.valid">Submit Application</button>
+ <div class="form-row">
+  <div class="form-group">
+    <label>
+      <input type="checkbox" [(ngModel)]="isChecked" name="declaration" required />
+      I hereby declare that all the above particulars furnished by me are true and correct.If any irregularities noticed at any stage, I am liable for disciplinary action by the administration.
+    </label>
+  </div>
+</div>
+      
+      <button type="submit" [disabled]="!form.valid || !isChecked">Submit Application</button>
     </form>
 
     <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>

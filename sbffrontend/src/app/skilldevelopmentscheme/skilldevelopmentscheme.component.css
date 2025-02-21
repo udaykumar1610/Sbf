@@ -104,7 +104,9 @@
 .bgImg {
   margin-top: 0%;
   height: 100%; /* Full height of the viewport */
-  background-image: url("https://www.hrkatha.com/wp-content/uploads/2017/09/72d0cf2868d1205f0aaefb2b229e87e7.jpg"); 
+  /* background-image: url("https://www.hrkatha.com/wp-content/uploads/2017/09/72d0cf2868d1205f0aaefb2b229e87e7.jpg");  */
+  background-image: url("../../assets/images/skillDev.jpg"); 
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

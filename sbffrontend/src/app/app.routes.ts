@@ -26,6 +26,8 @@ import { DeafMentalFormComponent } from './forms/deaf-mental-form/deaf-mental-fo
 import { KithkinFormComponent } from './forms/kithkin-form/kithkin-form.component';
 import { FamilyDetailsFormComponent } from './forms/family-details-form/family-details-form.component';
 import { SrdpodashboardComponent } from './dashboard/srdpodashboard/srdpodashboard.component';
+import { IndigenousSystemComponent } from './indigenous-system/indigenous-system.component';
+import { RecreationAmusementComponent } from './recreation-amusement/recreation-amusement.component';
 
 // export const routes: Routes = [];
 export const routes: Routes = [
@@ -36,6 +38,8 @@ export const routes: Routes = [
     { path: 'education', component: EducationschemeComponent },
     { path: 'sickness', component: SicknessschemeComponent },
     { path: 'skills', component: SkilldevelopmentschemeComponent },
+    { path: 'indigenous', component: IndigenousSystemComponent },
+    { path: 'amusement', component: RecreationAmusementComponent },
 
     { path: 'supervisor-dashboard', component: SupervisordashboardComponent },
     { path: 'division-dashboard', component: DivisiondashboardComponent },

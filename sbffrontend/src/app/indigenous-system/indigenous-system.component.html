@@ -1,0 +1,41 @@
+
+ <div class="bgImg">  
+            
+              <div class="container">
+                  <h2  class="text-center" style=" font-style: italic ; font-weight: bold;color:black;padding-top: 20px; "> Indigenous system of medicine</h2>
+                  
+               
+                  <div class="row" style="margin-top: 40px;">
+                   
+              
+                        <div *ngFor="let scheme of systems; let i = index" class="col-md-4 mb-4">
+                          <div class="scheme-card">
+                            <!-- Scheme Index (Optional) -->
+                            <div class="scheme-index">
+                              <h5>{{scheme.title}} -> {{i + 1 }}</h5> 
+                            </div>
+                
+                       
+                
+                        <!-- Scheme Details -->
+                        <div class="scheme-body">
+                          <p><strong>Type Of Dispensary:</strong> {{ scheme.typeOfDispensary }}</p>
+                          
+                       
+                          <p><strong>Location:</strong> <span [innerHTML]="scheme.location "></span></p>
+                          <p><strong>Hours Of Working:</strong> {{ scheme.hoursOfWorking }}</p>
+                          
+                        </div>
+                
+                        <!-- View Scheme Button -->
+                        <div class="scheme-footer">
+                          <button class="btn btn-primary" (click)="apply()">
+                           Information
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+             

@@ -16,7 +16,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  background-color: rgba(187, 174, 130, 0.7); /* Semi-transparent background */
+  /* background-color: rgba(187, 174, 130, 0.7); */
+  background-color: rgba(196, 192, 166, 0.7);
   transition: box-shadow 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -108,9 +109,9 @@ background-image: url("https://cdn.create.vista.com/api/media/small/378826806/st
 .img {
   margin-top: 0%;
   height: 100vh; /* Full height of the viewport */
-  background-image: url("https://media.istockphoto.com/id/2122148349/photo/writing-an-exam-at-the-university.jpg?s=2048x2048&w=is&k=20&c=p9gOmjGJflogsiJ0aY_iBQ0EPGllBMJn5yDVWMUcM48="); 
+  /* background-image: url("https://media.istockphoto.com/id/2122148349/photo/writing-an-exam-at-the-university.jpg?s=2048x2048&w=is&k=20&c=p9gOmjGJflogsiJ0aY_iBQ0EPGllBMJn5yDVWMUcM48=");  */
 
-  /* background-image: url("../../assets/images/education.jpg");  */
+  background-image: url("../../assets/images/edubg1.jpg"); 
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

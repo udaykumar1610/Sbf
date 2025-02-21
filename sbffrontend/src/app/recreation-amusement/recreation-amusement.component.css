@@ -1,0 +1,114 @@
+/* .scheme-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+   background-color: #bbae82; 
+  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+} */
+
+.scheme-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    /* background-color: rgba(187, 174, 130, 0.7); */
+    background-color: rgba(196, 192, 166, 0.7);
+    transition: box-shadow 0.5s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+  }
+  
+  /* Hover effect for cards */
+  .scheme-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .scheme-index h5 {
+    font-size: 1.3rem;
+    color: black; /* Text color inside the card */
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Scheme Details Section */
+  .scheme-body {
+    margin-top: 10px;
+    text-align: left;
+    flex-grow: 1;
+    color: black; /* Ensure the text is visible */
+  }
+  
+  .scheme-body p {
+    margin: 10px 0;
+    font-size: 1rem; /* Increased text size */
+  }
+  
+  /* Footer Styling */
+  .scheme-footer {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto; /* Pushes the footer to the bottom of the card */
+  }
+  
+  /* Styling for the Apply Button */
+  .scheme-footer button {
+    padding: 10px 20px;
+    background-color: #098381;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .scheme-footer button:hover {
+    background-color: #21586b;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .col-md-4 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    flex: 1 0 30%;
+  }
+  
+  .col-md-4 .scheme-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row > .col-md-4 {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  
+  .bgImg {
+    margin-top: 0%;
+    height: 100vh; /* Full height of the viewport */
+    /* background-image: url("https://media.istockphoto.com/id/2122148349/photo/writing-an-exam-at-the-university.jpg?s=2048x2048&w=is&k=20&c=p9gOmjGJflogsiJ0aY_iBQ0EPGllBMJn5yDVWMUcM48=");  */
+  
+    background-image: url("../../assets/images/amusement.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  

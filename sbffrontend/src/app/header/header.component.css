@@ -32,7 +32,8 @@
   .header-title {
     font-size: 24px;          /* Set the font size of the title */
     font-weight: bold;        /* Make the title bold */
-    color: #ead6d6;              /* Set text color */
+    /* color: #ead6d6;              */
+    color: #e9d5bb;             
     margin-left: 80px;        /* Add some margin to the left to avoid overlap with logo */
     text-align: center;       /* Center align the text */
   }

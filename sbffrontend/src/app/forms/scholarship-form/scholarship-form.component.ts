@@ -1,11 +1,14 @@
 
 
+
+
 // import { Component } from '@angular/core';
 // import { Router } from '@angular/router';
 // import { FormsModule } from '@angular/forms';
 // import { CommonModule } from '@angular/common';
 // import { ScholarshipService } from '../../scholarship.service';
 // import { AuthService } from '../../auth.service';
+
 
 // @Component({
 //   selector: 'app-scholarship-form',
@@ -17,17 +20,20 @@
 // export class ScholarshipFormComponent {
 //   hrmsId: any;
 //   userdata: any = [];
+//   selectedFile: File | null = null;
+//   isChecked: boolean = false; 
+
 //   scholarshipData = {
 //     empname: '',
 //     scholar_name: '',
 //     relationship: '',
 //     spouse_govt_employee_details: '',
-//     date_of_appointment: null as string | null,
+//     date_of_appointment: '',
 //     bill_unit_no: '',
 //     designation: '',
 //     office: '',
 //     division: '',
-//     telephone_number: '',
+//     telephone_number: null,
 //     mobile_number: '',
 //     pf_no: '',
 //     pay_level: '',
@@ -40,20 +46,24 @@
 //     student_employment_status: '',
 //     other_scholarships_value: '',
 //   };
+  
 //   successMessage: string = '';
 //   errorMessage: string = '';
+// basicPay: any;
 
-//   constructor(private scholarshipService: ScholarshipService, private router: Router, private authService: AuthService) {}
+//   constructor(
+//     private scholarshipService: ScholarshipService,
+//     private router: Router,
+//     private authService: AuthService
+//   ) {}
 
 //   ngOnInit() {
 //     this.getHrmsId();
-//     console.log("id", this.hrmsId);
-
 //     if (this.hrmsId) {
 //       this.fetchUserDetails();
 //     } else {
 //       this.errorMessage = 'HRMS ID not found.';
-//       alert(this.errorMessage);  // Show alert if HRMS ID is not found
+//       alert(this.errorMessage);
 //     }
 //   }
 
@@ -62,41 +72,36 @@
 //     this.hrmsId = localStorage.getItem('hrmsId');
 //   }
 
-//   // Fetch user details from the backend
-//   fetchUserDetails() {
-//     this.authService.getHrmsData(this.hrmsId).subscribe(
-//       (data) => {
-//         console.log(data);
-//         this.userdata = data;
+  
+// formatDateForInput(dateString: string | null): string {
+//   if (!dateString) return ''; // Ensure no null value is assigned
+//   return new Date(dateString).toISOString().split('T')[0]; // Extract YYYY-MM-DD
+// }
 
-//         // Check if date_of_appointment is not empty before formatting
-//         if (this.userdata.date_of_appointment && this.userdata.date_of_appointment !== '') {
-//           const date = new Date(this.userdata.date_of_appointment);
-//           // Format the date as YYYY-MM-DD (year-month-day)
-//           const year = date.getFullYear();
-//           const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure month is 2 digits
-//           const day = date.getDate().toString().padStart(2, '0'); // Ensure day is 2 digits
-//           this.userdata.date_of_appointment = `${year}-${month}-${day}`; // Format as YYYY-MM-DD
-//         } else {
-//           this.userdata.date_of_appointment = null; // Set to null if the date is missing or empty
-//         }
-//       },
-//       (err) => {
-//         this.errorMessage = 'Failed to fetch user details.';
-//         console.error(err);
-//         alert(this.errorMessage); // Show alert if there is an error fetching user details
-//       }
-//     );
-//   }
+// // Fetch user details from backend
+// fetchUserDetails() {
+//   this.authService.getHrmsData(this.hrmsId).subscribe(
+//     (data) => {
+//       console.log("Raw date from API:", data.date_of_appointment);
 
-//   // Submit form data
-//   submitForm() {
-//     // Ensure date_of_appointment is properly set to null if empty
-//     if (!this.scholarshipData.date_of_appointment || this.scholarshipData.date_of_appointment === '') {
-//       this.scholarshipData.date_of_appointment = null;
+//       this.userdata = data;
+//       this.userdata.date_of_appointment = this.formatDateForInput(data.date_of_appointment);
+
+//       this.populateFormData();
+//     },
+//     (err) => {
+//       this.errorMessage = 'Failed to fetch user details.';
+//       alert(this.errorMessage);
+//       console.error(err);
 //     }
+//   );
+// }
 
-//     // Fill scholarshipData with user data for submission
+  
+  
+
+//   // Populate form fields with user data
+//   populateFormData() {
 //     this.scholarshipData.empname = this.userdata.empname;
 //     this.scholarshipData.date_of_appointment = this.userdata.date_of_appointment;
 //     this.scholarshipData.designation = this.userdata.designation;
@@ -105,21 +110,53 @@
 //     this.scholarshipData.pf_no = this.userdata.pf_no;
 //     this.scholarshipData.pay_level = this.userdata.level;
 //     this.scholarshipData.mobile_number = this.userdata.mobilenumber;
-
-//     // Submit the scholarship data to the backend
-//     this.scholarshipService.createScholarship(this.scholarshipData).subscribe(
-//       () => {
-//         this.successMessage = 'Scholarship application submitted successfully.';
-//         alert(this.successMessage); // Show success message
-//         setTimeout(() => this.router.navigate(['/scheme']), 2000);
-//       },
-//       (err) => {
-//         this.errorMessage = 'Submission failed.';
-//         alert(this.errorMessage); // Show error message
-//         console.error(err);
-//       }
-//     );
 //   }
+
+//   // Handle file selection
+//   onFileSelected(event: any) {
+//     this.selectedFile = event.target.files[0];
+//   }
+
+  
+
+//   formatDate(dateString: string | null): string {
+//     if (!dateString) return '';  // Return an empty string instead of null
+//     return new Date(dateString).toISOString().split('T')[0]; // Convert to YYYY-MM-DD
+//   }
+  
+
+// // Submit form data
+// submitForm() {
+
+
+//   // Check if basic_pay is valid (number and max 8 digits)
+//   const basicPay = this.scholarshipData.basic_pay;
+//   const basicPayValid = /^\d{1,8}$/.test(basicPay);
+
+//   if (!basicPayValid) {
+//     this.errorMessage = 'Basic Pay must be a valid number with a maximum of 8 digits.';
+//     alert(this.errorMessage);
+//     return;  // Prevent submission
+//   }
+//   this.scholarshipData.date_of_appointment = this.formatDate(this.scholarshipData.date_of_appointment);
+
+
+
+
+//   this.scholarshipService.createScholarship(this.scholarshipData, this.selectedFile).subscribe(
+//     () => {
+//       this.successMessage = 'Scholarship application submitted successfully.';
+//       alert(this.successMessage);
+//       setTimeout(() => this.router.navigate(['/scheme']), 2000);
+//     },
+//     (err) => {
+//       this.errorMessage = 'Submission failed.';
+//       alert(this.errorMessage);
+//       console.error(err);
+//     }
+//   );
+// }
+
 // }
 
 
@@ -130,7 +167,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ScholarshipService } from '../../scholarship.service';
 import { AuthService } from '../../auth.service';
-
 
 @Component({
   selector: 'app-scholarship-form',
@@ -143,6 +179,7 @@ export class ScholarshipFormComponent {
   hrmsId: any;
   userdata: any = [];
   selectedFile: File | null = null;
+  isChecked: boolean = false;  // Variable to store checkbox state
 
   scholarshipData = {
     empname: '',
@@ -170,7 +207,7 @@ export class ScholarshipFormComponent {
   
   successMessage: string = '';
   errorMessage: string = '';
-basicPay: any;
+  basicPay: any;
 
   constructor(
     private scholarshipService: ScholarshipService,
@@ -193,48 +230,29 @@ basicPay: any;
     this.hrmsId = localStorage.getItem('hrmsId');
   }
 
-  //Fetch user details from backend
-  // fetchUserDetails() {
-  //   this.authService.getHrmsData(this.hrmsId).subscribe(
-  //     (data) => {
-  //       console.log(data.date_of_appointment)
-  //       this.userdata = data;
-  //       this.populateFormData();
-  //     },
-  //     (err) => {
-  //       this.errorMessage = 'Failed to fetch user details.';
-  //       alert(this.errorMessage);
-  //       console.error(err);
-  //     }
-  //   );
-  // }
-  // Convert ISO Date format to YYYY-MM-DD
-formatDateForInput(dateString: string | null): string {
-  if (!dateString) return ''; // Ensure no null value is assigned
-  return new Date(dateString).toISOString().split('T')[0]; // Extract YYYY-MM-DD
-}
+  formatDateForInput(dateString: string | null): string {
+    if (!dateString) return ''; // Ensure no null value is assigned
+    return new Date(dateString).toISOString().split('T')[0]; // Extract YYYY-MM-DD
+  }
 
-// Fetch user details from backend
-fetchUserDetails() {
-  this.authService.getHrmsData(this.hrmsId).subscribe(
-    (data) => {
-      console.log("Raw date from API:", data.date_of_appointment);
+  // Fetch user details from backend
+  fetchUserDetails() {
+    this.authService.getHrmsData(this.hrmsId).subscribe(
+      (data) => {
+        console.log("Raw date from API:", data.date_of_appointment);
 
-      this.userdata = data;
-      this.userdata.date_of_appointment = this.formatDateForInput(data.date_of_appointment);
+        this.userdata = data;
+        this.userdata.date_of_appointment = this.formatDateForInput(data.date_of_appointment);
 
-      this.populateFormData();
-    },
-    (err) => {
-      this.errorMessage = 'Failed to fetch user details.';
-      alert(this.errorMessage);
-      console.error(err);
-    }
-  );
-}
-
-  
-  
+        this.populateFormData();
+      },
+      (err) => {
+        this.errorMessage = 'Failed to fetch user details.';
+        alert(this.errorMessage);
+        console.error(err);
+      }
+    );
+  }
 
   // Populate form fields with user data
   populateFormData() {
@@ -253,59 +271,37 @@ fetchUserDetails() {
     this.selectedFile = event.target.files[0];
   }
 
-  // // Submit form data with PDF file
-  // submitForm() {
-  //   this.scholarshipService.createScholarship(this.scholarshipData, this.selectedFile).subscribe(
-  //     () => {
-  //       this.successMessage = 'Scholarship application submitted successfully.';
-  //       alert(this.successMessage);
-  //       setTimeout(() => this.router.navigate(['/scheme']), 
-  //       2000);
-  //     },
-  //     (err) => {
-  //       this.errorMessage = 'Submission failed.';
-  //       alert(this.errorMessage);
-  //       console.error(err);
-  //     }
-  //   );
-  // }
-
   formatDate(dateString: string | null): string {
     if (!dateString) return '';  // Return an empty string instead of null
     return new Date(dateString).toISOString().split('T')[0]; // Convert to YYYY-MM-DD
   }
-  
 
-// Submit form data
-submitForm() {
+  // Submit form data
+  submitForm() {
 
+    // Check if basic_pay is valid (number and max 8 digits)
+    const basicPay = this.scholarshipData.basic_pay;
+    const basicPayValid = /^\d{1,8}$/.test(basicPay);
 
-  // Check if basic_pay is valid (number and max 8 digits)
-  const basicPay = this.scholarshipData.basic_pay;
-  const basicPayValid = /^\d{1,8}$/.test(basicPay);
-
-  if (!basicPayValid) {
-    this.errorMessage = 'Basic Pay must be a valid number with a maximum of 8 digits.';
-    alert(this.errorMessage);
-    return;  // Prevent submission
-  }
-  this.scholarshipData.date_of_appointment = this.formatDate(this.scholarshipData.date_of_appointment);
-
-
-
-
-  this.scholarshipService.createScholarship(this.scholarshipData, this.selectedFile).subscribe(
-    () => {
-      this.successMessage = 'Scholarship application submitted successfully.';
-      alert(this.successMessage);
-      setTimeout(() => this.router.navigate(['/scheme']), 2000);
-    },
-    (err) => {
-      this.errorMessage = 'Submission failed.';
+    if (!basicPayValid) {
+      this.errorMessage = 'Basic Pay must be a valid number with a maximum of 8 digits.';
       alert(this.errorMessage);
-      console.error(err);
+      return;  // Prevent submission
     }
-  );
-}
+    
+    this.scholarshipData.date_of_appointment = this.formatDate(this.scholarshipData.date_of_appointment);
 
+    this.scholarshipService.createScholarship(this.scholarshipData, this.selectedFile).subscribe(
+      () => {
+        this.successMessage = 'Scholarship application submitted successfully.';
+        alert(this.successMessage);
+        setTimeout(() => this.router.navigate(['/scheme']), 2000);
+      },
+      (err) => {
+        this.errorMessage = 'Submission failed.';
+        alert(this.errorMessage);
+        console.error(err);
+      }
+    );
+  }
 }

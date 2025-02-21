@@ -18,7 +18,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  background-color: rgba(187, 174, 130, 0.7); /* Semi-transparent background */
+  background-color: rgba(161, 201, 226, 0.7); /* Semi-transparent background */
   transition: box-shadow 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -103,9 +103,9 @@
 .bgImg {
   margin-top: 0%;
   height: 100% 100%; /* Full height of the viewport */
-  background-image: url("https://as2.ftcdn.net/v2/jpg/05/71/90/93/1000_F_571909375_4u5E6cqu966ya6TZdVZonpXxss8xiLEs.jpg"); 
+  /* background-image: url("https://cdn.vectorstock.com/i/1000x1000/97/45/ecg-heartbeat-monitor-cardiogram-heart-pulse-line-vector-28479745.webp");  */
 
-  /* background-image: url("../../assets/images/education.jpg");  */
+  background-image: url("../../assets/images/sickbg1.jpg"); 
   background-repeat: no-repeat;
   background-size: cover ;
   background-position: center;
