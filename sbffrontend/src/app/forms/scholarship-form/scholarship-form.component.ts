@@ -167,11 +167,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ScholarshipService } from '../../scholarship.service';
 import { AuthService } from '../../auth.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-scholarship-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,ToastModule],
+  providers:[MessageService],
   templateUrl: './scholarship-form.component.html',
   styleUrls: ['./scholarship-form.component.css']
 })
@@ -212,7 +215,8 @@ export class ScholarshipFormComponent {
   constructor(
     private scholarshipService: ScholarshipService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService:MessageService
   ) {}
 
   ngOnInit() {
@@ -221,13 +225,17 @@ export class ScholarshipFormComponent {
       this.fetchUserDetails();
     } else {
       this.errorMessage = 'HRMS ID not found.';
-      alert(this.errorMessage);
-    }
-  }
+      if (typeof window !== 'undefined') {
+        alert(this.errorMessage);  // Ensure alert is only called in the browser
+      }
+    }}
 
   // Fetch HRMS ID from localStorage
   getHrmsId() {
-    this.hrmsId = localStorage.getItem('hrmsId');
+    if (typeof window !== 'undefined') {
+      // Ensure we are in the browser before accessing localStorage
+      this.hrmsId = localStorage.getItem('hrmsId');
+    }
   }
 
   formatDateForInput(dateString: string | null): string {
@@ -279,10 +287,11 @@ export class ScholarshipFormComponent {
   // Submit form data
   submitForm() {
 
-    // Check if basic_pay is valid (number and max 8 digits)
+  
+    // Proceed with form submission if valid
     const basicPay = this.scholarshipData.basic_pay;
     const basicPayValid = /^\d{1,8}$/.test(basicPay);
-
+  
     if (!basicPayValid) {
       this.errorMessage = 'Basic Pay must be a valid number with a maximum of 8 digits.';
       alert(this.errorMessage);
@@ -292,15 +301,26 @@ export class ScholarshipFormComponent {
     this.scholarshipData.date_of_appointment = this.formatDate(this.scholarshipData.date_of_appointment);
 
     this.scholarshipService.createScholarship(this.scholarshipData, this.selectedFile).subscribe(
-      () => {
+      (response) => {
         this.successMessage = 'Scholarship application submitted successfully.';
-        alert(this.successMessage);
+        // alert(this.successMessage);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',   
+          detail: 'Scholarship application submitted successfully.',
+        })
         setTimeout(() => this.router.navigate(['/scheme']), 2000);
       },
       (err) => {
         this.errorMessage = 'Submission failed.';
+        //alert(err.error.message);
         alert(this.errorMessage);
-        console.error(err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Submission Failed',
+          detail :err.error.message
+        })
+        console.error("err:",err);
       }
     );
   }

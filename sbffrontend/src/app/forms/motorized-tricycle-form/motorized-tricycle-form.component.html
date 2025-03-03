@@ -1,6 +1,6 @@
+<!-- 
 
-
-   <div class="container">
+   <div class="container" style="border: 0.5px solid black; border-radius: 5px;">
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="card-header text-center" style="margin-bottom: 20px;">
             <h3>Motorized Tricycle Form</h3>
@@ -75,7 +75,7 @@
             </div>
             <div class="col-md-6">
                 <label for="running_allowance">Running Allowance:</label>
-                <input type="number" id="running_allowance" [(ngModel)]="motorizedTricycleData.running_allowance" name="running_allowance" placeholder="Enter Running Allowance" class="form-control">
+                <input type="number" id="running_allowance" [(ngModel)]="userdata.running_allowance" name="running_allowance" placeholder="Enter Running Allowance" class="form-control">
             </div>
         </div>
 
@@ -125,15 +125,413 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="pdf_file">Upload PDF(EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB):</label>
+                <label for="pdf_file">Upload PDF(EMPIDCard,EmpPlaySlip and Bill / Invoice, then merge all in one pdf, Max 5MB):</label>
                 <input type="file" id="pdf_file" (change)="onFileSelected($event)" accept="application/pdf" class="form-control">
             </div>
         </div>
 
+
+        <div class="form-row">
+            <div class="col-md-12">
+              <div class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="declarationChecked" 
+                  [ngModelOptions]="{standalone: true}" 
+                  id="declaration" 
+                  required
+                />
+                <label for="declaration" class="checkbox-label">
+                  I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+                </label>
+              </div>
+            </div>
+          </div>
+        <div class="form-row">
+            <div class="col-md-12">
+              <div class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="empDeclarationChecked" 
+                  [ngModelOptions]="{standalone: true}" 
+                  id="declaration" 
+                  required
+                />
+                <label for="declaration" class="checkbox-label">
+                  Declaration by employee stating that he has not availed the scheme entire in service.                </label>
+              </div>
+            </div>
+          </div>
+      
+
+
         <div class="row">
             <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!form.valid || !declarationChecked || !empDeclarationChecked">Submit</button>
             </div>
         </div>
     </form>
 </div>
+
+
+<p-toast
+[showTransformOptions]="'translateY(100%)'"
+[showTransitionOptions]="'1000ms'"
+[hideTransitionOptions]="'1000ms'"
+[showTransformOptions]="'translateX(100%)'"
+/> -->
+
+
+
+
+
+<div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header text-center">
+        <h3>Motorized Tricycle Form</h3>
+      </div>
+      <div class="card-body">
+        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <!-- Employee Name and Date of Birth -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="empname">Employee Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="empname"
+                name="empname"
+                [(ngModel)]="userdata.empname"
+                placeholder="Enter Employee Name"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="date_of_birth">Date of Birth:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date_of_birth"
+                name="date_of_birth"
+                [(ngModel)]="userdata.date_of_birth"
+                placeholder="Select Date of Birth"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Relation with Employee and Date of Appointment -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="relation_with_employee">S/O (Wife of -> In case of female employee):</label>
+              <input
+                type="text"
+                class="form-control"
+                id="relation_with_employee"
+                name="relation_with_employee"
+                [(ngModel)]="motorizedTricycleData.relation_with_employee"
+                placeholder="Enter Relation"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="date_of_appointment">Date of Appointment:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date_of_appointment"
+                name="date_of_appointment"
+                [(ngModel)]="userdata.date_of_appointment"
+                placeholder="Select Date of Appointment"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Bill Unit Number and Community -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="bill_unit_number">Bill Unit Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bill_unit_number"
+                name="bill_unit_number"
+                [(ngModel)]="motorizedTricycleData.bill_unit_number"
+                placeholder="Enter Bill Unit Number"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="community">Community:</label>
+              <select
+                class="form-control"
+                id="community"
+                name="community"
+                [(ngModel)]="motorizedTricycleData.community"
+                required
+              >
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="OBC">OBC</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Christian">Christian</option>
+                <option value="UR">UR</option>
+              </select>
+            </div>
+          </div>
+  
+          <!-- Designation and Office -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="designation">Designation:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="designation"
+                name="designation"
+                [(ngModel)]="userdata.designation"
+                placeholder="Enter Designation"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="office">Office:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="office"
+                name="office"
+                [(ngModel)]="userdata.office"
+                placeholder="Enter Office"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Division and PF Number -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="division">Division:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="division"
+                name="division"
+                [(ngModel)]="userdata.division"
+                placeholder="Enter Division"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="pf_no">PF Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="pf_no"
+                name="pf_no"
+                [(ngModel)]="userdata.pf_no"
+                placeholder="Enter PF Number"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Payband and Running Allowance -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="payband">Payband:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="payband"
+                name="payband"
+                [(ngModel)]="userdata.payband"
+                placeholder="Enter Payband"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="running_allowance">Running Allowance:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="running_allowance"
+                name="running_allowance"
+                [(ngModel)]="userdata.running_allowance"
+                placeholder="Enter Running Allowance"
+              />
+            </div>
+          </div>
+  
+          <!-- Grade Pay Substantive and Grade Pay Officiating MACP -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="grade_pay_substantive">Grade Pay Substantive:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="grade_pay_substantive"
+                name="grade_pay_substantive"
+                [(ngModel)]="motorizedTricycleData.grade_pay_substantive"
+                placeholder="Enter Grade Pay Substantive"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="grade_pay_officiating_macp">Grade Pay Officiating / MACP:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="grade_pay_officiating_macp"
+                name="grade_pay_officiating_macp"
+                [(ngModel)]="motorizedTricycleData.grade_pay_officiating_macp"
+                placeholder="Enter Grade Pay Officiating MACP"
+              />
+            </div>
+          </div>
+  
+          <!-- Account Number and Bank Name -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="account_number">Account Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="account_number"
+                name="account_number"
+                [(ngModel)]="motorizedTricycleData.account_number"
+                placeholder="Enter Account Number"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="bank_name">Bank Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bank_name"
+                name="bank_name"
+                [(ngModel)]="motorizedTricycleData.bank_name"
+                placeholder="Enter Bank Name"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Branch Name and IFSC Number -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="branch_name">Branch Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="branch_name"
+                name="branch_name"
+                [(ngModel)]="motorizedTricycleData.branch_name"
+                placeholder="Enter Branch Name"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="ifsc_number">IFSC Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="ifsc_number"
+                name="ifsc_number"
+                [(ngModel)]="motorizedTricycleData.ifsc_number"
+                placeholder="Enter IFSC Number"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Cost of Tricycle and Percentage of Handicap -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="cost_of_tricycle">Cost of Tricycle (ORIGINAL QUOTATION to be enclosed):</label>
+              <input
+                type="number"
+                class="form-control"
+                id="cost_of_tricycle"
+                name="cost_of_tricycle"
+                [(ngModel)]="motorizedTricycleData.cost_of_tricycle"
+                placeholder="Enter Tricycle Cost"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="percentage_of_handicap">Percentage of Handicap (Certificate issued by the Govt. Orthopaedic Surgeon to be enclosed):</label>
+              <input
+                type="number"
+                class="form-control"
+                id="percentage_of_handicap"
+                name="percentage_of_handicap"
+                [(ngModel)]="motorizedTricycleData.percentage_of_handicap"
+                placeholder="Enter Handicap Percentage"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- File Upload -->
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label for="pdf_file">Upload PDF (EMPIDCard, EmpPlaySlip, and Bill / Invoice, merge all in one PDF, Max 5MB):</label>
+              <input
+                type="file"
+                class="form-control"
+                id="pdf_file"
+                (change)="onFileSelected($event)"
+                accept="application/pdf"
+              />
+            </div>
+          </div>
+  
+          <!-- Declaration Checkboxes -->
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <div class="checkbox-container">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="declarationChecked"
+                  [ngModelOptions]="{standalone: true}"
+                  id="declaration"
+                  required
+                />
+                <label for="declaration" class="checkbox-label">
+                  I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+                </label>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <div class="checkbox-container">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="empDeclarationChecked"
+                  [ngModelOptions]="{standalone: true}"
+                  id="empDeclaration"
+                  required
+                />
+                <label for="empDeclaration" class="checkbox-label">
+                  Declaration by employee stating that he has not availed the scheme entire in service.
+                </label>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="form-group mt-4 text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid || !declarationChecked || !empDeclarationChecked">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <p-toast
+    [showTransformOptions]="'translateY(100%)'"
+    [showTransitionOptions]="'1000ms'"
+    [hideTransitionOptions]="'1000ms'"
+    [showTransformOptions]="'translateX(100%)'"
+  />

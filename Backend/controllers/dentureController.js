@@ -38,16 +38,20 @@ const createDenture = async (req, res) => {
   try {
     const pdfFile = req.file;
     if (!pdfFile) {
-      return res.status(400).json({ error: "No PDF uploaded" });
+      return res
+        .status(400)
+        .json({ status: "error", error: "No PDF uploaded" });
     }
 
     const pdfFilePath = `/uploads/dentures/${pdfFile.filename}`;
     const newDenture = { ...req.body, pdfFilePath }; // Include other data as needed
     await Dentures.createDenture(newDenture);
 
-    res.status(201).json({ message: "Denture created successfully" });
+    res
+      .status(201)
+      .json({ status: "success", message: "Denture created successfully" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", error: err.message });
   }
 };
 

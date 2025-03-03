@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { KithkinsrdpoComponent } from "../../srdpo/kithkinsrdpo/kithkinsrdpo.component";
+import { ScholarsrdpoComponent } from "../../srdpo/scholarsrdpo/scholarsrdpo.component";
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-srdpodashboard',
   standalone: true,
-  imports: [],
+  imports: [KithkinsrdpoComponent, ScholarsrdpoComponent,RouterLink,RouterOutlet],
   templateUrl: './srdpodashboard.component.html',
   styleUrl: './srdpodashboard.component.css'
 })

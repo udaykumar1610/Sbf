@@ -1,4 +1,4 @@
-
+<!-- 
 
 <div class="container">
     <h2>Scholarship Application Form</h2>
@@ -125,6 +125,7 @@
             id="basic_pay" 
             name="basic_pay" 
             [(ngModel)]="scholarshipData.basic_pay" 
+            #basicPay="ngModel"  
             placeholder="Enter Basic Pay" 
             required 
             maxlength="8" 
@@ -181,7 +182,7 @@
       
   </div>
   <div class="form-group">
-   <label>Upload Supporting Document (EMPIDCard,EmpPlaySlip,Student_marks_memos,student_bonafide,studentId,merge all in one pdf, Max 5MB):</label>
+   <label>Upload Supporting Document (EMPIDCard,EmpPlaySlip,Student All Marks Memos ,Student Bonafide Certificate,studentId,merge all in one pdf, Max 5MB):</label>
    <input type="file" (change)="onFileSelected($event)" accept="application/pdf" />
  </div>
  <div class="form-row">
@@ -202,4 +203,216 @@
 
     <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-</div><br/><br/>
+</div><br/><br/> -->
+
+
+
+
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header">
+      <h3>Scholarship Application Form</h3>
+    </div>
+    <div class="card-body">
+      <form #form="ngForm" (ngSubmit)="submitForm()">
+        <!-- Employee Name and Scholar Name -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="empname">Employee Name:</label>
+            <input type="text" class="form-control" id="empname" name="empname" [(ngModel)]="userdata.empname" placeholder="Enter Employee Name" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="scholar_name">Scholar Name:</label>
+            <input type="text" class="form-control" id="scholar_name" name="scholar_name" [(ngModel)]="scholarshipData.scholar_name" placeholder="Enter Scholar Name" required>
+          </div>
+        </div>
+
+        <!-- Relationship and Spouse Govt Employee Details -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="relationship">Relationship:</label>
+            <select class="form-control" id="relationship" name="relationship" [(ngModel)]="scholarshipData.relationship" required>
+              <option value="" disabled selected>Select Relationship</option>
+              <option value="Son">Son</option>
+              <option value="Daughter">Daughter</option>
+              <option value="Twins">Twins</option>
+              <option value="Dependant">Dependant</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="spouse_govt_employee_details">If spouse is a Railway/Government employee, details thereof:</label>
+            <input type="text" class="form-control" id="spouse_govt_employee_details" name="spouse_govt_employee_details" [(ngModel)]="scholarshipData.spouse_govt_employee_details" placeholder="Enter Spouse Government Employee Details">
+          </div>
+        </div>
+
+        <!-- Date of Appointment and Bill Unit Number -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="date_of_appointment">Date of Appointment:</label>
+            <input type="date" class="form-control" id="date_of_appointment" name="date_of_appointment" [(ngModel)]="userdata.date_of_appointment" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="bill_unit_no">Bill Unit Number:</label>
+            <input type="text" class="form-control" id="bill_unit_no" name="bill_unit_no" [(ngModel)]="scholarshipData.bill_unit_no" placeholder="Enter Bill Unit Number">
+          </div>
+        </div>
+
+        <!-- Designation and Office -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="designation">Designation:</label>
+            <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="userdata.designation" placeholder="Enter Designation" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="office">Office:</label>
+            <input type="text" class="form-control" id="office" name="office" [(ngModel)]="userdata.office" placeholder="Enter Office" required>
+          </div>
+        </div>
+
+        <!-- Division and Telephone Number -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="division">Division:</label>
+            <input type="text" class="form-control" id="division" name="division" [(ngModel)]="userdata.division" placeholder="Enter Division" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="telephone_number">Telephone Number:</label>
+            <input type="text" class="form-control" id="telephone_number" name="telephone_number" [(ngModel)]="scholarshipData.telephone_number" placeholder="Enter Telephone Number">
+          </div>
+        </div>
+
+        <!-- Mobile Number and PF Number -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="mobile_number">Mobile Number:</label>
+            <input type="text" class="form-control" id="mobile_number" name="mobile_number" [(ngModel)]="userdata.mobilenumber" placeholder="Enter Mobile Number" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="pf_no">PF Number:</label>
+            <input type="text" class="form-control" id="pf_no" name="pf_no" [(ngModel)]="userdata.pf_no" placeholder="Enter PF Number" required>
+          </div>
+        </div>
+
+        <!-- Pay Level and MACP Pay Level -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="pay_level">Pay Level:</label>
+            <input type="text" class="form-control" id="pay_level" name="pay_level" [(ngModel)]="userdata.level" placeholder="Enter Pay Level" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="macp_pay_level">MACP Pay Level:</label>
+            <select class="form-control" id="macp_pay_level" name="macp_pay_level" [(ngModel)]="scholarshipData.macp_pay_level" required>
+              <option value="">Select Level</option>
+              <option value="Level1">Level 1</option>
+              <option value="Level2">Level 2</option>
+              <option value="Level3">Level 3</option>
+              <option value="Level4">Level 4</option>
+              <option value="Level5">Level 5</option>
+              <option value="Level6">Level 6</option>
+              <option value="Level7">Level 7</option>
+              <option value="Level8">Level 8</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Basic Pay and Course of Study -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="basic_pay">Basic Pay:</label>
+            <input 
+              type="text" 
+              class="form-control" 
+              id="basic_pay" 
+              name="basic_pay" 
+              [(ngModel)]="scholarshipData.basic_pay" 
+              placeholder="Enter Basic Pay" 
+              required 
+              maxlength="8" 
+              pattern="^\d{1,8}$" 
+              title="Basic Pay should be a maximum of 8 digits" 
+              #basicPay="ngModel"
+            />
+            <div *ngIf="basicPay.invalid && basicPay.touched" class="text-danger">
+              Basic Pay must be a valid number with a maximum of 8 digits.
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="course_of_study">Course of Study:</label>
+            <input type="text" class="form-control" id="course_of_study" name="course_of_study" [(ngModel)]="scholarshipData.course_of_study" placeholder="Enter Course of Study" required>
+          </div>
+        </div>
+
+        <!-- Year of Study and Institution Name -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="year_of_study">Year of Study (ex: 1st, 2nd year, etc.):</label>
+            <input type="text" class="form-control" id="year_of_study" name="year_of_study" [(ngModel)]="scholarshipData.year_of_study" placeholder="Enter Year of Study" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="institution_name">Institution Name:</label>
+            <input type="text" class="form-control" id="institution_name" name="institution_name" [(ngModel)]="scholarshipData.institution_name" placeholder="Enter Institution Name" required>
+          </div>
+        </div>
+
+        <!-- Tuition Fee Exemption and Student Employment Status -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="tuition_fee_exemption">Is the child exempt from tuition fees? If yes, specify the amount:</label>
+            <input type="text" class="form-control" id="tuition_fee_exemption" name="tuition_fee_exemption" [(ngModel)]="scholarshipData.tuition_fee_exemption" placeholder="Enter Tuition Fee Exemption">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="student_employment_status">Student Employment Status:</label>
+            <input type="text" class="form-control" id="student_employment_status" name="student_employment_status" [(ngModel)]="scholarshipData.student_employment_status" placeholder="Enter Student Employment Status">
+          </div>
+        </div>
+
+        <!-- Other Scholarships Value -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="other_scholarships_value">Is the child receiving any other scholarship? If yes, specify the amount:</label>
+            <input type="text" class="form-control" id="other_scholarships_value" name="other_scholarships_value" [(ngModel)]="scholarshipData.other_scholarships_value" placeholder="Enter Value of Other Scholarships">
+          </div>
+        </div>
+
+        <!-- Upload Supporting Document -->
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="pdfFile">Upload Supporting Document (EMPIDCard, EmpPlaySlip, Student All Marks Memos, Student Bonafide Certificate, Student ID, merge all in one PDF, Max 5MB):</label>
+            <input type="file" class="form-control" id="pdfFile" (change)="onFileSelected($event)" accept="application/pdf">
+          </div>
+        </div>
+
+        <!-- Declaration Checkbox -->
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="checkbox-container">
+              <input 
+                type="checkbox" 
+                [(ngModel)]="isChecked" 
+                [ngModelOptions]="{standalone: true}" 
+                id="declaration" 
+                required
+              />
+              <label for="declaration" class="checkbox-label">
+                I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group mt-4">
+          <button type="submit" class="btn btn-primary" [disabled]="!form.valid || !isChecked">Submit Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<p-toast
+[showTransformOptions]="'translateY(100%)'" 
+  [showTransitionOptions]="'1000ms'" 
+  [hideTransitionOptions]="'1000ms'" 
+  [showTransformOptions]="'translateX(100%)'"/>

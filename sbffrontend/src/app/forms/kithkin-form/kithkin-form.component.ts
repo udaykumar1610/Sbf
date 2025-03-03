@@ -19,6 +19,7 @@ export class KithkinFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked:boolean=false;
 
   kithkinData: any = {
     empname: '',
@@ -104,6 +105,7 @@ export class KithkinFormComponent {
           next: (response) => {
             alert('Kithkin record created successfully!');
             form.reset();
+            this.declarationChecked=false;
             this.router.navigate(['/kithkin']);
           },
           error: (err) => {

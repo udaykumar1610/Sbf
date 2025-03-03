@@ -5,12 +5,16 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { MotorizedTricycleformService } from '../../servicesForm/motorized-tricycleform.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @Component({
   selector: 'app-motorized-tricycle-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,ToastModule,FileUploadModule],
+  providers: [MessageService],
   templateUrl: './motorized-tricycle-form.component.html',
   styleUrls: ['./motorized-tricycle-form.component.css']
 })
@@ -19,6 +23,8 @@ export class MotorizedTricycleFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked:boolean=false;
+  empDeclarationChecked:boolean=false;
 
   motorizedTricycleData: any = {
     empname: '',
@@ -49,7 +55,8 @@ export class MotorizedTricycleFormComponent {
   constructor(
     private motorizedTricycleformService:MotorizedTricycleformService ,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService:MessageService
   ) {}
 
   getHrmsId() {
@@ -84,6 +91,7 @@ export class MotorizedTricycleFormComponent {
   fetchUserDetails() {
     this.authService.getHrmsData(this.hrmsId).subscribe(
       (data) => {
+        console.log(data);
         this.userdata = data;
         this.userdata.date_of_appointment = this.formatDateForInput(data.date_of_appointment);
         this.userdata.date_of_birth = this.formatDateForInput(data.date_of_birth);
@@ -122,18 +130,35 @@ export class MotorizedTricycleFormComponent {
     this.motorizedTricycleData.division = this.userdata.division;
     this.motorizedTricycleData.pf_no = this.userdata.pf_no;
     this.motorizedTricycleData.payband = this.userdata.payband;
+    this.motorizedTricycleData.running_allowance = this.userdata.running_allowance;
 
     if (form.valid) {
       this.motorizedTricycleformService.create(this.motorizedTricycleData, this.pdfFile)
         .subscribe({
           next: (response) => {
-            alert('Motorized Tricycle record created successfully!');
+            // alert('Motorized Tricycle record created successfully!');
+            if(response.status='success'){
+              this.messageService.add({
+                severity: 'success',
+                summary: response.message,
+                detail :''
+              })
+            }
             form.reset();
+            this.declarationChecked=false;
+            this.empDeclarationChecked=false;
             this.router.navigate(['/motorized-tricycle']);
           },
           error: (err) => {
             console.error(err);
-            alert('Error saving Motorized Tricycle data.');
+            if(err.status="error"){
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Submission Failed',
+                detail :"please fill all the Fields"
+              })
+            }
+            // alert('Error saving Motorized Tricycle data.');
           }
         });
     }

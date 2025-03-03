@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { ScholarlistComponent } from "../../personnelDept/scholar-pers-dept/scholar-pers-dept.component";
 
 @Component({
   selector: 'app-personnel-department-dashboard',
   standalone: true,
-  imports: [],
+  imports: [ScholarlistComponent],
   templateUrl: './personnel-department-dashboard.component.html',
   styleUrl: './personnel-department-dashboard.component.css'
 })

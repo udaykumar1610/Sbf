@@ -7,15 +7,15 @@
     </div>
   
     <!-- Display the Data Table if Scholarships are available -->
-    <table class="table table-bordered" *ngIf="scholarships.length > 0">
-      <thead>
+    <table class="table table-bordered table-striped table-hover" *ngIf="scholarships.length > 0">
+      <thead class="table thead-dark">
         <tr>
           <th>ID</th>
           <th>Employee Name</th>
           <th>Scholar Name</th>
           <th>Relationship</th>
           <th>Spouse Govt Employee Details</th>
-          <th>Date of Appointment</th>
+          <th>Date of Appointment </th>
           <th>Designation</th>
           <th>Division</th>
           <th>Basic Pay</th>
@@ -33,7 +33,7 @@
           <th>Year of Study</th>
           <!-- <th>PDF File Path</th> -->
           <th>PDF URL</th>
-          <th>status</th>
+          <!-- <th>status</th> -->
           <th>Action</th>
         </tr>
       </thead>
@@ -44,7 +44,7 @@
           <td>{{ scholar.scholar_name }}</td>
           <td>{{ scholar.relationship }}</td>
           <td>{{ scholar.spouse_govt_employee_details }}</td>
-          <td>{{ scholar.date_of_appointment  }}</td>
+          <td>{{ scholar.date_of_appointment  | date:"yyyy-MM-dd"  }}</td>
           <td>{{ scholar.designation }}</td>
           <td>{{ scholar.division }}</td>
           <td>{{ scholar.basic_pay }}</td>
@@ -60,20 +60,29 @@
           <td>{{ scholar.telephone_number }}</td>
           <td>{{ scholar.tuition_fee_exemption }}</td>
           <td>{{ scholar.year_of_study }}</td>
-          <!-- <td>{{ scholar.pdf_file_path }}</td> -->
-          <!-- <td>{{ scholar.pdf_url }}</td> -->
-          <!-- <td>
-            <a *ngIf="scholar.pdf_url" [href]="scholar.pdf_url" target="_blank">
-              View PDF
-            </a>
-            <span *ngIf="!scholar.pdf_url">No PDF Available</span>
-          </td> -->
+         
           <td>
             <a [href]="scholar.pdf_url" target="_blank">View PDF</a>
           </td>
-            <!-- Action buttons (if needed) -->
-          <!-- <button class="btn btn-info" (click)="viewScholarDetails(scholar.id)">View</button> -->
-         
+            
+          <!-- <td>{{ scholar.status}}</td> -->
+          <td class="button"> 
+            <!-- <button (click)="updateStatus(scholar.id, 'forwardBySupervisor')" class="btn btn-success">Forward</button>
+            <button (click)="updateStatus(scholar.id, 'reject')" class="btn btn-danger">Reject</button> -->
+          
+            <button 
+            (click)="updateStatus(scholar.id, 'forwardBySupervisor')" 
+            class="btn btn-success" 
+            [disabled]="scholar.isActionTaken || scholar.status == 'forwardBySupervisor' || scholar.status == 'reject'">
+            Forward
+          </button>
+          <button 
+            (click)="updateStatus(scholar.id, 'reject')" 
+            class="btn btn-danger" 
+            [disabled]="scholar.isActionTaken || scholar.status == 'forwardBySupervisor' || scholar.status == 'reject'">
+            Reject
+          </button>
+          </td>
         </tr>
       </tbody>
     </table>

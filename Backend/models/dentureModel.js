@@ -16,7 +16,21 @@ const getDentureById = (id) => {
 };
 
 // Create new denture
-const createDenture = (dentureData) => {
+const createDenture = async (dentureData) => {
+  const { empname } = dentureData;
+  //console.log("emp name :", empname);
+
+  const [existingDenture] = await db.query(
+    "select * from Dentures where empname=?",
+    [empname]
+  );
+  //console.log("length : ", existingDenture.length);
+
+  if (existingDenture.length > 0) {
+    throw new Error(
+      `A denture for Employee ${empname} already exists. Only one denture is allowed per service.`
+    );
+  }
   return db.query("INSERT INTO Dentures SET ?", dentureData);
 };
 

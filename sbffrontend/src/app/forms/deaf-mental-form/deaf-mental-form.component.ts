@@ -19,6 +19,8 @@ export class DeafMentalFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked: boolean = false;
+ 
 
   deafMentalData: any = {
     empname: '',
@@ -143,6 +145,7 @@ export class DeafMentalFormComponent {
     this.deafMentalData.division = this.userdata.division;
     this.deafMentalData.pf_no = this.userdata.pf_no;
     this.deafMentalData.pay_band = this.userdata.pay_band;
+    this.deafMentalData.running_allowance = this.userdata.running_allowance;
 
     if (form.valid) {
       this.deafMentalFormService.create(this.deafMentalData, this.pdfFile)
@@ -150,6 +153,8 @@ export class DeafMentalFormComponent {
           next: (response) => {
             alert('Deaf and Mentally Retarded record created successfully!');
             form.reset();
+            this.declarationChecked = false;
+          
             this.router.navigate(['/deaf-and-mentally-retarded']);
           },
           error: (err) => {

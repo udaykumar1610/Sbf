@@ -74,10 +74,11 @@ exports.updateStatus = async (req, res) => {
     await Kithkin.updateStatus(id, status);
 
     res.json({
+      status: "success",
       message: "Kithkin status updated successfully",
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "error", error: err.message });
   }
 };
 

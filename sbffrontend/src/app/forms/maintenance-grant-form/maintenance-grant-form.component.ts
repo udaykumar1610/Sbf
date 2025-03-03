@@ -33,6 +33,8 @@ export class MaintenanceGrantFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked: boolean = false;
+
 
   maintenanceGrantData: any = {
     empname: '',
@@ -155,6 +157,7 @@ export class MaintenanceGrantFormComponent {
     this.maintenanceGrantData.division = this.userdata.division;
     this.maintenanceGrantData.pf_no = this.userdata.pf_no;
     this.maintenanceGrantData.pay_band = this.userdata.pay_band;
+    this.maintenanceGrantData.running_allowance = this.userdata.running_allowance;
 
 
      // Validate running allowance to ensure it doesn't exceed 8 digits
@@ -170,6 +173,7 @@ export class MaintenanceGrantFormComponent {
           next: (response) => {
             alert('Maintenance Grant record created successfully!');
             form.reset();
+            this.declarationChecked = false;
             this.router.navigate(['/maintenance-grant']);
           },
           error: (err) => {

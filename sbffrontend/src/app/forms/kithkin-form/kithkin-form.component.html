@@ -102,9 +102,26 @@
           (change)="onFileSelected($event)" 
           accept=".pdf">
       </div>
+
+      <div class="form-row">
+        <div class="col-md-12">
+          <div class="checkbox-container">
+            <input 
+              type="checkbox" 
+              [(ngModel)]="declarationChecked" 
+              [ngModelOptions]="{standalone: true}" 
+              id="declaration" 
+              required
+            />
+            <label for="declaration" class="checkbox-label">
+              I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+            </label>
+          </div>
+        </div>
+      </div>
   
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" [disabled]="!kithkinForm.valid">Submit</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!kithkinForm.valid || !declarationChecked">Submit</button>
   
     </form>
   </div>

@@ -10,13 +10,16 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { DenturesService } from '../../dentures.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 
 
 @Component({
   selector: 'app-dentures-form',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,ToastModule],
+  providers:[MessageService],
   templateUrl: './dentures-form.component.html',
   styleUrl: './dentures-form.component.css'
 })
@@ -26,6 +29,8 @@ export class DenturesFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked: boolean = false;
+  empDeclarationChecked:boolean=false;
 
 
 
@@ -54,7 +59,7 @@ export class DenturesFormComponent {
   pdfFile: any;
 
   constructor(private denturesService: DenturesService, private router: Router,
-      private authService: AuthService) {}
+      private authService: AuthService,private messageService:MessageService) {}
   
 
 
@@ -63,14 +68,21 @@ export class DenturesFormComponent {
     if (this.hrmsId) {
       this.fetchUserDetails();
     } else {
-      this.errorMessage = 'HRMS ID not found.';
-      alert(this.errorMessage);
+       this.errorMessage = 'HRMS ID not found.';
+      if (typeof window !== 'undefined') {
+        alert(this.errorMessage);  // Ensure alert is only called in the browser
+      }
     }
   }
 
   // Fetch HRMS ID from localStorage
   getHrmsId() {
-    this.hrmsId = localStorage.getItem('hrmsId');
+    if (typeof window !== 'undefined') {
+      this.hrmsId = localStorage.getItem('hrmsId');
+    } else {
+      // Handle the case when it's not available (if needed)
+      console.log("localStorage is not available");
+    }
   }
     // Convert ISO Date format to YYYY-MM-DD
     formatDateForInput(dateString: string | null): string {
@@ -139,17 +151,35 @@ export class DenturesFormComponent {
     this.denture.division = this.userdata.division;
     this.denture.pf_no = this.userdata.pf_no;
     this.denture.pay_band = this.userdata.payband;
+    this.denture.running_allowance = this.userdata.running_allowance;
   
     if (form.valid) {
       this.denturesService.createDenture(this.denture, this.pdfFile)
         .subscribe({
           next: (response) => {
-            alert('Denture data saved successfully!');
+            //alert('Denture data saved successfully!');
+            if(response.status=="success"){
+              this.messageService.add({
+                severity: 'success',
+                summary: response.message,
+                detail: 'Ok'
+              })
+            }
             form.reset();
+            this.declarationChecked=false;
+            this.empDeclarationChecked=false;
           },
           error: (err) => {
-            console.error(err);
-            alert('Error saving denture data.');
+            console.error("err :",err);
+            if(err.error.status="error"){
+
+              this.messageService.add({
+                severity: 'error',
+                summary: err.error.error,
+                detail: "Failed"
+              })
+            }
+            //alert('Error saving denture data.');
           }
         });
     }

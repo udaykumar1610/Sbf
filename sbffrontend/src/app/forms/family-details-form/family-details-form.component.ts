@@ -20,6 +20,7 @@ export class FamilyDetailsFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked: boolean = false;
 
   familyDetailsData: any = {
     empname: '',
@@ -102,6 +103,7 @@ export class FamilyDetailsFormComponent {
         this.familyDetailsData.department_division = this.userdata.department_division;
         this.familyDetailsData.pf_number = this.userdata.pf_no;
         this.familyDetailsData.pay_in_pay_band = this.userdata.payband;
+        this.familyDetailsData.running_allowance = this.userdata.running_allowance;
       },
       (err) => {
         this.errorMessage = 'Failed to fetch user details.';
@@ -145,6 +147,7 @@ export class FamilyDetailsFormComponent {
         .subscribe({
           next: (response) => {
             alert('Family Details record created successfully!');
+            this.declarationChecked=false;
             this.router.navigate(['/familyDetails']);
           },
           error: (err) => {

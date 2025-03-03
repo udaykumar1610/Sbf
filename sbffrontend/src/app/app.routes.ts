@@ -28,6 +28,12 @@ import { FamilyDetailsFormComponent } from './forms/family-details-form/family-d
 import { SrdpodashboardComponent } from './dashboard/srdpodashboard/srdpodashboard.component';
 import { IndigenousSystemComponent } from './indigenous-system/indigenous-system.component';
 import { RecreationAmusementComponent } from './recreation-amusement/recreation-amusement.component';
+import { ScholarlistComponent } from './scholarlist/scholarlist.component';
+import { KithkinlistComponent } from './List/kithkinlist/kithkinlist.component';
+import { ScholardivComponent } from './Division/scholardiv/scholardiv.component';
+import { KithkindivComponent } from './Division/kithkindiv/kithkindiv.component';
+import { KithkinsrdpoComponent } from './srdpo/kithkinsrdpo/kithkinsrdpo.component';
+import { ScholarsrdpoComponent } from './srdpo/scholarsrdpo/scholarsrdpo.component';
 
 // export const routes: Routes = [];
 export const routes: Routes = [
@@ -42,25 +48,73 @@ export const routes: Routes = [
     { path: 'amusement', component: RecreationAmusementComponent },
 
     { path: 'supervisor-dashboard', component: SupervisordashboardComponent },
-    { path: 'division-dashboard', component: DivisiondashboardComponent },
+
+    { path: 'user-dashboard', component: UserDashboardComponent,
+      children: [
+        { path: '', redirectTo: 'user-dashboard', pathMatch: 'full' }, // Default redirect to scholarList
+        { path: 'scholarship', component: ScholarshipFormComponent },
+        { path: 'denture', component: DenturesFormComponent },
+        { path: 'spectacle', component: SpectaclesFormComponent },
+        { path: 'medical', component: MedicalFormComponent },
+        { path: 'maintenance', component: MaintenanceGrantFormComponent },
+        { path: 'motor', component: MotorizedTricycleFormComponent },
+        { path: 'physically', component: PhysicallyChallengedFormComponent },
+        { path: 'deafmental', component: DeafMentalFormComponent },
+        { path: 'kithkin', component: KithkinFormComponent },
+        { path: 'familyNorms', component: FamilyDetailsFormComponent },
+      ]
+      },
+
+
+    {
+      path: 'supervisor-dashboard',
+      component: SupervisordashboardComponent,
+      children: [
+        { path: '', redirectTo: 'scholarList', pathMatch: 'full' }, // Default redirect to scholarList
+        { path: 'scholarList', component: ScholarlistComponent },
+        { path: 'kithkinList', component: KithkinlistComponent },
+      ]
+    },
+
+
+    { path: 'division-dashboard', component: DivisiondashboardComponent,
+      children: [
+        { path: '', redirectTo: 'division-dashboard', pathMatch: 'full' }, // Default redirect to scholarList
+        { path: 'scholardiv', component: ScholardivComponent },
+        { path: 'kithkindiv', component: KithkindivComponent },
+      ]
+
+     },
     { path: 'pc-dashboard', component: PersonnelDepartmentDashboardComponent },
     { path: 'spo-dashboard', component: SpodashboardComponent },
     { path: 'dypco-dashboard', component: DycpodashboardComponent },
     { path: 'pcpo-dashboard', component: PcpodashboardComponent },
-    { path: 'srdpo-dashboard', component: SrdpodashboardComponent },
+    { path: 'srdpo-dashboard', component: SrdpodashboardComponent ,
+      children: [
+        { path: '', redirectTo: 'srdpo-dashboard', pathMatch: 'full' }, // Default redirect to scholarList
+        { path: 'scholarsrdpo', component: ScholarsrdpoComponent },
+        { path: 'kithkinsrdpo', component: KithkinsrdpoComponent },
+      ]
 
-    { path: 'scholarship', component: ScholarshipFormComponent },
-    { path: 'denture', component: DenturesFormComponent },
-    { path: 'spectacle', component: SpectaclesFormComponent },
-    { path: 'medical', component: MedicalFormComponent },
-    { path: 'maintenance', component: MaintenanceGrantFormComponent },
-    { path: 'motor', component: MotorizedTricycleFormComponent },
-    { path: 'physically', component: PhysicallyChallengedFormComponent },
-    { path: 'deafmental', component: DeafMentalFormComponent },
-    { path: 'kithkin', component: KithkinFormComponent },
-    { path: 'familyNorms', component: FamilyDetailsFormComponent },
+    },
 
-    { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
+
+    // { path: 'scholarship', component: ScholarshipFormComponent },
+    // { path: 'denture', component: DenturesFormComponent },
+    // { path: 'spectacle', component: SpectaclesFormComponent },
+    // { path: 'medical', component: MedicalFormComponent },
+    // { path: 'maintenance', component: MaintenanceGrantFormComponent },
+    // { path: 'motor', component: MotorizedTricycleFormComponent },
+    // { path: 'physically', component: PhysicallyChallengedFormComponent },
+    // { path: 'deafmental', component: DeafMentalFormComponent },
+    // { path: 'kithkin', component: KithkinFormComponent },
+    // { path: 'familyNorms', component: FamilyDetailsFormComponent },
+
+
+    {path:"scholarList",component:ScholarlistComponent},
+    {path:"kithkinList",component:KithkinlistComponent},
+
+    // { path: 'user-dashboard', component: UserDashboardComponent, canActivate: [AuthGuard] },
     { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'home',pathMatch: 'full'  }
   ];

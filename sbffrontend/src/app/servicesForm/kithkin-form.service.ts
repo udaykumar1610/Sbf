@@ -14,6 +14,7 @@ export class KithkinFormService {
 
   private getAuthHeaders(isFormData = false): HttpHeaders {
     const token = this.authService.getToken();
+    console.log("kith kin token :",token);
     let headersConfig: any = {
       Authorization: `Bearer ${token}`
     };

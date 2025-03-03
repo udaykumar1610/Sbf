@@ -5,11 +5,14 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { SpectaclesFormService } from '../../servicesForm/spectacles-form.service';
+import {MessageService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
 
 @Component({
   selector: 'app-spectacles-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,ToastModule],
+  providers:[MessageService],
   templateUrl: './spectacles-form.component.html',
   styleUrls: ['./spectacles-form.component.css']
 })
@@ -18,6 +21,7 @@ export class SpectaclesFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked: boolean = false;
 
   spectacle: any = {
     empname: '',
@@ -44,7 +48,8 @@ export class SpectaclesFormComponent {
   constructor(
     private spectaclesFormService: SpectaclesFormService, // Inject the service
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService:MessageService
   ) {}
 
   ngOnInit() {
@@ -52,14 +57,21 @@ export class SpectaclesFormComponent {
     if (this.hrmsId) {
       this.fetchUserDetails();
     } else {
+     
       this.errorMessage = 'HRMS ID not found.';
-      alert(this.errorMessage);
+      if(typeof window !== 'undefined'){
+
+        alert(this.errorMessage);
+      }
     }
   }
 
   // Fetch HRMS ID from localStorage
   getHrmsId() {
-    this.hrmsId = localStorage.getItem('hrmsId');
+    if(typeof window !== 'undefined'){
+      
+      this.hrmsId = localStorage.getItem('hrmsId');
+    }
   }
 
   // Convert ISO Date format to YYYY-MM-DD
@@ -117,19 +129,38 @@ export class SpectaclesFormComponent {
     this.spectacle.division = this.userdata.division;
     this.spectacle.pf_no = this.userdata.pf_no;
     this.spectacle.pay_band = this.userdata.pay_band;
+    this.spectacle.running_allowance = this.userdata.running_allowance;
 
     if (form.valid) {
       // Call createSpectacle from the service
       this.spectaclesFormService.createSpectacle(this.spectacle, this.pdfFile).subscribe({
         next: (response) => {
-          alert('Spectacle data saved successfully!');
+          //alert('Spectacle data saved successfully!');
+          if(response.status="success"){
+            this.messageService.add({
+              severity: 'success',
+              summary:response.message,
+              detail: 'OK'
+            })
+          }
+          // alert(response.message);
           form.reset();
+          this.declarationChecked = false;
         },
         error: (err) => {
-          console.error(err);
-          alert('Error saving spectacle data.');
-        }
-      });
+          console.error("err:",err.error.error);
+          if(err.error.status="error"){
+            this.messageService.add({
+              severity: 'error',
+              summary:err.error.error,
+              detail: 'Failed'
+            })
+          
+          // alert(err.error.error);
+          console.error('Error creating spectacles record:', err.message);
+        
+        }}
+      })
     }
   }
  

@@ -131,9 +131,13 @@ exports.register = async (req, res) => {
       familyData,
     });
 
-    res.status(201).json({ message: "User registered successfully" });
+    res
+      .status(201)
+      .json({ status: "success", message: "User registered successfully" });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    res
+      .status(500)
+      .json({ status: "error", message: "Server error", error: error.message });
   }
 };
 
@@ -154,7 +158,7 @@ exports.login = async (req, res) => {
     const token = jwt.sign(
       { id: user.id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "10h" }
     );
 
     res.json({
@@ -163,9 +167,12 @@ exports.login = async (req, res) => {
       hrms_id: user.hrms_id,
       payband: user.payband,
       empname: user.empname,
+      status: "success",
       message: "User login successfully",
     });
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
+    res
+      .status(500)
+      .json({ status: "error", message: "Server error", error: error.message });
   }
 };

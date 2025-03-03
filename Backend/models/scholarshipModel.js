@@ -226,7 +226,9 @@ const createScholarship = async (data, pdfFilePath) => {
     status = "submitted", // Default status
   } = data;
 
-  // console.log("model scholar:", pay_level.trim().toLowerCase());
+  console.log("model scholar:", pay_level.trim().toLowerCase());
+
+  let existingScholarship;
 
   if (
     ["level5", "level6", "level7", "level8"].includes(
@@ -234,26 +236,92 @@ const createScholarship = async (data, pdfFilePath) => {
     )
   ) {
     // Check if a scholarship has already been posted for this pay level
-    const existingScholarship = await pool.query(
+    existingScholarship = await pool.query(
       `SELECT COUNT(*) AS count FROM scholarships WHERE pay_level IN ('level5', 'level6', 'level7', 'level8') AND empname = ?`,
       [empname]
     );
+
     console.log("existingScholarship 2:", existingScholarship[0][0].count);
+
     // If a scholarship for this pay level exists, prevent posting more
-    if (existingScholarship[0][0].count > 0) {
+    if (existingScholarship[0][0].count > 0 && relationship != "Twins") {
       console.log("model scholar:", data);
       throw new Error(
         "A scholarship can only be posted once for pay levels level5, level6, level7, level8."
       );
-    } else if (existingScholarship[0][0].count == 0) {
+    } else if (relationship == "Twins" && existingScholarship[0][0].count > 2) {
+      throw new Error(
+        "A scholarship can only be posted  twice (if  children's are twins) for pay levels level5, level6, level7, level8."
+      );
+    }
+
+    // Insert the scholarship data if no existing scholarship for this pay level
+    else if (
+      !existingScholarship ||
+      existingScholarship[0][0].count === 0 ||
+      (relationship === "Twins" && existingScholarship[0][0].count <= 2)
+    ) {
       await pool.query(
         `
-        INSERT INTO scholarships 
-        (empname, scholar_name, relationship, spouse_govt_employee_details, date_of_appointment, bill_unit_no, 
-        designation, office, division, telephone_number, mobile_number, pf_no, pay_level, macp_pay_level, 
-        basic_pay, course_of_study, year_of_study, institution_name, tuition_fee_exemption, student_employment_status, 
-        other_scholarships_value, pdf_file_path, status) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          INSERT INTO scholarships
+          (empname, scholar_name, relationship, spouse_govt_employee_details, date_of_appointment, bill_unit_no,
+          designation, office, division, telephone_number, mobile_number, pf_no, pay_level, macp_pay_level,
+          basic_pay, course_of_study, year_of_study, institution_name, tuition_fee_exemption, student_employment_status,
+          other_scholarships_value, pdf_file_path, status)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+
+        [
+          empname,
+          scholar_name,
+          relationship,
+          spouse_govt_employee_details,
+          formatDate(date_of_appointment),
+          bill_unit_no,
+          designation,
+          office,
+          division,
+          telephone_number,
+          mobile_number,
+          pf_no,
+          pay_level,
+          macp_pay_level,
+          basic_pay,
+          course_of_study,
+          year_of_study,
+          institution_name,
+          tuition_fee_exemption,
+          student_employment_status,
+          other_scholarships_value,
+          pdfFilePath,
+          status,
+        ]
+      );
+    }
+  } else if (
+    ["level1", "level2", "level3", "level4"].includes(
+      pay_level.trim().toLowerCase()
+    )
+  ) {
+    existingScholarship = await pool.query(
+      `SELECT COUNT(*) AS count FROM scholarships WHERE pay_level IN ('level1', 'level2', 'level3', 'level4') AND empname = ?`,
+      [empname]
+    );
+
+    if (existingScholarship[0][0].count > 2) {
+      console.log("model scholar:", data);
+      throw new Error(
+        "A scholarship can only be posted only twice for pay levels level1, level2, level3, level4."
+      );
+    } else if (!existingScholarship || existingScholarship[0][0].count <= 2) {
+      await pool.query(
+        `
+          INSERT INTO scholarships
+          (empname, scholar_name, relationship, spouse_govt_employee_details, date_of_appointment, bill_unit_no,
+          designation, office, division, telephone_number, mobile_number, pf_no, pay_level, macp_pay_level,
+          basic_pay, course_of_study, year_of_study, institution_name, tuition_fee_exemption, student_employment_status,
+          other_scholarships_value, pdf_file_path, status)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+
         [
           empname,
           scholar_name,
@@ -282,45 +350,130 @@ const createScholarship = async (data, pdfFilePath) => {
       );
     }
   }
-
-  // Insert the new scholarship record only if conditions are met
-  // await pool.query(
-  //   `
-  //   INSERT INTO scholarships
-  //   (empname, scholar_name, relationship, spouse_govt_employee_details, date_of_appointment, bill_unit_no,
-  //   designation, office, division, telephone_number, mobile_number, pf_no, pay_level, macp_pay_level,
-  //   basic_pay, course_of_study, year_of_study, institution_name, tuition_fee_exemption, student_employment_status,
-  //   other_scholarships_value, pdf_file_path, status)
-  //   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-  //   [
-  //     empname,
-  //     scholar_name,
-  //     relationship,
-  //     spouse_govt_employee_details,
-  //     formatDate(date_of_appointment),
-  //     bill_unit_no,
-  //     designation,
-  //     office,
-  //     division,
-  //     telephone_number,
-  //     mobile_number,
-  //     pf_no,
-  //     pay_level,
-  //     macp_pay_level,
-  //     basic_pay,
-  //     course_of_study,
-  //     year_of_study,
-  //     institution_name,
-  //     tuition_fee_exemption,
-  //     student_employment_status,
-  //     other_scholarships_value,
-  //     pdfFilePath,
-  //     status,
-  //   ]
-  // );
 };
 
+// const createScholarship = async (data, pdfFilePath) => {
+//   const {
+//     empname,
+//     scholar_name,
+//     relationship,
+//     spouse_govt_employee_details,
+//     date_of_appointment,
+//     bill_unit_no,
+//     designation,
+//     office,
+//     division,
+//     telephone_number,
+//     mobile_number,
+//     pf_no,
+//     pay_level,
+//     macp_pay_level,
+//     basic_pay,
+//     course_of_study,
+//     year_of_study,
+//     institution_name,
+//     tuition_fee_exemption,
+//     student_employment_status,
+//     other_scholarships_value,
+//     status = "submitted", // Default status
+//   } = data;
+
+//   try {
+//     if (
+//       ["level5", "level6", "level7", "level8"].includes(
+//         pay_level.trim().toLowerCase()
+//       )
+//     ) {
+//       const existingScholarship = await pool.query(
+//         `SELECT COUNT(*) AS count FROM scholarships WHERE pay_level IN ('level5', 'level6', 'level7', 'level8') AND empname = ?`,
+//         [empname]
+//       );
+//       if (existingScholarship[0][0].count > 0) {
+//         return "A scholarship can only be posted once for pay levels level5, level6, level7, level8.";
+//       } else if (existingScholarship[0][0].count == 0) {
+//         await pool.query(
+//           `INSERT INTO scholarships
+//     (empname, scholar_name, relationship, spouse_govt_employee_details, date_of_appointment, bill_unit_no,
+//     designation, office, division, telephone_number, mobile_number, pf_no, pay_level, macp_pay_level,
+//     basic_pay, course_of_study, year_of_study, institution_name, tuition_fee_exemption, student_employment_status,
+//     other_scholarships_value, pdf_file_path, status)
+//     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+//           [
+//             empname,
+//             scholar_name,
+//             relationship,
+//             spouse_govt_employee_details,
+//             formatDate(date_of_appointment),
+//             bill_unit_no,
+//             designation,
+//             office,
+//             division,
+//             telephone_number,
+//             mobile_number,
+//             pf_no,
+//             pay_level,
+//             macp_pay_level,
+//             basic_pay,
+//             course_of_study,
+//             year_of_study,
+//             institution_name,
+//             tuition_fee_exemption,
+//             student_employment_status,
+//             other_scholarships_value,
+//             pdfFilePath,
+//             status,
+//           ]
+//         );
+//       }
+//     }
+//   } catch (err) {
+//     // Log the detailed error for debugging purposes
+//     console.error("Error in creating scholarship:", err);
+
+//     // Throw a user-friendly error message
+//     return;
+//     ("There was an issue creating the scholarship. Please try again later.");
+//   }
+// };
+
+//Insert the new scholarship record only if conditions are met
+// await pool.query(
+//   `
+//   INSERT INTO scholarships
+//   (empname, scholar_name, relationship, spouse_govt_employee_details, date_of_appointment, bill_unit_no,
+//   designation, office, division, telephone_number, mobile_number, pf_no, pay_level, macp_pay_level,
+//   basic_pay, course_of_study, year_of_study, institution_name, tuition_fee_exemption, student_employment_status,
+//   other_scholarships_value, pdf_file_path, status)
+//   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+//   [
+//     empname,
+//     scholar_name,
+//     relationship,
+//     spouse_govt_employee_details,
+//     formatDate(date_of_appointment),
+//     bill_unit_no,
+//     designation,
+//     office,
+//     division,
+//     telephone_number,
+//     mobile_number,
+//     pf_no,
+//     pay_level,
+//     macp_pay_level,
+//     basic_pay,
+//     course_of_study,
+//     year_of_study,
+//     institution_name,
+//     tuition_fee_exemption,
+//     student_employment_status,
+//     other_scholarships_value,
+//     pdfFilePath,
+//     status,
+//   ]
+// );
+
 // Update Scholarship
+
 const updateScholarship = async (id, data, pdfFilePath) => {
   await pool.query(
     `UPDATE scholarships SET 
@@ -426,6 +579,21 @@ const getScholarshipsByStatus = async (status) => {
 //   return rows;
 // };
 
+//update by status
+
+const updatestatus = async (id, status) => {
+  console.log("models", status, "id :", id);
+  const sql = `
+      UPDATE scholarships SET status=? WHERE id=?
+    `;
+  console.log(sql);
+  const params = [status, id];
+  console.log(" after models", status, "id :", id);
+
+  const result = await pool.query(sql, params);
+  console.log(result);
+};
+
 // Delete scholarship by ID
 const deleteScholarship = async (id) => {
   await pool.query("DELETE FROM scholarships WHERE id = ?", [id]);
@@ -437,5 +605,6 @@ module.exports = {
   getScholarshipById,
   updateScholarship,
   deleteScholarship,
+  updatestatus,
   getScholarshipsByStatus,
 };

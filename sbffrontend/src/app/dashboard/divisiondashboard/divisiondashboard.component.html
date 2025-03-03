@@ -1,6 +1,39 @@
 
-<h1 style="text-align: center; font-style: italic; font-size: 30px; background-color: bisque;">Division DashBoard</h1>
+<!-- <h1 style="text-align: center; font-style: italic; font-size: 30px; background-color: bisque;">Division DashBoard</h1>
 <div style="display: flex; justify-content: flex-end; font-style: italic; margin-right: 10px;">
     <h5>Logged in as: {{name}}</h5>
-  </div>
-<p>divisiondashboard works!</p>
+  </div> -->
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: bisque; font-style: italic;">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <!-- Dropdown Menu -->
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Schemes Data
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" [routerLink]="['scholardiv']">Education Scholarship List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['kithkindiv']"> Kithkin List</a></li>
+          <li><a class="dropdown-item" href="#">Option 3</a></li>
+        </ul>
+      </div>
+  
+      <!-- Centered Heading -->
+      <div class="d-flex justify-content-center flex-grow-1">
+        <h1>Division Clerk</h1>
+      </div>
+  
+      <!-- Logged in user name aligned to the right -->
+      <div class="d-flex justify-content-end">
+        <h5 style="font-style: italic; margin-right: 10px;">Logged in as: {{name}}</h5>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- <app-kithkindiv></app-kithkindiv>
+<app-scholardiv></app-scholardiv> -->
+
+<router-outlet></router-outlet>

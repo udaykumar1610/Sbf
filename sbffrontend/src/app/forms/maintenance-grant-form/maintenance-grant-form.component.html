@@ -224,7 +224,7 @@
                 type="number" 
                 class="form-control" 
                 name="running_allowance" 
-                [(ngModel)]="maintenanceGrantData.running_allowance" 
+                [(ngModel)]="userdata.running_allowance" 
                 placeholder="Running Allowance"
                 required 
                 pattern="^[0-9]{1,8}$" 
@@ -291,13 +291,32 @@
               <input type="text" class="form-control" id="sick_certificate_issued_by" name="sick_certificate_issued_by" [(ngModel)]="maintenanceGrantData.sick_certificate_issued_by" placeholder="Enter Name of Issuer">
             </div>
             <div class="col-md-6 mb-3">
-              <label for="pdfFile">Upload PDF (EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB)</label>
+              <label for="pdfFile">Upload PDF (EMPIDCard,Employee Payslips showing LWP,Railway Sick Certificate,Railway Doctor certification then merge all in one pdf, Max 5MB)</label>
               <input type="file" class="form-control" id="pdfFile" (change)="onFileSelected($event)" accept=".pdf">
             </div>
           </div>
+
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="declarationChecked" 
+                  [ngModelOptions]="{standalone: true}" 
+                  id="declaration" 
+                  required
+                />
+                <label for="declaration" class="checkbox-label">
+                  I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+                </label>
+              </div>
+            </div>
+          </div>
+      
+
   
           <div class="form-group mt-4">
-            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid || !declarationChecked">Submit</button>
           </div>
         </form>
       </div>

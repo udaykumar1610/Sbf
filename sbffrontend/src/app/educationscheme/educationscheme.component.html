@@ -10,7 +10,9 @@
           <div class="scheme-card">
             <!-- Scheme Index (Optional) -->
             <div class="scheme-index">
-              <h5>{{scheme.scheme_name}} -> {{i + 1 }}</h5> 
+              <!-- <h5>{{scheme.scheme_name}}  -> {{i + 1 }}</h5>  -->
+            <h5>{{scheme.valid_upto}}  </h5> 
+
             </div>
 
         <!-- Scheme Image (optional, use a default or provided image) -->
@@ -21,7 +23,7 @@
 
         <!-- Scheme Details -->
         <div class="scheme-body">
-          <p><strong>Valid Upto:</strong> {{ scheme.valid_upto }}</p>
+          <!-- <p><strong>Valid Upto:</strong> {{ scheme.valid_upto }}</p> -->
           <p><strong>Scheme Details:</strong> {{ scheme.scheme_details }}</p>
           <p><strong>Eligibility:</strong> {{ scheme.eligibility }}</p>
           <p><strong>Eligibility Amount:</strong> ₹{{ scheme.eligibility_amount }}</p>

@@ -40,11 +40,12 @@ exports.create = async (req, res) => {
     const newRecord = { ...req.body, pdf_file: pdfFilePath };
     await MotorizedTricycle.create(newRecord);
 
-    res
-      .status(201)
-      .json({ message: "Motorized Tricycle record created successfully" });
+    res.status(201).json({
+      status: "success",
+      message: "Motorized Tricycle record created successfully",
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", error: err.message });
   }
 };
 

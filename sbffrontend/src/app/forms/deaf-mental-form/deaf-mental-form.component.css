@@ -1,6 +1,6 @@
-/* Container and Card Styles */
+
 .container {
-    max-width: 1200px; /* Increased width for the container */
+    max-width: 1200px; 
     margin: 0 auto;
     padding: 20px;
   }
@@ -9,12 +9,12 @@
     border: none;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%; /* Ensuring card takes up full width */
-    padding: 40px; /* Increased padding for larger size */
+    width: 100%; 
+    padding: 40px; 
   }
   
   .card-title {
-    font-size: 2rem; /* Increased title size */
+    font-size: 2rem;
     font-weight: bold;
     color: #0056b3;
   }
@@ -23,19 +23,19 @@
     padding: 20px;
   }
   
-  /* Form Field Styles */
+  
   .form-label {
     font-weight: bold;
     color: #495057;
-    font-size: 1.1rem; /* Increased label font size */
+    font-size: 1.1rem;
   }
   
   .form-control {
     border-radius: 8px;
     border: 1px solid #ced4da;
     transition: all 0.3s ease;
-    padding: 15px; /* Increased padding inside form fields */
-    font-size: 1.1rem; /* Increased font size for inputs */
+    padding: 15px;
+    font-size: 1.1rem; 
   }
   
   .form-control:focus {
@@ -44,24 +44,24 @@
     outline: none;
   }
   
-  /* Select and Textarea Styles */
+
   .form-select,
   textarea.form-control {
     resize: none;
-    height: 45px; /* Increased height for select fields */
+    height: 45px; 
   }
   
   textarea.form-control {
-    height: 120px; /* Increased height for textareas */
+    height: 120px; 
   }
   
-  /* Button Styles */
+ 
   .btn-primary {
     background-color: #007bff;
     border: none;
-    padding: 12px 25px; /* Increased padding for button */
+    padding: 12px 25px;
     border-radius: 30px;
-    font-size: 1.1rem; /* Increased font size for button */
+    font-size: 1.1rem; 
     transition: background-color 0.3s ease;
   }
   
@@ -72,15 +72,15 @@
   /* Responsive Design */
   @media (max-width: 768px) {
     .container {
-      max-width: 1000px; /* Adjusting container width for smaller screens */
+      max-width: 1000px;
     }
   
     .card {
-      padding: 25px; /* Adjusted padding for smaller screens */
+      padding: 25px; 
     }
   
     .form-label {
-      font-size: 1rem; /* Adjusting label font size */
+      font-size: 1rem; 
     }
   
     .form-control,
@@ -92,5 +92,25 @@
     .btn-primary {
       width: 100%; 
     }
+  }
+  
+
+
+   .checkbox-label {
+    font-size: 14px;
+    padding: 15px;
+    font-weight: bold;
+  }
+  
+  .checkbox-label input[type="checkbox"] {
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 15px;
   }
   

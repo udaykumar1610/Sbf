@@ -1,46 +1,4 @@
-<!-- 
 
-<div class="container">
-    <h2>Kithkin Records</h2>
-  
-    <div *ngIf="loading">Loading...</div>
-  
-    
-    <table *ngIf="!loading && !errorMessage" class="table table-bordered">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Employee Name</th>
-          <th>Designation</th>
-          <th>Office</th>
-          <th>Division</th>
-          <th>PF No</th>
-          <th>Date of Death</th>
-          <th>Last Rites Address</th>
-          <th>Status</th>
-          <th>PDF File</th>
-    
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let record of kithkinRecords">
-          <td>{{ record.id }}</td>
-          <td>{{ record.empname }}</td>
-          <td>{{ record.designation }}</td>
-          <td>{{ record.office }}</td>
-          <td>{{ record.division }}</td>
-          <td>{{ record.pf_no }}</td>
-          <td>{{ record.date_of_death }}</td> 
-          <td>{{ record.AaddressLastRites }}</td>
-          <td>{{ record.status }}</td>
-          <td>
-            <a [href]="record.pdf_url" target="_blank">View PDF</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-   -->
 
 
 
@@ -67,7 +25,7 @@
           <th>PF No</th>
           <th>Date of Death</th>
           <th>Last Rites Address</th>
-          <th>Status</th>
+          <!-- <th>Status</th> -->
           <th>PDF File</th>
           <th>Action</th> <!-- Column for action buttons -->
         </tr>
@@ -82,17 +40,30 @@
           <td>{{ record.pf_no }}</td>
           <td>{{ record.date_of_death | date:"yyyy-MM-dd" }}</td> <!-- Using Angular's date pipe -->
           <td>{{ record.AaddressLastRites }}</td>
-          <td>{{ record.status }}</td>
+          <!-- <td>{{ record.status }}</td> -->
           <td>
             <a [href]="record.pdf_url" target="_blank">View PDF</a>
           </td>
           <td class="button"> 
-            <button (click)="updateStatus(record.id, 'Forward')" class="btn btn-success">Forward</button>
-            <button (click)="updateStatus(record.id, 'Submitted')" class="btn btn-danger">Reject</button>
+            <!-- <button (click)="updateStatus(record.id, 'forwardBySupervisor')" class="btn btn-success">Forward</button>
+            <button (click)="updateStatus(record.id, 'reject')" class="btn btn-danger">Reject</button> -->
+
+            <button 
+            (click)="updateStatus(record.id, 'forwardBySupervisor')" 
+            class="btn btn-success" 
+            [disabled]="record.isActionTaken || record.status == 'forwardBySupervisor' || record.status == 'reject'">
+            Forward
+          </button>
+          <button 
+            (click)="updateStatus(record.id, 'reject')" 
+            class="btn btn-danger" 
+            [disabled]="record.isActionTaken || record.status == 'forwardBySupervisor' || record.status == 'reject'">
+            Reject
+          </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  
+  <router-outlet></router-outlet>
 

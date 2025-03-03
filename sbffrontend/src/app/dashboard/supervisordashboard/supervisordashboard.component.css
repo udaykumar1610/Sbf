@@ -1,0 +1,90 @@
+/* Custom styles for the dashboard */
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* To ensure the text is inline in the navbar */
+.navbar {
+    background-color: bisque;
+    font-style: italic;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.dropdown {
+    flex-shrink: 0;
+}
+
+/* Dropdown menu background transparent */
+.dropdown-menu {
+    background-color: rgba(255, 255, 255, 1) !important;  
+    border: none !important;
+}
+
+/* Customize the dropdown item color */
+.dropdown-item {
+    color: #000; /* Dark text for visibility */
+}
+
+/* When hovering over the dropdown items, change color */
+.dropdown-item:hover {
+    background-color: rgba(210, 113, 23, 0.1);
+}
+
+/* Responsive alignment for items in the navbar */
+.d-flex {
+    display: flex;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;  /* This allows the heading to be centered and take up available space */
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
+  }
+  
+  .container-fluid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .d-flex.justify-content-end {
+    margin-top: 10px;
+  }
+
+  .dropdown {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}

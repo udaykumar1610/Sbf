@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { Subscription } from 'rxjs';
+import { ScholarPCPOComponent } from "../../personnelDept/scholar-pcpo/scholar-pcpo.component";
 
 @Component({
   selector: 'app-pcpodashboard',
   standalone: true,
-  imports: [],
+  imports: [ScholarPCPOComponent],
   templateUrl: './pcpodashboard.component.html',
   styleUrl: './pcpodashboard.component.css'
 })

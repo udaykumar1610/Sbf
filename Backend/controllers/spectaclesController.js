@@ -40,9 +40,15 @@ exports.create = async (req, res) => {
     const newRecord = { ...req.body, pdf_file: pdfFilePath };
     await Spectacles.create(newRecord);
 
-    res.status(201).json({ message: "Spectacles record created successfully" });
+    // res.status(201).json({ message: "Spectacles record created successfully" });
+    res.status(201).json({
+      status: "success",
+      message: "Spectacles record created successfully",
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    // res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", error: err.message });
+    console.log({ error: err.message });
   }
 };
 

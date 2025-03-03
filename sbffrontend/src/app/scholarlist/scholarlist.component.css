@@ -1,16 +1,110 @@
 .container {
-    margin-top: 30px;
-  }
-  
+  padding: 20px;
+  overflow-x: auto;
+  max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: auto; /* Makes table layout more flexible */
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+  word-wrap: break-word; /* Prevents text from overflowing cells */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: middle;
+}
+
+td button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+button.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+button.btn-success:hover {
+  background-color: #218838;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.btn-danger:hover {
+  background-color: #c82333;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   table {
     width: 100%;
+    /* Make the table scrollable horizontally */
+    display: block;
+    overflow-x: auto;
   }
-  
+
   th, td {
+    padding: 8px;
     text-align: center;
   }
-  
-  button {
-    margin-top: 5px;
+
+  td button {
+    padding: 6px 12px;
+    font-size: 12px;
   }
-  
+}
+
+/* For smaller screens like mobile */
+@media (max-width: 480px) {
+  th, td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  td button {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  /* Adjust table for better readability */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: scroll;
+  }
+}

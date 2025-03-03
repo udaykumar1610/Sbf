@@ -4,12 +4,15 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { PhysicallyChallengedFormService } from '../../servicesForm/physically-challenged-form.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 
 @Component({
   selector: 'app-physically-challenged-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,ToastModule],
+  providers:[MessageService],
   templateUrl: './physically-challenged-form.component.html',
   styleUrls: ['./physically-challenged-form.component.css']
 })
@@ -19,6 +22,7 @@ export class PhysicallyChallengedFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+  declarationChecked:boolean=false;
 
   physicallyChallengedData: any = {
     empname: '',
@@ -52,7 +56,8 @@ export class PhysicallyChallengedFormComponent {
   constructor(
     private physicallyChallengedFormService: PhysicallyChallengedFormService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService:MessageService
   ) {}
 
   getHrmsId() {
@@ -131,18 +136,34 @@ export class PhysicallyChallengedFormComponent {
     this.physicallyChallengedData.division = this.userdata.division;
     this.physicallyChallengedData.pf_no = this.userdata.pf_no;
     this.physicallyChallengedData.pay_band = this.userdata.pay_band;
+    this.physicallyChallengedData.running_allowance = this.userdata.running_allowance;
 
     if (form.valid) {
       this.physicallyChallengedFormService.create(this.physicallyChallengedData, this.pdfFile)
         .subscribe({
           next: (response) => {
-            alert('Physically Challenged record created successfully!');
+            // alert('Physically Challenged record created successfully!');
+            if(response.status="success"){
+              this.messageService.add({
+                severity:'success',
+                summary: 'Submission Successful',
+                detail: response.message
+                            })
+            }
             form.reset();
-            this.router.navigate(['/physically-challenged']);
+           this.declarationChecked=false;
+            // this.router.navigate(['/physically-challenged']);
           },
           error: (err) => {
             console.error(err);
-            alert('Error saving Physically Challenged data.');
+            // alert('Error saving Physically Challenged data.');
+            if(err.status="error"){
+              this.messageService.add({
+                severity:'error',
+                summary: 'Submission Failed',
+                detail: err.error.error
+              })
+            }
           }
         });
     }

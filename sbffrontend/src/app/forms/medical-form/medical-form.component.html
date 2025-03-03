@@ -85,7 +85,7 @@
                   type="number" 
                   class="form-control" 
                   name="running_allowance" 
-                  [(ngModel)]="medicalData.running_allowance" 
+                  [(ngModel)]="userdata.running_allowance" 
                   placeholder="Running Allowance"
                   required 
                   pattern="^[0-9]{1,8}$" 
@@ -122,13 +122,32 @@
             </div>
     
             <div class="col-md-6">
-              <label for="pdfFile" class="form-label">Upload PDF(EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB)</label>
+              <label for="pdfFile" class="form-label">Upload PDF(EMPIDCard,EmpPlaySlip,Treatment History and Medical Assistance Railway Doctor certification, then merge all in one pdf, Max 5MB)</label>
               <input type="file" id="pdfFile" class="form-control" (change)="onFileSelected($event)" required>
             </div>
           </div>
+
+
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="declarationChecked" 
+                  [ngModelOptions]="{standalone: true}" 
+                  id="declaration" 
+                  required
+                />
+                <label for="declaration" class="checkbox-label">
+                  I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+                </label>
+              </div>
+            </div>
+          </div>
+      
     
           <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" [disabled]="!medicalForm.valid || !declarationChecked" class="btn btn-primary">Submit</button>
           </div>
         </form>
       </div>

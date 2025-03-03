@@ -49,11 +49,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { KithkinFormService } from '../../servicesForm/kithkin-form.service';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-kithkinlist',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,RouterOutlet],
   templateUrl: './kithkinlist.component.html',
   styleUrl: './kithkinlist.component.css'
 })
@@ -76,7 +77,14 @@ export class KithkinlistComponent implements OnInit {
     this.loading = true;
     this.kithkinFormService.getAll().subscribe(
       (data) => {
-        this.kithkinRecords = data;  
+        // this.kithkinRecords = data;  
+
+        this.kithkinRecords = data.filter(
+          (record: any) =>
+          (  record.status === 'Submitted' || record.status === 'reject') 
+        );
+        this.kithkinRecords.forEach(kithkinRecord => kithkinRecord.isActionTaken = false);
+
         this.baseurl = data.pdf_url;
         console.log(this.baseurl); // Set the data to the records array
         this.loading = false;
@@ -96,10 +104,13 @@ export class KithkinlistComponent implements OnInit {
         const updatedRecord = this.kithkinRecords.find(record => record.id === id);
         if (updatedRecord) {
           updatedRecord.status = status; // Update the status
+          updatedRecord.isActionTaken = true;
         }
+      alert('Status updated successfully');
         console.log('Status updated successfully', response);
       },
       (error) => {
+        alert("Error updating status")
         console.error('Error updating status', error);
       }
     );

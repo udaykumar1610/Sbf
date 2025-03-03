@@ -88,7 +88,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="running_allowance">Running Allowance</label>
-            <input id="running_allowance" type="text" class="form-control" [(ngModel)]="familyDetailsData.running_allowance" name="running_allowance" placeholder="Enter Running Allowance" />
+            <input id="running_allowance" type="text" class="form-control" [(ngModel)]="userdata.running_allowance" name="running_allowance" placeholder="Enter Running Allowance" />
           </div>
   
           <div class="form-group col-md-6">
@@ -182,8 +182,27 @@
   
           <button type="button" class="btn btn-success" (click)="addFamilyRow()">Add More Dependent</button>
         </div>
+
+
+        
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="checkbox-container">
+              <input 
+                type="checkbox" 
+                [(ngModel)]="declarationChecked" 
+                [ngModelOptions]="{standalone: true}" 
+                id="declaration" 
+                required
+              />
+              <label for="declaration" class="checkbox-label">
+                I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+              </label>
+            </div>
+          </div>
+        </div>
   
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" [disabled]="!familyDetailsData.valid  || !declarationChecked" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>

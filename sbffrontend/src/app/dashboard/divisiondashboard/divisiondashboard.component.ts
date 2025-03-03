@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { KithkindivComponent } from "../../Division/kithkindiv/kithkindiv.component";
+import { ScholardivComponent } from "../../Division/scholardiv/scholardiv.component";
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-divisiondashboard',
   standalone: true,
-  imports: [],
+  imports: [KithkindivComponent, ScholardivComponent,RouterLink,RouterOutlet],
   templateUrl: './divisiondashboard.component.html',
   styleUrl: './divisiondashboard.component.css'
 })

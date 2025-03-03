@@ -116,6 +116,7 @@ const {
   getScholarshipById,
   getScholarshipsByStatus,
   updateScholarship,
+  updatestatus,
   deleteScholarship,
 } = require("../models/scholarshipModel");
 
@@ -160,42 +161,76 @@ const upload = multer({
 //   });
 // };
 
+// exports.createScholarship = async (req, res) => {
+//   upload.single("pdf")(req, res, async (err) => {
+//     if (err) {
+//       return res.status(400).json({ message: err.message });
+//     }
+
+//     try {
+//       // Handle the file upload, get the file path if a file is uploaded
+//       const filePath = req.file
+//         ? `uploads/scholarships/${req.file.filename}`
+//         : null;
+
+//       // Call the createScholarship function from your service logic
+//       await createScholarship(res, req.body, filePath);
+
+//       // Send a success response back to the frontend
+//       return res.status(201).json({
+//         message: "Scholarship entry created successfully",
+//         status: "success",
+//         data: req.body, // You can send the data back if needed for confirmation
+//       });
+//     } catch (error) {
+//       // If there's an error in the process, send the error message back to the frontend
+//       console.error(error); // Optional: log the error for debugging
+
+//       // Handle the scholarship creation failure, return an error response
+//       return res.status(500).json({
+//         message: "Server error occurred while creating scholarship",
+//         status: "error",
+//         error: error.message,
+//       });
+//     }
+//   });
+// };
+
 exports.createScholarship = async (req, res) => {
   upload.single("pdf")(req, res, async (err) => {
     if (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(400).json({
+        message: "File upload failed. Please check the file and try again.",
+      });
     }
 
     try {
-      // Handle the file upload, get the file path if a file is uploaded
       const filePath = req.file
         ? `uploads/scholarships/${req.file.filename}`
         : null;
 
-      // Call the createScholarship function from your service logic
+      // Call the createScholarship function
       await createScholarship(req.body, filePath);
 
-      // Send a success response back to the frontend
+      // Send success response once the scholarship is created
       return res.status(201).json({
         message: "Scholarship entry created successfully",
         status: "success",
-        data: req.body, // You can send the data back if needed for confirmation
+        data: req.body,
       });
     } catch (error) {
-      // If there's an error in the process, send the error message back to the frontend
-      console.error(error); // Optional: log the error for debugging
+      // console.error("Error in scholarship creation:", error.message); // Log the detailed error
 
-      // Handle the scholarship creation failure, return an error response
       return res.status(500).json({
-        message: "Server error occurred while creating scholarship",
+        message: `Error in scholarship creation:${error.message} `, // Send a generic error message to the frontend
         status: "error",
-        error: error.message,
       });
     }
   });
 };
 
-// Update Scholarship
+//Update Scholarship
+
 exports.updateScholarship = async (req, res) => {
   upload.single("pdf")(req, res, async (err) => {
     if (err) return res.status(400).json({ message: err.message });
@@ -251,6 +286,25 @@ exports.updateScholarship = async (req, res) => {
     res.json({ message: "Scholarship updated successfully" });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+//update by status
+
+exports.updateStatus = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { status } = req.body;
+
+    if (!status) {
+      res
+        .status(400)
+        .json({ status: "success", message: "Status is required" });
+    }
+    await updatestatus(id, status);
+    res.json({ message: "scholarship status updated successfully" });
+  } catch (err) {
+    res.status(500).json({ status: "error", error: err.message });
   }
 };
 

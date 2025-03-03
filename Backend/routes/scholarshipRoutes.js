@@ -6,6 +6,7 @@ const {
   getScholarshipById,
   getScholarshipsByStatus,
   updateScholarship,
+  updateStatus,
   deleteScholarship,
 } = require("../controllers/scholarshipController");
 
@@ -14,8 +15,9 @@ const router = express.Router();
 router.post("/", protect, createScholarship);
 router.get("/", protect, getAllScholarships);
 router.get("/:id", protect, getScholarshipById);
-router.get("/status/:status", getScholarshipsByStatus);
+router.get("/status/:status", protect, getScholarshipsByStatus);
 router.put("/:id", protect, updateScholarship);
+router.put("/status/:id", protect, updateStatus);
 router.delete("/:id", protect, deleteScholarship);
 
 module.exports = router;

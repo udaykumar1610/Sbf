@@ -34,13 +34,14 @@ exports.create = async (req, res) => {
       ? `/uploads/physicallychallenged/${req.file.filename}`
       : null;
     const newRecord = { ...req.body, pdf_file: pdfFilePath };
-    await PhysicallyChallenged.create(newRecord);
+    // await PhysicallyChallenged.create(newRecord);
 
-    res
-      .status(201)
-      .json({ message: "Physically Challenged record created successfully" });
+    res.status(201).json({
+      status: "success",
+      message: "Physically Challenged record created successfully",
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ status: "error", error: err.message });
   }
 };
 

@@ -91,7 +91,7 @@
               type="number" 
               class="form-control" 
               name="running_allowance" 
-              [(ngModel)]="physicallyChallengedData.running_allowance" 
+              [(ngModel)]="userdata.running_allowance" 
               placeholder="Running Allowance"
               required 
               pattern="^[0-9]{1,8}$" 
@@ -183,14 +183,31 @@
           <!-- Row 13 -->
           <div class="row mb-3">
             <div class="col-md-12">
-              <label for="pdf_file" class="form-label">Upload PDF (EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB)</label>
+              <label for="pdf_file" class="form-label">Upload PDF (EMPIDCard,EmpPlaySlip,Bill / Invoice for mode of transportation and Handicapped Certificate,then  merge all in one pdf, Max 5MB)</label>
               <input type="file" class="form-control" id="pdf_file" (change)="onFileSelected($event)">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-12">
+              <div class="checkbox-container">
+                <input 
+                  type="checkbox" 
+                  [(ngModel)]="declarationChecked" 
+                  [ngModelOptions]="{standalone: true}" 
+                  id="declaration" 
+                  required
+                />
+                <label for="declaration" class="checkbox-label">
+                  I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+                </label>
+              </div>
             </div>
           </div>
   
           <!-- Submit Button -->
           <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" [disabled]="!form.valid || !declarationChecked" class="btn btn-primary">Submit</button>
           </div>
   
         </form>

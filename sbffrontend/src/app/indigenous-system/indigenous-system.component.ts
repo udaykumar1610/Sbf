@@ -29,20 +29,20 @@ export class IndigenousSystemComponent {
     }
   systems = [
     {
-      title: 'Indigenous system of medicine',
+      title: 'Homeopathic Dispensaries (8 hours )',
       typeOfDispensary: 'Homeopathic Dispensaries',
        location: `•	Central Railwya  Hospital, Lallaguda '\n' •	Railway Health Unit, Kazipet  '\n' •	Divisional Railway Hospital, Vijayawada`,
       
       hoursOfWorking: '8 hours',
     },
     {
-      title: 'Indigenous system of medicine',
+      title: 'Homeopathic Dispensaries (4 hours)',
       typeOfDispensary: 'Homeopathic Dispensaries',
       location: '•	Divisional Railway Hospital, Guntur',
       hoursOfWorking: '4 hours',
     },
     {
-      title: 'Indigenous system of medicine',
+      title: 'Ayurvedic Dispensaries',
       typeOfDispensary: 'Ayurvedic Dispensaries',
       location: '•	Central  Railway Hospital, Lallaguda',
       hoursOfWorking: '4 hours',

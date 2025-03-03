@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { ScholarDYCPOComponent } from "../../personnelDept/scholar-dycpo/scholar-dycpo.component";
 
 @Component({
   selector: 'app-dycpodashboard',
   standalone: true,
-  imports: [],
+  imports: [ScholarDYCPOComponent],
   templateUrl: './dycpodashboard.component.html',
   styleUrl: './dycpodashboard.component.css'
 })

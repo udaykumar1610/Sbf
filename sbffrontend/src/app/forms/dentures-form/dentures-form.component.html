@@ -63,7 +63,7 @@
               type="number" 
               class="form-control" 
               name="running_allowance" 
-              [(ngModel)]="denture.running_allowance" 
+              [(ngModel)]="userdata.running_allowance" 
               placeholder="Running Allowance"
               required 
               pattern="^[0-9]{1,8}$" 
@@ -125,11 +125,49 @@
           </select>
         </div> -->
         <div class="col-md-6 mb-3">
-          <label>PDF Upload(EMPIDCard,EmpPlaySlip,Denture_Receipt,merge all in one pdf, Max 5MB)</label>
+          <label>PDF Upload(EMPIDCard,EmpPlaySlip,Prescription for the Treatment,Bil/Invoice,Railway Doctor’s Certification and merge all in one pdf, Max 5MB)</label>
           <input type="file" class="form-control" (change)="onFileSelected($event)">
         </div>
+
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="checkbox-container">
+              <input 
+                type="checkbox" 
+                [(ngModel)]="declarationChecked" 
+                [ngModelOptions]="{standalone: true}" 
+                id="declaration" 
+                required
+              />
+              <label for="declaration" class="checkbox-label">
+                I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12">
+            <div class="checkbox-container">
+              <input 
+                type="checkbox" 
+                [(ngModel)]="empDeclarationChecked" 
+                [ngModelOptions]="{standalone: true}" 
+                id="declaration" 
+                required
+              />
+              <label for="declaration" class="checkbox-label">
+                	Declaration by employee stating that he has not availed the scheme entire in service.               </label>
+            </div>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary w-100">Submit</button>
+      <button type="submit" [disabled]="!dentureForm.valid || !declarationChecked || !empDeclarationChecked" class="btn btn-primary w-100">Submit</button>
     </form>
   </div>
   
+
+  <p-toast
+  [showTransformOptions]="'translateY(100%)'" 
+    [showTransitionOptions]="'1000ms'" 
+    [hideTransitionOptions]="'1000ms'" 
+    [showTransformOptions]="'translateX(100%)'"/>

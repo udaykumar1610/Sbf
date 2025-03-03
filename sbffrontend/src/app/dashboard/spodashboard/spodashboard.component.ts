@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth.service';
+import { ScholarSPOComponent } from "../../personnelDept/scholar-spo/scholar-spo.component";
 
 @Component({
   selector: 'app-spodashboard',
   standalone: true,
-  imports: [],
+  imports: [ScholarSPOComponent],
   templateUrl: './spodashboard.component.html',
   styleUrl: './spodashboard.component.css'
 })

@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* Ensure items wrap on smaller screens */
 }
 
 .nav-links {
@@ -13,6 +14,7 @@
   padding: 0;
   display: flex;
   width: 100%;
+  flex-wrap: wrap; /* Allow links to wrap on smaller screens */
 }
 
 .nav-links li {
@@ -66,4 +68,105 @@
 .nav-item:hover .dropdown-toggle::after {
   transform: rotate(180deg); /* Rotate the arrow when hovered */
   transition: transform 0.3s ease;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Small screens (mobile devices) */
+@media (max-width: 767px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .nav-links {
+    display: block;
+    width: 100%; /* Stack the links vertically */
+    text-align: center;
+  }
+
+  .nav-links li {
+    margin: 10px 0; /* Adjust margin to stack items with spacing */
+  }
+
+  .nav-items {
+    display: none; /* Hide sign in, sign up, and logout links for mobile */
+    width: 100%; /* Stretch across the screen */
+    justify-content: space-around;
+  }
+
+  .navbar .hamburger {
+    display: block; /* Show hamburger icon on mobile */
+    cursor: pointer;
+  }
+
+  .navbar .hamburger.active + .nav-links {
+    display: block; /* Show navbar links when hamburger is clicked */
+  }
+
+  /* Dropdown Styling for Mobile */
+  .nav-item .dropdown-menu {
+    min-width: 100%; /* Make dropdown occupy full width on mobile */
+  }
+
+  /* Change the dropdown items layout on mobile */
+  .nav-links .nav-item .dropdown-menu .dropdown-item {
+    padding: 12px 16px;
+    font-size: 16px; /* Slightly larger text for easier tapping */
+  }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 1024px) {
+  .nav-links {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-items {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .nav-links li {
+    margin: 10px 0;
+  }
+}
+
+/* Large screens (desktop) */
+@media (min-width: 1025px) {
+  .nav-links {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-links li {
+    margin: 0 15px;
+  }
+
+  .nav-items {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+  }
+}
+
+/* Add hamburger icon */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  color: white;
+}
+
+/* Make sure navbar is responsive and the hamburger shows */
+.hamburger.active {
+  display: block;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }

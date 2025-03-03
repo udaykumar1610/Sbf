@@ -18,6 +18,7 @@ export class MedicalFormComponent {
   userdata: any = [];
   successMessage: string = '';
   errorMessage: string = '';
+declarationChecked:boolean = false;
 
   medicalData: any = {
     empname: '',
@@ -132,6 +133,7 @@ export class MedicalFormComponent {
     this.medicalData.division = this.userdata.division;
     this.medicalData.pf_no = this.userdata.pf_no;
     this.medicalData.pay_band = this.userdata.pay_band;
+    this.medicalData.running_allowance = this.userdata.running_allowance;
 
     if (form.valid) {
       this.medicalService.create(this.medicalData, this.pdfFile)
@@ -139,6 +141,7 @@ export class MedicalFormComponent {
           next: (response) => {
             alert('Medical Assistance record created successfully!');
             form.reset();
+            this.declarationChecked = false;
             this.router.navigate(['/medical']);
           },
           error: (err) => {

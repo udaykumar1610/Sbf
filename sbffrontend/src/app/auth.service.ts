@@ -87,6 +87,9 @@ export class AuthService {
   // Handle login logic
   loginAndStoreData(credentials: any) {
     this.login(credentials).subscribe(
+
+
+      
       (res: any) => {
         if (this.isBrowser()) {
           // Store token and HRMS ID only if in browser environment

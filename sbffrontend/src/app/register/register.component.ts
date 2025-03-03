@@ -434,11 +434,14 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { MessageService } from 'primeng/api';
+import { Toast, ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule, RouterLink,ToastModule],
+  providers:[MessageService],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
@@ -490,7 +493,7 @@ export class RegisterComponent {
   showRunningAllowanceError = false;
 
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,private messageService:MessageService) {}
 
   register() {
     console.log("data",this.userData)
@@ -535,14 +538,29 @@ export class RegisterComponent {
     }
 
     this.authService.register(this.userData).subscribe(
-      () => {
-        alert('Registration successful. Please login.');
+      (response) => {
+        // alert('Registration successful. Please login.');
+        if(response.status='success'){
+          this.messageService.add({
+            severity:"success",
+            summary: response.message,
+            detail: ""
+          })
+        }
         this.successMessage = 'Registration successful. Please login.';
         setTimeout(() => this.router.navigate(['/login']), 1000);
       },
       (err) => {
         this.errorMessage = 'Registration failed';
-        alert(this.errorMessage);
+
+        if(err.status="error"){
+          this.messageService.add({
+            severity: "error",
+            summary:"Registration failed" ,
+            detail: err.error.message
+          });
+        }
+      //  alert(this.errorMessage);
         console.error(err);
       }
     );
