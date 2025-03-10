@@ -37,12 +37,24 @@ const Kithkin = {
     await pool.query(sql, params);
   },
 
+  updateRemarks: async (id, remarks, status) => {
+    const sql = `
+      UPDATE kithkin 
+      SET remarks=?, status=? 
+      WHERE id=?
+    `;
+
+    const params = [remarks, status, id];
+
+    await pool.query(sql, params);
+  },
+
   create: async (data) => {
     const sql = `
       INSERT INTO kithkin (
         empname, designation, office, division, pf_no, date_of_death,
-        AaddressLastRites, status, pdf_file
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        AaddressLastRites, status, pdf_file,remarks
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)
     `;
 
     const params = [
@@ -55,6 +67,7 @@ const Kithkin = {
       data.AaddressLastRites,
       data.status || "Submitted",
       data.pdf_file || null,
+      remarks,
     ];
 
     const [result] = await pool.query(sql, params);
@@ -65,7 +78,7 @@ const Kithkin = {
     const sql = `
       UPDATE kithkin SET
         empname=?, designation=?, office=?, division=?, pf_no=?,
-        date_of_death=?, AaddressLastRites=?, status=?, pdf_file=?
+        date_of_death=?, AaddressLastRites=?, status=?, pdf_file=?,remarks=?
       WHERE id=?
     `;
 
@@ -79,6 +92,7 @@ const Kithkin = {
       data.AaddressLastRites,
       data.status,
       data.pdf_file,
+      data.remarks,
       id,
     ];
 

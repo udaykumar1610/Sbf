@@ -38,6 +38,8 @@ router.post(
   denturesController.createDenture
 );
 router.put("/:id", protect, denturesController.updateDenture);
+router.put("/status/:id", protect, denturesController.updateStatus);
+router.put("/remarks/:id", protect, denturesController.updateRemarks);
 router.delete("/:id", protect, denturesController.deleteDenture);
 
 module.exports = router;

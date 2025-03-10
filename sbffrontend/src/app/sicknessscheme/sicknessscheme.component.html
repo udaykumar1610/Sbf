@@ -1,7 +1,7 @@
 <div class="bgImg">
 
   <div class="container">
-      <h2 class="text-center" style="padding: 30px; font-style: italic ; font-weight: bold;color: black;">Distress and Sickness scheme</h2>
+      <h2 class="text-center" style="padding: 30px; font-style: italic ; font-weight: bold;color: black;text-transform: uppercase; ">Distress and Sickness scheme</h2>
       
       <!-- Loop through the sicknessSchemes array and display each scheme -->
       <div class="row">
@@ -10,7 +10,8 @@
             <!-- Scheme Index (Optional) -->
             <div class="scheme-index">
               <!-- <h6 style="font-size:15px;;"><b>{{scheme.scheme_name}} -> {{i + 1 }}</b></h6>  -->
-              <h6 style="font-size:15px;;"><b> {{ scheme.valid_upto }}</b></h6> 
+              
+              <h6 > {{ scheme.valid_upto }}</h6> 
             </div>
             <!-- Scheme Image (optional, use a default or provided image) -->
             <!-- <div class="scheme-image">

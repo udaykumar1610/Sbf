@@ -46,7 +46,7 @@ export class DenturesService {
 
   // Get all dentures
   getAllDentures(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/`);
+    return this.http.get(`${this.apiUrl}/`, { headers: this.getAuthHeaders() });
   }
 
   // Get dentures by status
@@ -63,6 +63,27 @@ export class DenturesService {
   updateDenture(id: number, updatedData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, updatedData,{ headers: this.getAuthHeaders() });
   }
+
+ // Method to update the status of a scholarship record by ID
+ updateStatus(id: number, status: string): Observable<any> {
+  const url = `${this.apiUrl}/status/${id}`;
+  const body = { status };
+  return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
+}
+
+
+updateRemarks(id: number, remarks: string, status: string): Observable<any> {
+
+
+
+  const url = `${this.apiUrl}/remarks/${id}`;
+  const body = { remarks ,status};
+
+
+
+  return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
+}
+
 
   // Delete denture
   deleteDenture(id: number): Observable<any> {

@@ -25,9 +25,10 @@
           <th>PF No</th>
           <th>Date of Death</th>
           <th>Last Rites Address</th>
-          <!-- <th>Status</th> -->
           <th>PDF File</th>
+          <th>Status</th>
           <th>Action</th> <!-- Column for action buttons -->
+          <th>Remarks</th>
         </tr>
       </thead>
       <tbody>
@@ -40,10 +41,10 @@
           <td>{{ record.pf_no }}</td>
           <td>{{ record.date_of_death | date:"yyyy-MM-dd" }}</td> <!-- Using Angular's date pipe -->
           <td>{{ record.AaddressLastRites }}</td>
-          <!-- <td>{{ record.status }}</td> -->
           <td>
             <a [href]="record.pdf_url" target="_blank">View PDF</a>
           </td>
+          <td>{{ record.status }}</td>
           <td class="button"> 
             <!-- <button (click)="updateStatus(record.id, 'approvedBySrdpo')" class="btn btn-success">Approve</button>
             <button (click)="updateStatus(record.id, 'rejectBySrdpo')" class="btn btn-danger">Reject</button> -->
@@ -55,15 +56,45 @@
             Approve
           </button>
           <button 
-            (click)="updateStatus(record.id, 'rejectBySrdpo')" 
+          (click)="openRejectModal(record)" 
             class="btn btn-danger" 
             [disabled]="record.isActionTaken || record.status == 'approvedBySrdpo' || record.status == 'rejectBySrdpo'">
             Reject
           </button>
           </td>
+          <td>{{record.remarks}}</td>
         </tr>
       </tbody>
     </table>
   </div>
   
 
+
+  
+<!-- Modal for adding remarks -->
+<p-dialog 
+header="Enter Rejection Remarks" 
+[(visible)]="isRejectModalVisible" 
+[modal]="true" 
+[closable]="true" 
+[style]="{width: '300px'}">
+
+<div>
+  <label for="remarks">Remarks:</label>
+  <textarea id="remarks" [(ngModel)]="remarksText" rows="5" cols="30"></textarea>
+</div>
+
+<p-footer>
+  <button (click)="submitRejectRemarks()" label="Submit" icon="pi pi-check" class="p-button-success">Submit</button>
+  <button (click)="isRejectModalVisible = false" label="Cancel" icon="pi pi-times" class="p-button-danger">Close</button>
+</p-footer>
+</p-dialog>
+
+
+
+
+<p-toast
+[showTransformOptions]="'translateY(100%)'" 
+[showTransitionOptions]="'1000ms'" 
+[hideTransitionOptions]="'1000ms'" 
+[showTransformOptions]="'translateX(100%)'"/>

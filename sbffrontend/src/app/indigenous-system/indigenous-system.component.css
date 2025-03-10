@@ -12,6 +12,7 @@
   flex-direction: column;
   height: 100%;
   text-align: center;
+  justify-content: space-between; /* Ensures space is distributed evenly */
 }
 
 /* Hover effect for cards */
@@ -19,17 +20,18 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.scheme-index h5 {
+.scheme-index h6 {
   font-size: 1.3rem;
   color: black; /* Text color inside the card */
   margin-bottom: 10px;
   font-weight: bold;
+
 }
 
 /* Scheme Details Section */
 .scheme-body {
   margin-top: 10px;
-  text-align: left;
+  text-align: justify;
   flex-grow: 1;
   color: black; /* Ensure the text is visible */
 }

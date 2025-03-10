@@ -200,6 +200,7 @@
   border-top-right-radius: 15px;
   padding: 15px;
   text-align: center;
+  text-transform: uppercase; 
 }
 
 /* Form input fields */

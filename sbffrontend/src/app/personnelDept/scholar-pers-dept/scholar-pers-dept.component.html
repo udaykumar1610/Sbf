@@ -35,6 +35,7 @@
         <th>PDF URL</th>
         <!-- <th>status</th> -->
         <th>Action</th>
+        <th>Remarks</th>
       </tr>
     </thead>
     <tbody>
@@ -74,12 +75,13 @@
             Forward
           </button>
           <button 
-            (click)="updateStatus(scholar.id, 'rejectByPersonnelDept')" 
+          (click)="openRejectModal(scholar)" 
             class="btn btn-danger" 
             [disabled]="scholar.status == 'forwardByPersonnelDept' || scholar.status == 'rejectByPersonnelDept' || scholar.isActionTaken">
             Reject
           </button>
         </td>
+        <td>{{scholar.remarks}}</td>
       </tr>
     </tbody>
   </table>
@@ -89,3 +91,27 @@
     No scholarships found.
   </div>
 </div>
+
+
+
+
+  
+<!-- Modal for adding remarks -->
+<p-dialog 
+header="Enter Rejection Remarks" 
+[(visible)]="isRejectModalVisible" 
+[modal]="true" 
+[closable]="true" 
+[style]="{width: '300px'}">
+
+<div>
+  <label for="remarks">Remarks:</label>
+  <textarea id="remarks" [(ngModel)]="remarksText" rows="5" cols="30"></textarea>
+</div>
+
+<p-footer>
+  <button (click)="submitRejectRemarks()" label="Submit" icon="pi pi-check" class="p-button-success">Submit</button>
+  <button (click)="isRejectModalVisible = false" label="Cancel" icon="pi pi-times" class="p-button-danger">Close</button>
+</p-footer>
+</p-dialog>
+

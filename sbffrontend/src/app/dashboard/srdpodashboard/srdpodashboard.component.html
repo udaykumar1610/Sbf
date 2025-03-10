@@ -5,7 +5,7 @@
 
 
 
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: bisque; font-style: italic;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#ead7c3; font-style: italic;">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <!-- Dropdown Menu -->
       <div class="dropdown">
@@ -15,13 +15,20 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <li><a class="dropdown-item" [routerLink]="['scholarsrdpo']">Education Scholarship List</a></li>
           <li><a class="dropdown-item" [routerLink]="['kithkinsrdpo']"> Kithkin List</a></li>
-          <li><a class="dropdown-item" href="#">Option 3</a></li>
+          <li><a class="dropdown-item" [routerLink]="['spectacleSrdpo']"> Spectacles List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['dentureSrdpo']"> Dentures List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['maintenanceSrdpo']"> Maintenance Grant List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['medicalSrdpo']"> Medical Assistance List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['motorizedSrdpo']"> Motorized Tricycle List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['physicallychallengedSrdpo']"> Physically Challenged List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['deafSrdpo']"> Deaf and Mentally Retarded List</a></li>
+          
         </ul>
       </div>
   
       <!-- Centered Heading -->
       <div class="d-flex justify-content-center flex-grow-1">
-        <h1>Division Clerk</h1>
+        <h1>Sr.DPO</h1>
       </div>
   
       <!-- Logged in user name aligned to the right -->

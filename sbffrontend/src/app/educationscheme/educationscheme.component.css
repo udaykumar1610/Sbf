@@ -1,28 +1,15 @@
-/* .scheme-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-   background-color: #bbae82; 
-  transition: box-shadow 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  text-align: center;
-} */
-
 .scheme-card {
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
-  /* background-color: rgba(187, 174, 130, 0.7); */
-  background-color: rgba(196, 192, 166, 0.7);
+  background-color: rgba(196, 192, 166, 0.7); /* Light background */
   transition: box-shadow 0.5s ease-in-out;
   display: flex;
   flex-direction: column;
   height: 100%;
   text-align: center;
+  justify-content: space-between; /* Ensures space is distributed evenly */
 }
 
 /* Hover effect for cards */
@@ -30,9 +17,10 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.scheme-index h5 {
-  font-size: 1.5rem;
-  color: black; /* Text color inside the card */
+.scheme-index h6 {
+  font-size: 1.2rem;
+  color: black;
+  
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -40,7 +28,7 @@
 /* Scheme Details Section */
 .scheme-body {
   margin-top: 10px;
-  text-align: left;
+  text-align: justify; /* Justified text alignment */
   flex-grow: 1;
   color: black; /* Ensure the text is visible */
 }
@@ -75,6 +63,7 @@
   background-color: #21586b;
 }
 
+/* Flexbox for row layout */
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -98,22 +87,12 @@
   display: flex;
   align-items: stretch;
 }
-/* .img{
-background-image: url("https://cdn.create.vista.com/api/media/small/378826806/stock-photo-close-up-of-open-laptop-and-pile-of-books"); 
- background-image:url("../../assets/images/education.jpg");
-  background-repeat: no-repeat;
-  background-size:100% 100%;
-
-} */
 
 .img {
   margin-top: 0%;
   height: 100vh; /* Full height of the viewport */
-  /* background-image: url("https://media.istockphoto.com/id/2122148349/photo/writing-an-exam-at-the-university.jpg?s=2048x2048&w=is&k=20&c=p9gOmjGJflogsiJ0aY_iBQ0EPGllBMJn5yDVWMUcM48=");  */
-
-  background-image: url("../../assets/images/edubg1.jpg"); 
+  background-image: url("../../assets/images/edubg1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
-

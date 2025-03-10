@@ -1,0 +1,119 @@
+<div class="container">
+    <h2>Spectacles Records</h2>
+  
+    <!-- Show loading indicator while data is being fetched -->
+    <div *ngIf="loading">Loading...</div>
+  
+    <!-- Show error message if there's an issue fetching data -->
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+    <!-- Display data in a table once it's available -->
+    <table *ngIf="!loading && !errorMessage" class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Employee Name</th>
+          <th>Date of Birth</th>
+          <th>Guardian Name</th>
+          <th>Date of Appointment</th>
+          <th>Bill Unit Number</th>
+          <th>Designation</th>
+          <th>Office</th>
+          <th>Division</th>
+          <th>PF No</th>
+          <th>Pay Band</th>
+          <th>Running Allowance</th>
+          <th>Grade Pay Substantive</th>
+          <th>Grade Pay Officiating MACP</th>
+          <th>Previous Application Details</th>
+          <th>Receipt Number Date</th>
+          <th>Cost Incurred</th>
+          <th>Status</th>
+          <th>PDF File</th>
+          <th>Actions</th>
+          <th>Remarks</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let spectacle of spectacles">
+          <td>{{ spectacle.id }}</td>
+          <td>{{ spectacle.empname }}</td>
+          <td>{{ spectacle.date_of_birth | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ spectacle.guardian_name }}</td>
+          <td>{{ spectacle.date_of_appointment | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ spectacle.bill_unit_number }}</td>
+          <td>{{ spectacle.designation }}</td>
+          <td>{{ spectacle.office }}</td>
+          <td>{{ spectacle.division }}</td>
+          <td>{{ spectacle.pf_no }}</td>
+          <td>{{ spectacle.pay_band }}</td>
+          <td>{{ spectacle.running_allowance | currency: 'INR'}}</td>
+          <td>{{ spectacle.grade_pay_substantive| currency: 'INR' }}</td>
+          <td>{{ spectacle.grade_pay_officiating_macp | currency: 'INR'}}</td>
+          <td>{{ spectacle.previous_application_details }}</td>
+          <td>{{ spectacle.receipt_number_date }}</td>
+          <td>{{ spectacle.cost_incurred | currency: 'INR' }}</td>
+          <td>{{ spectacle.status }}</td>
+          <td>
+              <a [href]="spectacle.pdf_url" target="_blank">View PDF</a>
+            </td>
+             
+          <!-- <td>{{ scholar.status}}</td> -->
+          <td class="button"> 
+            <!-- <button (click)="updateStatus(scholar.id, 'forwardBySupervisor')" class="btn btn-success">Forward</button>
+            <button (click)="updateStatus(scholar.id, 'reject')" class="btn btn-danger">Reject</button> -->
+          
+            <button 
+            (click)="updateStatus(spectacle.id, 'approve')" 
+            class="btn btn-success" 
+            [disabled]="spectacle.isActionTaken || spectacle.status == 'approve' || spectacle.status == 'rejectBySrdpo'">
+            Forward
+          </button>
+          <button 
+          (click)="openRejectModal(spectacle)"  
+            class="btn btn-danger" 
+            [disabled]="spectacle.isActionTaken || spectacle.status == 'approve' || spectacle.status == 'rejectBySrdpo'">
+            Reject
+          </button>
+          </td>
+          <td>{{spectacle.remarks || 'No Remarks'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- No data message if no scholarships are available -->
+    <div *ngIf="spectacles.length === 0" class="alert alert-info">
+      No scholarships found.
+    </div>
+  </div>
+  
+
+ 
+<!-- Modal for adding remarks -->
+<p-dialog 
+header="Enter Rejection Remarks" 
+[(visible)]="isRejectModalVisible" 
+[modal]="true" 
+[closable]="true" 
+[style]="{width: '300px'}">
+
+<div>
+  <label for="remarks">Remarks:</label>
+  <textarea id="remarks" [(ngModel)]="remarksText" rows="5" cols="30"></textarea>
+</div>
+
+<p-footer>
+  <button (click)="submitRejectRemarks()" label="Submit" icon="pi pi-check" class="p-button-success">Submit</button>
+  <button (click)="isRejectModalVisible = false" label="Cancel" icon="pi pi-times" class="p-button-danger">Close</button>
+</p-footer>
+</p-dialog>
+
+
+
+
+<p-toast
+[showTransformOptions]="'translateY(100%)'" 
+[showTransitionOptions]="'1000ms'" 
+[hideTransitionOptions]="'1000ms'" 
+[showTransformOptions]="'translateX(100%)'"/>

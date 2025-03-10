@@ -25,23 +25,29 @@
         [type]="isPasswordVisible ? 'text' : 'password'"
         id="password"
         [(ngModel)]="credentials.password"
-        type="password"
         placeholder="Enter Password"
         required
       />
-      <i class="eye-icon" (click)="togglePasswordVisibility()">👁️</i>
+      <i class="lock-icon" (click)="togglePasswordVisibility()">
+        <ng-container *ngIf="!isPasswordVisible">🔒</ng-container>
+        <ng-container *ngIf="isPasswordVisible">🔓</ng-container>
+      </i>
     </div>
     <div *ngIf="credentials.password && !passwordPattern.test(credentials.password)" class="error-message">
-      Password must contain at least one uppercase,lowercase,number and one special character.
+      Password must contain at least one uppercase, one lowercase, one number, and one special character.
     </div>
   </div>
+  
 
   <button (click)="login()">Login</button>
 
   <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
 
-  <p class="register-link">
+  <p class="register-link" style="display: flex;justify-content: flex-start;">
     Don't have an account? <a routerLink="/register">Register here</a>
+  </p>
+  <p class="register-link" style="display: flex;justify-content: flex-start;">
+   Forgot Password -> <a routerLink="/resetPassword"> Forgot Password</a>
   </p>
 </div>
 

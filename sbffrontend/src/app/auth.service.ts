@@ -19,7 +19,8 @@ export class AuthService {
   public hrmsId: any = null;
   public name:any;
 
-  private apiUrl1 = 'http://localhost:5000/api/user/hrms'; 
+  private apiUrl1 = 'http://localhost:5000/api/user'; 
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -46,7 +47,7 @@ export class AuthService {
   }
 
   getHrmsData(hrms_id: string): Observable<any> {
-    return this.http.get(`${this.apiUrl1}/${hrms_id}`, { headers: this.getAuthHeaders() });
+    return this.http.get(`${this.apiUrl1}/hrms/${hrms_id}`, { headers: this.getAuthHeaders() });
   }
 
   // Register a new user
@@ -194,6 +195,34 @@ export class AuthService {
 
    empname(): string {
     return this.name || ''; 
+  }
+
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl1}`,{ headers: this.getAuthHeaders() });
+  }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl1}/getall/${id}`,{ headers: this.getAuthHeaders() });
+  }
+
+  // Update user data
+  updateUser(id: number, userData: any): Observable<any> {
+    console.log("service data:",userData)
+    return this.http.put(`${this.apiUrl1}/${id}`, userData,{ headers: this.getAuthHeaders() });
+  }
+
+
+  updatePassword(userData: any): Observable<any> {
+    console.log("service data:",userData)
+    return this.http.put(`${this.apiUrl}/updatePassword`, userData);
+  }
+
+  // Delete user data
+  // deleteUser(id: number): Observable<any> {
+  //   return this.http.delete(`${this.apiUrl1}/delete-user/${id}`,{ headers: this.getAuthHeaders() });
+  // }
+  deleteFamilyData(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl1}/${id}`,{ headers: this.getAuthHeaders() });
   }
   
 }

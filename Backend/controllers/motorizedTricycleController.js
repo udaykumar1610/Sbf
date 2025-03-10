@@ -65,6 +65,40 @@ exports.update = async (req, res) => {
   }
 };
 
+exports.updateStatus = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { status } = req.body;
+
+    if (!status) {
+      res.status(400).json({ status: "error", message: "Status is required" });
+    }
+    await MotorizedTricycle.updateStatus(id, status);
+    res.json({ message: "Motorized Tricycle status updated successfully" });
+  } catch (err) {
+    res.status(500).json({ status: "error", error: err.message });
+  }
+};
+
+exports.updateRemarks = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { status, remarks } = req.body;
+
+    if (!status || !remarks) {
+      res
+        .status(400)
+        .json({ status: "error", message: "Remarks and Status is required" });
+    }
+    await MotorizedTricycle.updateRemarks(id, status, remarks);
+    res.json({
+      message: "Motorized Tricycle remarks and  status updated successfully",
+    });
+  } catch (err) {
+    res.status(500).json({ status: "error", error: err.message });
+  }
+};
+
 // Delete record
 exports.delete = async (req, res) => {
   try {

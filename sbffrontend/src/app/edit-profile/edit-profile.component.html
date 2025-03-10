@@ -1,0 +1,253 @@
+<!-- <div class="container mt-5">
+    <h2>Employee Details</h2>
+  
+    <div *ngIf="isLoading" class="alert alert-info">Loading...</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+  
+    <div *ngIf="!isLoading && userData" class="card mx-auto" style="max-width: 700px;">
+      <div class="card-header">
+        <h4 class="card-title">Employee Information</h4>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="updateUser()">
+       
+          <div class="form-group row">
+            <label for="email" class="col-md-3 col-form-label">Email:</label>
+            <div class="col-md-9">
+              <input type="email" class="form-control" [(ngModel)]="userData.email" name="email" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="designation" class="col-md-3 col-form-label">Designation:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.designation" name="designation" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="mobilenumber" class="col-md-3 col-form-label">Mobile Number:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.mobilenumber" name="mobilenumber" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="division" class="col-md-3 col-form-label">Division:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.division" name="division" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="office" class="col-md-3 col-form-label">Office:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.office" name="office" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="level" class="col-md-3 col-form-label">Level:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.level" name="level" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="payband" class="col-md-3 col-form-label">Pay Band:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.payband" name="payband" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="running_allowance" class="col-md-3 col-form-label">Running Allowance:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.running_allowance" name="running_allowance" required />
+            </div>
+          </div>
+  
+          <h4 class="mt-4">Family Details</h4>
+  
+          
+          <div *ngFor="let family of userData.familyData; let i = index" class="card mt-3">
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="dependent_name_{{i}}" class="col-md-3 col-form-label">Dependent Name:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="family.dependent_name" name="dependent_name_{{i}}" required />
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label for="relationship_{{i}}" class="col-md-3 col-form-label">Relationship:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="family.relationship" name="relationship_{{i}}" required />
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label for="age_dob_{{i}}" class="col-md-3 col-form-label">Age/DOB:</label>
+                <div class="col-md-9">
+                  <input type="date" class="form-control" [(ngModel)]="family.age_dob" name="age_dob_{{i}}" required />
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label for="remarks_{{i}}" class="col-md-3 col-form-label">Remarks:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="family.remarks" name="remarks_{{i}}" />
+                </div>
+              </div>
+  
+              <button type="button" class="btn btn-danger" (click)="deleteUser(family.deatils_id)">Delete Family Member</button>
+              <button type="button" class="btn btn-warning" (click)="deleteFamily(i)">Remove </button>
+            </div>
+             
+  
+          
+          </div>
+  
+       
+          <button type="button" class="btn btn-success mt-3" (click)="addFamilyMember()">Add Family Member</button>
+  
+         
+          <button type="submit" class="btn btn-primary mt-3">Update User</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+  <router-outlet></router-outlet> -->
+
+
+  <div class="container mt-5">
+    <h2>Employee Details</h2>
+  
+    <div *ngIf="isLoading" class="alert alert-info">Loading...</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+    <!-- User and Family Details in a single card -->
+    <div *ngIf="!isLoading && userData" class="card mx-auto" style="max-width: 700px;">
+      <div class="card-header">
+        <h4 class="card-title">Employee Information</h4>
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="updateUser()">
+          <!-- User Information -->
+          <div class="form-group row">
+            <label for="email" class="col-md-3 col-form-label">Email:</label>
+            <div class="col-md-9">
+              <input type="email" class="form-control" [(ngModel)]="userData.email" name="email" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="designation" class="col-md-3 col-form-label">Designation:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.designation" name="designation" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="mobilenumber" class="col-md-3 col-form-label">Mobile Number:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.mobilenumber" name="mobilenumber" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="division" class="col-md-3 col-form-label">Division:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.division" name="division" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="office" class="col-md-3 col-form-label">Office:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.office" name="office" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="level" class="col-md-3 col-form-label">Level:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.level" name="level" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="payband" class="col-md-3 col-form-label">Pay Band:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.payband" name="payband" required />
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label for="running_allowance" class="col-md-3 col-form-label">Running Allowance:</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="userData.running_allowance" name="running_allowance" required />
+            </div>
+          </div>
+  
+          <h4 class="mt-4">Family Details</h4>
+  
+          <!-- Family Member Details -->
+          <div *ngFor="let family of userData.familyData; let i = index" class="card mt-3">
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="dependent_name_{{i}}" class="col-md-3 col-form-label">Dependent Name:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="family.dependent_name" name="dependent_name_{{i}}" required />
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label for="relationship_{{i}}" class="col-md-3 col-form-label">Relationship:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="family.relationship" name="relationship_{{i}}" required />
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label for="age_dob_{{i}}" class="col-md-3 col-form-label">Age/DOB:</label>
+                <div class="col-md-9">
+                  <input type="date" class="form-control" [(ngModel)]="family.age_dob" name="age_dob_{{i}}" required />
+                </div>
+              </div>
+  
+              <div class="form-group row">
+                <label for="remarks_{{i}}" class="col-md-3 col-form-label">Remarks:</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" [(ngModel)]="family.remarks" name="remarks_{{i}}" />
+                </div>
+              </div>
+  
+              <button *ngIf="!family.isNew" type="button" class="btn btn-danger" (click)="deleteUser(family.deatils_id)">Delete Family Member</button>
+              <button *ngIf="family.isNew" type="button" class="btn btn-warning" (click)="deleteFamily(i)">Remove</button>
+            </div>
+          </div>
+  
+          <!-- Add Family Member Button -->
+          <button type="button" class="btn btn-success mt-3" (click)="addFamilyMember()">Add Family Member</button>
+  
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary mt-3">Update User</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <p-toast
+  [showTransformOptions]="'translateY(100%)'" 
+  [showTransitionOptions]="'1000ms'" 
+  [hideTransitionOptions]="'1000ms'" 
+  [showTransformOptions]="'translateX(100%)'"/>
+  
+  
+  <router-outlet></router-outlet>
+  

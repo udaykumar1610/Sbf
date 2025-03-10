@@ -6,9 +6,30 @@
 
 
 
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: bisque; font-style: italic;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ead7c3; font-style: italic;">
     <div class="container-fluid d-flex justify-content-between align-items-center">
       <!-- Dropdown Menu -->
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+          Choose the Scheme
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            
+  
+          <li><a class="dropdown-item" [routerLink]="['scholarship']">Education Scholarship</a></li>
+          <li><a class="dropdown-item" [routerLink]="['denture']">Dentures</a></li>
+          <li><a class="dropdown-item" [routerLink]="['spectacle']">Spectacles</a></li>
+          <li><a class="dropdown-item" [routerLink]="['medical']">Medical Assistance</a></li>
+          <li><a class="dropdown-item" [routerLink]="['maintenance']">Maintenance Grant</a></li>
+          <li><a class="dropdown-item" [routerLink]="['motor']">Motorized Tricycle </a></li>
+          <li><a class="dropdown-item" [routerLink]="['physically']">physically challenged</a></li>
+          <li><a class="dropdown-item" [routerLink]="['deafmental']">Deaf and Mentally Retarded </a></li>
+          <li><a class="dropdown-item" [routerLink]="['kithkin']">Kith & Kin </a></li>
+          <li><a class="dropdown-item" [routerLink]="['familyNorms']">Small Family Norms </a></li>
+        </ul>
+      </div>&nbsp;
+  
+
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
           Schemes Data
@@ -16,6 +37,13 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <li><a class="dropdown-item" [routerLink]="['scholardiv']">Education Scholarship List</a></li>
           <li><a class="dropdown-item" [routerLink]="['kithkindiv']"> Kithkin List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['spectacelDiv']"> Spectacles List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['dentureDiv']"> Dentures List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['maintenanceGrantDiv']"> Maintenance Grant List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['medicalDiv']"> Medical Assistance List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['motorizedDiv']"> Motorized Tricycle List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['physicallyChallengedDiv']"> Physically Challenged List</a></li>
+          <li><a class="dropdown-item" [routerLink]="['deafDiv']"> Deaf and Mentally Retarded  List</a></li>
           <li><a class="dropdown-item" href="#">Option 3</a></li>
         </ul>
       </div>

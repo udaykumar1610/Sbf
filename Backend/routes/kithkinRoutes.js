@@ -33,6 +33,7 @@ router.post("/", protect, upload.single("pdf_file"), controller.create);
 router.put("/:id", protect, upload.single("pdf_file"), controller.update);
 
 router.put("/status/:id", protect, controller.updateStatus);
+router.put("/remarks/:id", protect, controller.updateRemarks);
 
 router.delete("/:id", protect, controller.delete);
 

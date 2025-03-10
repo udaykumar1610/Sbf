@@ -1,105 +1,121 @@
-.denture-form-card {
-    max-width: 1200px; /* Increase the max-width for a larger form */
-    margin: 30px auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    background: #fff;
-    padding: 30px; /* Add padding inside the form card */
-  }
-  
-  .card-title {
-    text-align: center;
-    font-weight: bold;
-    color: #4a4a4a;
-    margin-bottom: 30px; /* Increase space below the title */
-  }
-  
-  .row {
-    display: flex;
-    flex-wrap: wrap; /* Ensure the form items wrap responsively */
-  }
-  
-  .col-md-6 {
-    flex: 1 1 calc(50% - 30px); /* Ensure that fields take up 50% width with space between */
-    margin-right: 15px; /* Add right margin for spacing */
-    margin-bottom: 20px; /* Add bottom margin for spacing */
-  }
-  
-  .col-md-6:last-child {
-    margin-right: 0; /* Remove right margin from the last element */
-  }
-  
-  .mb-3 label {
-    font-weight: bold;
-    color: #444;
-    display: block; /* Make sure label takes up a full line */
-    margin-bottom: 5px; /* Add spacing between label and input field */
-  }
-  
-  .form-control {
-    width: 100%; /* Ensure all inputs take up full width of their container */
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 15px; /* Add bottom margin for spacing between fields */
-  }
-  
-  .select-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 15px; /* Add bottom margin for spacing between fields */
-  }
-  
-  input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-  }
-  
-  button[type="submit"] {
-    background-color: #007bff;
-    border: none;
-    padding: 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    color: #fff;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  @media (max-width: 767px) {
-    .col-md-6 {
-      flex: 1 1 100%; /* Stack the form fields in a single column for smaller screens */
-      margin-right: 0;
-    }
-  }
-  
 
-  .checkbox-label {
-    font-size: 14px;
+
+
+
+/* Center the form container and increase its width */
+.container {
+  max-width: 1200px; /* Increased width */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Card header */
+.card-header {
+  background-color: #007bff;
+  color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase; 
+}
+
+/* Form input fields */
+.form-control {
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  padding: 10px;
+}
+
+/* Form input focus */
+.form-control:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #007bff;
+}
+
+/* Submit button styling */
+.btn-primary {
+  border-radius: 20px;
+  padding: 10px 30px;
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Spacing for form groups */
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+/* Make input fields wider */
+.row .col-md-6 {
+  flex: 0 0 48%; /* Makes the input fields slightly wider */
+  max-width: 48%;
+}
+
+/* Adjust spacing between columns */
+.row {
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 100%;
     padding: 10px;
-    font-weight: bold;
   }
-  
-  .checkbox-label input[type="checkbox"] {
-    margin-right: 10px;
-    margin-top: 3px;
+}
+
+@media (max-width: 767px) {
+  .col-md-6 {
+    width: 100%;
+    max-width: 100%;
   }
-  
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-  
-    padding: 10px;
-  }
+}
+.card-header {
+  background-color: #007bff;
+  color: white;
+  border-radius: 10px 10px 0 0;
+}
+
+
+
+/* Checkbox and Declaration Text */
+.checkbox-label {
+  font-size: 14px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+
+.form-group.mt-4 {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  margin-top: 20px; 
+}

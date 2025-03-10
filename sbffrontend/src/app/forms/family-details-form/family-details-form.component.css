@@ -1,25 +1,57 @@
 /* General container styling */
 .container {
-  max-width: 1200px;
+  max-width: 1200px; /* Increased width */
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Styling for the form card */
-.form-card {
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Title */
-.form-title {
+/* Card header */
+.card-header {
+  background-color: #007bff;
+  color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  text-transform: uppercase;
   font-size: 24px;
   font-weight: bold;
-  text-align: center;
-  color: #333;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+/* Form input fields */
+.form-control {
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* Form input focus */
+.form-control:focus {
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #007bff;
+}
+
+/* Form group styling */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 5px;
 }
 
 /* Styling for form rows to have two columns */
@@ -33,42 +65,15 @@
   flex: 0 0 48%; /* Each form group takes 48% of the row width */
 }
 
-.form-group label {
-  font-weight: 500;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-/* Add padding and margin to form fields */
-.form-group input[type="date"] {
-  padding: 10px;
-}
-
-.form-group input[type="file"] {
-  padding: 6px 10px;
-}
-
-.form-group select {
-  padding: 10px;
-}
-
 /* Custom button styles */
 .btn {
   padding: 10px 15px;
   font-size: 16px;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   border: none;
+  transition: background-color 0.3s;
 }
 
 .btn-primary {
@@ -117,11 +122,7 @@
   margin-bottom: 20px;
 }
 
-button[type="button"] {
-  margin-top: 15px;
-  margin-left: 5px;
-}
-
+/* Submit button styling */
 button[type="submit"] {
   margin-top: 30px;
   width: 100%;
@@ -129,10 +130,38 @@ button[type="submit"] {
   background-color: #007bff;
   color: white;
   font-size: 18px;
+  border-radius: 20px;
 }
 
 button[type="submit"]:hover {
   background-color: #0056b3;
+}
+
+/* Checkbox and Declaration Text */
+.checkbox-label {
+  font-size: 14px;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+/* Center align form group */
+.form-group.mt-4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
 /* Responsiveness: Make the form fields stack on smaller screens */
@@ -145,7 +174,7 @@ button[type="submit"]:hover {
     width: 100%;
   }
 
-  .form-title {
+  .card-header {
     font-size: 20px;
   }
 
@@ -158,24 +187,3 @@ button[type="submit"]:hover {
     width: 100%;
   }
 }
-
-
-
-   /* Checkbox and Declaration Text */
-   .checkbox-label {
-    font-size: 14px;
-    padding: 15px;
-    font-weight: bold;
-  }
-  
-  .checkbox-label input[type="checkbox"] {
-    margin-right: 10px;
-    margin-top: 3px;
-  }
-  
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    padding: 15px;
-  }

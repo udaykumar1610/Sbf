@@ -1,8 +1,18 @@
 const pool = require("../config/db");
 
 const MotorizedTricycle = {
+  // getAll: async () => {
+  //   const [rows] = await pool.query("SELECT * FROM motorizedtricycle");
+  //   return rows;
+  // },
+
   getAll: async () => {
-    const [rows] = await pool.query("SELECT * FROM motorizedtricycle");
+    const baseUrl = process.env.BASE_URL;
+
+    const [rows] = await pool.query(
+      "SELECT *, CONCAT(?,  pdf_file) AS pdf_url FROM motorizedtricycle",
+      [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+    );
     return rows;
   },
 
@@ -30,8 +40,8 @@ const MotorizedTricycle = {
         payband, running_allowance, grade_pay_substantive, 
         grade_pay_officiating_macp, account_number, bank_name, 
         branch_name, ifsc_number, cost_of_tricycle, 
-        percentage_of_handicap, status, pdf_file
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+        percentage_of_handicap, status, pdf_file,remarks
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)
     `;
 
     const params = [
@@ -57,6 +67,7 @@ const MotorizedTricycle = {
       data.percentage_of_handicap,
       data.status || "submitted",
       data.pdf_file || null,
+      data.remarks,
     ];
 
     const [result] = await pool.query(sql, params);
@@ -73,7 +84,7 @@ const MotorizedTricycle = {
         grade_pay_officiating_macp=?, account_number=?, 
         bank_name=?, branch_name=?, ifsc_number=?, 
         cost_of_tricycle=?, percentage_of_handicap=?, 
-        status=?, pdf_file=? WHERE id=?
+        status=?, pdf_file=?,remarks=? WHERE id=?
     `;
 
     const params = [
@@ -99,10 +110,43 @@ const MotorizedTricycle = {
       data.percentage_of_handicap,
       data.status,
       data.pdf_file,
+      data.remarks,
       id,
     ];
 
     await pool.query(sql, params);
+  },
+  updateStatus: async (id, status) => {
+    console.log("models", status, "id :", id);
+    const sql = `
+      UPDATE motorizedtricycle SET status=? WHERE id=?
+    `;
+    console.log(sql);
+    const params = [status, id];
+    console.log(" after models", status, "id :", id);
+
+    const result = await pool.query(sql, params);
+    console.log(result);
+  },
+
+  updateRemarks: async (id, status, remarks) => {
+    // Define the SQL query with proper column updates
+    const sql = `
+      UPDATE motorizedtricycle 
+      SET remarks = ?, status = ? 
+      WHERE id = ?
+    `;
+
+    // Prepare the parameters for the query
+    const params = [remarks, status, id];
+
+    // Execute the query
+    try {
+      const result = await pool.query(sql, params);
+      console.log(result); // Log the result
+    } catch (error) {
+      console.error("Error updating remarks:", error);
+    }
   },
 
   delete: async (id) => {

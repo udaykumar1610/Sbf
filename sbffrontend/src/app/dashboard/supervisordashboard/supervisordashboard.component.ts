@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ScholarlistComponent } from "../../scholarlist/scholarlist.component";
+import { ScholarlistComponent } from "../../List/scholarlist/scholarlist.component";
 import { KithkinlistComponent } from "../../List/kithkinlist/kithkinlist.component";
 import { AuthService } from '../../auth.service';
 import { MessageService } from 'primeng/api';

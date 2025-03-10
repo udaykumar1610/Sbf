@@ -1,8 +1,19 @@
 const pool = require("../config/db");
 
+// const DeafAndMentallyRetarded = {
+//   getAll: async () => {
+//     const [rows] = await pool.query("SELECT * FROM deafandmentalyretarded");
+//     return rows;
+//   },
+
 const DeafAndMentallyRetarded = {
   getAll: async () => {
-    const [rows] = await pool.query("SELECT * FROM deafandmentalyretarded");
+    const baseUrl = process.env.BASE_URL;
+
+    const [rows] = await pool.query(
+      "SELECT *, CONCAT(?,  pdf_file) AS pdf_url FROM deafandmentalyretarded",
+      [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+    );
     return rows;
   },
 
@@ -33,8 +44,8 @@ const DeafAndMentallyRetarded = {
         transport_charges_per_month, residential_fees_per_month, grant_sbcf_received_upto,
         amount_of_claim, period_of_claim_from, period_of_claim_to,
         tuition_fees_claimed, residential_fees_claimed, conveyance_charges_incurred,
-        vouchers_enclosed, other_financial_aid, status, pdf_file
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)
+        vouchers_enclosed, other_financial_aid, status, pdf_file,remarks
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)
     `;
 
     const params = [
@@ -70,6 +81,7 @@ const DeafAndMentallyRetarded = {
       data.other_financial_aid,
       data.status || "Submitted",
       data.pdf_file || null,
+      data.remarks,
     ];
 
     const [result] = await pool.query(sql, params);
@@ -87,7 +99,7 @@ const DeafAndMentallyRetarded = {
         transport_charges_per_month=?, residential_fees_per_month=?, grant_sbcf_received_upto=?, 
         amount_of_claim=?, period_of_claim_from=?, period_of_claim_to=?, 
         tuition_fees_claimed=?, residential_fees_claimed=?, conveyance_charges_incurred=?, 
-        vouchers_enclosed=?, other_financial_aid=?, status=?, pdf_file=? 
+        vouchers_enclosed=?, other_financial_aid=?, status=?, pdf_file=? , remarks=?
       WHERE id=?
     `;
 
@@ -124,10 +136,44 @@ const DeafAndMentallyRetarded = {
       data.other_financial_aid,
       data.status,
       data.pdf_file,
+      data.remarks,
       id,
     ];
 
     await pool.query(sql, params);
+  },
+
+  updateStatus: async (id, status) => {
+    console.log("models", status, "id :", id);
+    const sql = `
+      UPDATE deafandmentalyretarded SET status=? WHERE id=?
+    `;
+    // console.log(sql);
+    const params = [status, id];
+    console.log(" after models", status, "id :", id);
+
+    const result = await pool.query(sql, params);
+    console.log(result);
+  },
+
+  updateRemarks: async (id, status, remarks) => {
+    // Define the SQL query with proper column updates
+    const sql = `
+      UPDATE deafandmentalyretarded 
+      SET remarks = ?, status = ? 
+      WHERE id = ?
+    `;
+
+    // Prepare the parameters for the query
+    const params = [remarks, status, id];
+
+    // Execute the query
+    try {
+      const result = await pool.query(sql, params);
+      console.log(result); // Log the result
+    } catch (error) {
+      console.error("Error updating remarks:", error);
+    }
   },
 
   delete: async (id) => {

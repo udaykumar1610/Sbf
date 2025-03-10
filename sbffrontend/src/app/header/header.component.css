@@ -6,7 +6,9 @@
     justify-content: center;  /* Center the content horizontally */
     align-items: center;      /* Center the content vertically */
     height: 80px;             /* Set the height of the header */
+    
     background-color: #073767; 
+    /* background-color: #dce0d9;  */
     padding: 0 20px;           /* Add some horizontal padding */
     position: relative;       /* Ensure content is positioned correctly */
   }
@@ -34,6 +36,7 @@
     font-weight: bold;        /* Make the title bold */
     /* color: #ead6d6;              */
     color: #e9d5bb;             
+    /* color: black;              */
     margin-left: 80px;        /* Add some margin to the left to avoid overlap with logo */
     text-align: center;       /* Center align the text */
   }

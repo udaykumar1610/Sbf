@@ -28,27 +28,53 @@ import { FamilyDetailsFormComponent } from './forms/family-details-form/family-d
 import { SrdpodashboardComponent } from './dashboard/srdpodashboard/srdpodashboard.component';
 import { IndigenousSystemComponent } from './indigenous-system/indigenous-system.component';
 import { RecreationAmusementComponent } from './recreation-amusement/recreation-amusement.component';
-import { ScholarlistComponent } from './scholarlist/scholarlist.component';
+import { ScholarlistComponent } from './List/scholarlist/scholarlist.component';
 import { KithkinlistComponent } from './List/kithkinlist/kithkinlist.component';
 import { ScholardivComponent } from './Division/scholardiv/scholardiv.component';
 import { KithkindivComponent } from './Division/kithkindiv/kithkindiv.component';
 import { KithkinsrdpoComponent } from './srdpo/kithkinsrdpo/kithkinsrdpo.component';
 import { ScholarsrdpoComponent } from './srdpo/scholarsrdpo/scholarsrdpo.component';
+import { SpectaclesListComponent } from './List/spectacles-list/spectacles-list.component';
+import { SpectaclesDivComponent } from './Division/spectacles-div/spectacles-div.component';
+import { SpectacleSrdpoComponent } from './srdpo/spectacle-srdpo/spectacle-srdpo.component';
+import { DenturesListComponent } from './List/dentures-list/dentures-list.component';
+import { DenturesDivComponent } from './Division/dentures-div/dentures-div.component';
+import { DenturesSrdpoComponent } from './srdpo/dentures-srdpo/dentures-srdpo.component';
+import { MaintenanceListComponent } from './List/maintenance-list/maintenance-list.component';
+import { MaintenanceDivComponent } from './Division/maintenance-div/maintenance-div.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { MaintenaceSrdpoComponent } from './srdpo/maintenace-srdpo/maintenace-srdpo.component';
+import { MedicalListComponent } from './List/medical-list/medical-list.component';
+import { MedicalAssistanceService } from './servicesForm/medical-assistance.service';
+import { MedicalDevComponent } from './Division/medical-dev/medical-dev.component';
+import { MedicalSrdpoComponent } from './srdpo/medical-srdpo/medical-srdpo.component';
+import { MotorizedListComponent } from './List/motorized-list/motorized-list.component';
+import { MotorizedDivComponent } from './Division/motorized-div/motorized-div.component';
+import { MotorizedSrdpoComponent } from './srdpo/motorized-srdpo/motorized-srdpo.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { PhysicallchallengedListComponent } from './List/physicallchallenged-list/physicallchallenged-list.component';
+import { PhysicallyChallengedDivComponent } from './Division/physically-challenged-div/physically-challenged-div.component';
+import { PhysicallyChallengedSrdpoComponent } from './srdpo/physically-challenged-srdpo/physically-challenged-srdpo.component';
+import { DeafMentalListComponent } from './List/deaf-mental-list/deaf-mental-list.component';
+import { DeafMentalDivComponent } from './Division/deaf-mental-div/deaf-mental-div.component';
+import { DeafSrdpoComponent } from './srdpo/deaf-srdpo/deaf-srdpo.component';
 
 // export const routes: Routes = [];
 export const routes: Routes = [
     { path: 'login', component: LoginComponent ,},
     { path: 'home', component: HomeComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'resetPassword', component: ResetPasswordComponent },
     { path: 'schema', component: UserschemsComponent },
     { path: 'education', component: EducationschemeComponent },
     { path: 'sickness', component: SicknessschemeComponent },
     { path: 'skills', component: SkilldevelopmentschemeComponent },
     { path: 'indigenous', component: IndigenousSystemComponent },
     { path: 'amusement', component: RecreationAmusementComponent },
+    
 
     { path: 'supervisor-dashboard', component: SupervisordashboardComponent },
-
+    { path: 'editProfile', component: EditProfileComponent },
     { path: 'user-dashboard', component: UserDashboardComponent,
       children: [
         { path: '', redirectTo: 'user-dashboard', pathMatch: 'full' }, // Default redirect to scholarList
@@ -62,6 +88,8 @@ export const routes: Routes = [
         { path: 'deafmental', component: DeafMentalFormComponent },
         { path: 'kithkin', component: KithkinFormComponent },
         { path: 'familyNorms', component: FamilyDetailsFormComponent },
+       
+      
       ]
       },
 
@@ -73,6 +101,14 @@ export const routes: Routes = [
         { path: '', redirectTo: 'scholarList', pathMatch: 'full' }, // Default redirect to scholarList
         { path: 'scholarList', component: ScholarlistComponent },
         { path: 'kithkinList', component: KithkinlistComponent },
+        { path: 'spectacelList', component: SpectaclesListComponent },
+        { path: 'denturesList', component: DenturesListComponent },
+        { path: 'maintenanceGrantList', component: MaintenanceListComponent },
+        { path: 'medicalList', component: MedicalListComponent },
+        { path: 'motorizedList', component: MotorizedListComponent },
+        { path: 'physicallyChallengedList', component: PhysicallchallengedListComponent },
+        { path: 'deafList', component: DeafMentalListComponent },
+        
       ]
     },
 
@@ -82,6 +118,13 @@ export const routes: Routes = [
         { path: '', redirectTo: 'division-dashboard', pathMatch: 'full' }, // Default redirect to scholarList
         { path: 'scholardiv', component: ScholardivComponent },
         { path: 'kithkindiv', component: KithkindivComponent },
+        { path: 'spectacelDiv', component: SpectaclesDivComponent },
+        { path: 'dentureDiv', component: DenturesDivComponent },
+        { path: 'maintenanceGrantDiv', component: MaintenanceDivComponent },
+        { path: 'medicalDiv', component: MedicalDevComponent },
+        { path: 'motorizedDiv', component: MotorizedDivComponent },
+        { path: 'physicallyChallengedDiv', component: PhysicallyChallengedDivComponent },
+        { path: 'deafDiv', component: DeafMentalDivComponent },
       ]
 
      },
@@ -94,6 +137,13 @@ export const routes: Routes = [
         { path: '', redirectTo: 'srdpo-dashboard', pathMatch: 'full' }, // Default redirect to scholarList
         { path: 'scholarsrdpo', component: ScholarsrdpoComponent },
         { path: 'kithkinsrdpo', component: KithkinsrdpoComponent },
+        { path: 'spectacleSrdpo', component: SpectacleSrdpoComponent },
+        { path: 'dentureSrdpo', component: DenturesSrdpoComponent },
+        { path: 'maintenanceSrdpo', component: MaintenaceSrdpoComponent },
+        { path: 'medicalSrdpo', component: MedicalSrdpoComponent },
+        { path: 'motorizedSrdpo', component: MotorizedSrdpoComponent },
+        { path: 'physicallychallengedSrdpo', component: PhysicallyChallengedSrdpoComponent },
+        { path: 'deafSrdpo', component: DeafSrdpoComponent },
       ]
 
     },

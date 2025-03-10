@@ -1,6 +1,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { createUser, findUserByHrmsId } = require("../models/userModel");
+const {
+  createUser,
+  findUserByHrmsId,
+  updateUserPassword,
+} = require("../models/userModel");
 require("dotenv").config();
 
 /**
@@ -174,5 +178,54 @@ exports.login = async (req, res) => {
     res
       .status(500)
       .json({ status: "error", message: "Server error", error: error.message });
+  }
+};
+exports.updatePassword = async (req, res) => {
+  try {
+    const { hrms_id, mobilenumber, newPassword, confirmPassword } = req.body;
+
+    // Validate input
+    if (!hrms_id || !mobilenumber || !newPassword || !confirmPassword) {
+      return res
+        .status(400)
+        .json({ status: "error", message: "All fields are required" });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res
+        .status(400)
+        .json({ status: "error", message: "Passwords do not match" });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Call model function to update the password
+    const success = await updateUserPassword(
+      hrms_id,
+      mobilenumber,
+      hashedPassword
+    );
+
+    if (success) {
+      return res.status(200).json({
+        status: "success",
+        message: "Password updated successfully",
+      });
+    } else {
+      return res.status(400).json({
+        status: "error",
+        message: "User not found or details incorrect",
+      });
+    }
+  } catch (error) {
+    console.error("Error updating password:", error);
+    return res
+      .status(500)
+      .json({
+        status: "error",
+        message: "Internal Server Error",
+        error: error.message,
+      });
   }
 };

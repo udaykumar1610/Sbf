@@ -1,4 +1,4 @@
-
+<!-- 
 
    <div class="container">
     <div class="form-card">
@@ -134,14 +134,14 @@
           </div>
         </div>
         <div>
-     <!-- <div class="form-group col-md-6">
+  <div class="form-group col-md-6">
             <label for="status">Status</label>
             <select id="status" class="form-control" [(ngModel)]="familyDetailsData.status" name="status">
               <option value="Submitted">Submitted</option>
               <option value="Approved">Approved</option>
               <option value="Rejected">Rejected</option>
             </select>
-          </div>   -->
+          </div> 
           <div class="form-group col-md-6">
             <label for="pdf_file">PDF Upload(EMPIDCard,EmpPlaySlip,merge all in one pdf, Max 5MB)</label>
             <input type="file" id="pdf_file" class="form-control" (change)="onFileSelected($event)" />
@@ -206,4 +206,362 @@
       </form>
     </div>
   </div>
+   -->
+   <div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header text-center">
+        <h3>Family Norms Details Application</h3>
+      </div>
+      <div class="card-body">
+        <form #familyDetailsForm="ngForm" (ngSubmit)="onSubmit(familyDetailsForm)">
+          <!-- Employee Name and Son/Wife of -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Employee Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="empname"
+                [(ngModel)]="userdata.empname"
+                placeholder="Enter Employee Name"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>S/O (Wife of -> In case of female employee):</label>
+              <input
+                type="text"
+                class="form-control"
+                name="son_or_wife_of"
+                [(ngModel)]="familyDetailsData.son_or_wife_of"
+                placeholder="Enter Son/Wife of"
+              />
+            </div>
+          </div>
   
+          <!-- Spouse Details and Date of Birth -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>If spouse is a Railway/Government employee, details thereof:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="spouse_details"
+                [(ngModel)]="familyDetailsData.spouse_details"
+                placeholder="Enter Spouse Details"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Date of Birth:</label>
+              <input
+                type="date"
+                class="form-control"
+                name="date_of_birth"
+                [(ngModel)]="familyDetailsData.date_of_birth"
+                placeholder="Select Date of Birth"
+                required
+              />
+            </div>
+          </div>
+  
+          <!-- Date of Appointment and Bill Unit Number -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Date of Appointment:</label>
+              <input
+                type="date"
+                class="form-control"
+                name="date_of_appointment"
+                [(ngModel)]="familyDetailsData.date_of_appointment"
+                placeholder="Select Date of Appointment"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Bill Unit Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="bill_unit_number"
+                [(ngModel)]="familyDetailsData.bill_unit_number"
+                placeholder="Enter Bill Unit Number"
+              />
+            </div>
+          </div>
+  
+          <!-- Community and Designation -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Community:</label>
+              <select
+                class="form-control"
+                name="community"
+                [(ngModel)]="familyDetailsData.community"
+                required
+              >
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="OBC">OBC</option>
+                <option value="Muslim">Muslim</option>
+                <option value="Christian">Christian</option>
+                <option value="UR">UR</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Designation:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="designation"
+                [(ngModel)]="userdata.designation"
+                placeholder="Enter Designation"
+              />
+            </div>
+          </div>
+  
+          <!-- Office and Department Division -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Office:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="office"
+                [(ngModel)]="userdata.office"
+                placeholder="Enter Office"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Department Division:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="department_division"
+                [(ngModel)]="userdata.division"
+                placeholder="Enter Department Division"
+              />
+            </div>
+          </div>
+  
+          <!-- PF Number and Pay in Pay Band -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>PF Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pf_number"
+                [(ngModel)]="userdata.pf_no"
+                placeholder="Enter PF Number"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Pay in Pay Band:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="pay_in_pay_band"
+                [(ngModel)]="userdata.payband"
+                placeholder="Enter Pay in Pay Band"
+              />
+            </div>
+          </div>
+  
+          <!-- Running Allowance and Grade Pay (Substantive) -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Running Allowance:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="running_allowance"
+                [(ngModel)]="userdata.running_allowance"
+                placeholder="Enter Running Allowance"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Grade Pay (Substantive):</label>
+              <input
+                type="text"
+                class="form-control"
+                name="grade_pay_substantive"
+                [(ngModel)]="familyDetailsData.grade_pay_substantive"
+                placeholder="Enter Grade Pay (Substantive)"
+              />
+            </div>
+          </div>
+  
+          <!-- Grade Pay (Officiating/MACP) and Number of Living Male Children -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Grade Pay (Officiating/MACP):</label>
+              <input
+                type="text"
+                class="form-control"
+                name="grade_pay_officiating_macp"
+                [(ngModel)]="familyDetailsData.grade_pay_officiating_macp"
+                placeholder="Enter Grade Pay (Officiating/MACP)"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Number of Living Male Children:</label>
+              <input
+                type="number"
+                class="form-control"
+                name="number_of_living_children_male"
+                [(ngModel)]="familyDetailsData.number_of_living_children_male"
+                placeholder="Enter Number of Living Male Children"
+              />
+            </div>
+          </div>
+  
+          <!-- Number of Living Female Children and Total Number of Living Children -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Number of Living Female Children:</label>
+              <input
+                type="number"
+                class="form-control"
+                name="number_of_living_children_female"
+                [(ngModel)]="familyDetailsData.number_of_living_children_female"
+                placeholder="Enter Number of Living Female Children"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Total Number of Living Children:</label>
+              <input
+                type="number"
+                class="form-control"
+                name="number_of_living_children_total"
+                [(ngModel)]="familyDetailsData.number_of_living_children_total"
+                placeholder="Enter Total Number of Living Children"
+              />
+            </div>
+          </div>
+  
+          <!-- Sterilization Date and Sterilization Hospital -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label>Sterilization (Date of operation):</label>
+              <input
+                type="date"
+                class="form-control"
+                name="sterilization_date"
+                [(ngModel)]="familyDetailsData.sterilization_date"
+                placeholder="Select Sterilization Date"
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label>Sterilization (Hospital/Clinic where the sterilization operation was performed):</label>
+              <input
+                type="text"
+                class="form-control"
+                name="sterilization_hospital"
+                [(ngModel)]="familyDetailsData.sterilization_hospital"
+                placeholder="Enter Sterilization Hospital"
+              />
+            </div>
+          </div>
+  
+          <!-- File Upload -->
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label>Upload PDF (EMPIDCard, EmpPlaySlip, merge all in one PDF, Max 5MB):</label>
+              <input
+                type="file"
+                class="form-control"
+                (change)="onFileSelected($event)"
+                accept="application/pdf"
+              />
+            </div>
+          </div>
+  
+          <!-- Family Composition -->
+          <div class="family-composition">
+            <h3>Family Composition</h3>
+            <div class="family-row" *ngFor="let family of familyDetailsData.familyComposition; let i = index">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label>Dependent Name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="dependent_name_{{i}}"
+                    [(ngModel)]="family.dependent_name"
+                    placeholder="Enter Dependent Name"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label>Relationship:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="relationship_{{i}}"
+                    [(ngModel)]="family.relationship"
+                    placeholder="Enter Relationship"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label>Date of Birth:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="age_dob_{{i}}"
+                    [(ngModel)]="family.age_dob"
+                    placeholder="Select Date of Birth"
+                    required
+                  />
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label>Remarks:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="remarks_{{i}}"
+                    [(ngModel)]="family.remarks"
+                    placeholder="Enter Remarks"
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="removeFamilyRow(i)"
+                *ngIf="familyDetailsData.familyComposition.length > 1"
+              >
+                Remove
+              </button>
+            </div>
+            <button type="button" class="btn btn-success" (click)="addFamilyRow()">Add More Dependent</button>
+          </div>
+  
+          <!-- Declaration Checkbox -->
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <div class="checkbox-container">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="declarationChecked"
+                  [ngModelOptions]="{standalone: true}"
+                  id="declaration"
+                  required
+                />
+                <label for="declaration" class="checkbox-label">
+                  I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+                </label>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="form-group mt-4 text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!familyDetailsForm.valid || !declarationChecked">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

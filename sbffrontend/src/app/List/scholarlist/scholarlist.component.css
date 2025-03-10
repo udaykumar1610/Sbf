@@ -1,0 +1,193 @@
+.container {
+  padding: 20px;
+  overflow-x: auto;
+  max-width: 100%; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: auto;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+  word-wrap: break-word; 
+}
+
+th {
+  background-color: #19191ad7;
+    color: white;
+}
+
+td {
+  vertical-align: middle;
+}
+
+td button {
+  margin-right: 10px;
+  padding: 6px 12px; 
+  font-size: 12px; 
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px; 
+}
+
+button.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+button.btn-success:hover {
+  background-color: #218838;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+button.btn-danger:hover {
+  background-color: #c82333;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Modal styles */
+p-dialog {
+  background-color: #ffffff; /* White background */
+  border-radius: 8px; /* Rounded corners for the modal */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  width: 60%; /* Increased modal width */
+  max-width: 600px; /* Ensure it doesn't get too large */
+}
+
+p-dialog .ui-dialog-titlebar {
+  background-color: #007bff; /* Blue title bar */
+  color: white;
+  font-size: 18px; /* Adjust title font size */
+  padding: 10px 20px; /* Adjust padding for title bar */
+}
+
+p-dialog .ui-dialog-title {
+  font-weight: bold;
+}
+
+p-dialog .p-dialog-content {
+  padding: 20px; /* Add padding for content */
+}
+
+textarea {
+  width: 100%;
+  resize: vertical; /* Allow vertical resizing */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+}
+
+p-footer {
+  padding: 10px 20px; /* Padding for the footer */
+  text-align: center; /* Center align the buttons */
+  display: flex;
+  justify-content: space-between; /* Ensure buttons are spaced out */
+}
+
+button.p-button-success, button.p-button-danger {
+  padding: 6px 12px; /* Smaller padding for buttons */
+  font-size: 12px; /* Smaller font for buttons */
+  border-radius: 5px;
+}
+
+button.p-button-success {
+  background-color: #28a745;
+  color: white;
+}
+
+button.p-button-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Toast Styles */
+p-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  max-width: 300px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+    /* Make the table scrollable horizontally */
+    display: block;
+    overflow-x: auto;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: center;
+  }
+
+  td button {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* For smaller screens like mobile */
+@media (max-width: 480px) {
+  th, td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  td button {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  /* Adjust table for better readability */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  
+  p-dialog {
+    width: 90%;
+    max-width: 500px;
+  }
+
+  p-dialog .ui-dialog-titlebar {
+    font-size: 16px; 
+  }
+
+  textarea {
+    font-size: 12px; 
+    padding: 6px;
+  }
+}

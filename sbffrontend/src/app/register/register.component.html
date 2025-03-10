@@ -1,162 +1,3 @@
-<!-- 
-
-   <div class="register-container">
-    <h2>Employee Registration</h2>
-  
-   
-
-   <div class="form-row">
-    <div class="form-group">
-      <label for="hrms_id">HRMS ID</label>
-      <input type="text" id="hrms_id" [(ngModel)]="userData.hrms_id" placeholder="Enter HRMS ID" required (focus)="onFocus('hrms_id')" />
-      <div *ngIf="showHrmsIdError && userData.hrms_id.length !==6" class="error-message">HRMS ID must be at exact 6 characters long.</div>
-
-    </div>
-    <div class="form-group">
-      <label for="empname">Employee Name</label>
-      <input type="text" id="empname" [(ngModel)]="userData.empname" placeholder="Enter Employee Name" required (focus)="onFocus('empname')" />
-      <div *ngIf="showEmpnameError && userData.empname.length < 3" class="error-message">Employee Name should be as per records.</div>
-    </div>
-    <div class="form-group">
-      <label for="employeetype">Employee Type</label>
-      <select id="employeetype" [(ngModel)]="userData.employeetype" required (focus)="onFocus('employeetype')">
-        <option value="">Select Employee Type</option>
-        <option value="nongazetted">Non-Gazetted</option>
-        <option value="gazetted">Gazetted</option>
-      </select>
-      <div *ngIf="showEmployeeTypeError && userData.employeetype=='gazetted'" class="error-message">Gazetted Employees are not eligible for SBF Schemes.</div>
-    </div>
-  </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" [(ngModel)]="userData.email" placeholder="Enter Email" required (focus)="onFocus('email')" />
-        <div *ngIf="showEmailError && !userData.email.includes('@')" class="error-message">Please enter a valid email.</div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" [(ngModel)]="userData.password" placeholder="Enter Password" required (focus)="onFocus('password')" />
-        
-        <div *ngIf="showPasswordError && !passwordPattern.test(userData.password)" class="error-message">Password must contain at least one uppercase ,lowercase ,number, and one special character.</div>
-      </div>
-    </div>
-  
-    <div class="form-row">
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" [(ngModel)]="userData.confirmPassword" placeholder="Confirm Password" required (focus)="onFocus('confirmPassword')" />
-        <div *ngIf="showConfirmPasswordError && userData.confirmPassword !== userData.password" class="error-message">Passwords do not match.</div>
-      </div>
-      <div class="form-group">
-        <label for="designation">Designation</label>
-        <input 
-          type="text" 
-          id="designation" 
-          [(ngModel)]="userData.designation" 
-          required 
-          (focus)="onFocus('designation')" 
-          placeholder="Enter Designation" />
-        <div *ngIf="showDesignationError && !userData.designation" class="error-message">
-          Please select a designation.
-        </div>
-      </div>
-      
-    </div>
-  
-    <div class="form-row">
-      <div class="form-group">
-        <label for="date_of_birth">Date of Birth</label>
-        <input type="date" id="date_of_birth" [(ngModel)]="userData.date_of_birth" required (focus)="onFocus('date_of_birth')" />
-        <div *ngIf="showDobError && !userData.date_of_birth" class="error-message">Please select a valid date of birth.</div>
-      </div>
-      <div class="form-group">
-        <label for="date_of_appointment">Date of Appointment</label>
-        <input type="date" id="date_of_appointment" [(ngModel)]="userData.date_of_appointment" required (focus)="onFocus('date_of_appointment')" />
-        <div *ngIf="showDateOfAppointmentError && !userData.date_of_appointment" class="error-message">Please select a valid date of appointment.</div>
-      </div>
-
-      <div class="form-group">
-        <label for="mobilenumber">Mobile Number</label>
-        <input type="text" id="mobilenumber" [(ngModel)]="userData.mobilenumber" placeholder="Enter Mobile Number" required (focus)="onFocus('mobilenumber')" />
-        <div *ngIf="showMobileError && !mobilePattern.test(userData.mobilenumber)" class="error-message">Mobile number should be exactly 10 digits.</div>
-      </div>
-     
-    </div>
-  
-   
-    <div class="form-row">
-     
-      <div class="form-group">
-        <label for="pf_no">PF Number</label>
-        <input type="text" id="pf_no" [(ngModel)]="userData.pf_no" placeholder="Enter PF Number" required (focus)="onFocus('pf_no')" />
-        <div *ngIf="showPfError && !userData.pf_no" class="error-message">Please enter a PF number (it can be less than 15 characters).</div>
-      </div>
-      <div class="form-group">
-        <label for="payband">PayBand</label>
-        <input type="text" id="payband" [(ngModel)]="userData.payband" placeholder="Enter payband" required (focus)="onFocus('payband')" />
-        <div *ngIf="showPaybandError && !userData.payband" class="error-message">Please Enter a Payband.</div>
-      </div>
-
-      <div class="form-group">
-        <label for="running_allowance">Running Allowance</label>
-        <input type="number" id="running_allowance" [(ngModel)]="userData.running_allowance" placeholder="Enter Running Allowance" required (focus)="onFocus('running_allowance')" />
-        <div *ngIf="showRunningAllowanceError && userData.running_allowance <= 0" class="error-message">Please enter a valid running allowance.</div>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="division">Division</label>
-        <select id="division" [(ngModel)]="userData.division" required (focus)="onFocus('division')">
-          <option value="">Select Division</option>
-          <option value="Hyderabad">Hyderabad</option>
-          <option value="Secunderabad">Secunderabad</option>
-          <option value="Guntur">Guntur</option>
-          <option value="Vijayawada">Vijayawada</option>
-          <option value="Guntakal">Guntakal</option>
-          <option value="HeadQuaters">HeadQuaters</option>
-          <option value="RYPS">RYPS-WorkShop</option>
-          <option value="LGDS">LGDS-WorkShop</option>
-          <option value="TPTY">TPTY-WorkShop</option>
-          
-        </select>
-        <div *ngIf="showDivisionError && !userData.division" class="error-message">Please select a division.</div>
-      </div>
-      <div class="form-group">
-        <label for="level">Level</label>
-        <select id="level" [(ngModel)]="userData.level" required (focus)="onFocus('level')">
-          <option value="">Select Level</option>
-          <option value="level1">Level 1</option>
-          <option value="level2">Level 2</option>
-          <option value="level3">Level 3</option>
-          <option value="level4">Level 4</option>
-          <option value="level5">Level 5</option>
-          <option value="level6">Level 6</option>
-          <option value="level7">Level 7</option>
-          <option value="level8">Level 8</option>
-        </select>
-        <div *ngIf="showLevelError && !userData.level" class="error-message">Please select a level.</div>
-      </div>
-      <div class="form-group">
-        <label for="office">Office</label>
-        <input type="text" id="office" [(ngModel)]="userData.office" placeholder="Enter Office Address" required (focus)="onFocus('office')" />
-        <div *ngIf="showOfficeError && !userData.office" class="error-message">Please enter the office address.</div>
-      </div>
-    </div>
-
-   
-
-   
-  
-    <button [disabled]="!isFormValid()" (click)="register()">Register</button>
-  
-    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
-    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-  
-    <p class="login-link">
-      Already have an account? <a routerLink="/login">Login here</a>
-    </p>
-  </div>
-   -->
 
 
    
@@ -169,10 +10,20 @@
    <div class="form-row">
     <div class="form-group">
       <label for="hrms_id">HRMS ID</label>
-      <input type="text" id="hrms_id" [(ngModel)]="userData.hrms_id" placeholder="Enter HRMS ID" required (focus)="onFocus('hrms_id')" />
-      <div *ngIf="showHrmsIdError && userData.hrms_id.length !==6" class="error-message">HRMS ID must be at exact 6 characters long.</div>
-
+      <input
+        type="text"
+        id="hrms_id"
+        [(ngModel)]="userData.hrms_id"
+        name="hrms_id"
+        placeholder="Enter HRMS ID"
+        required
+        (input)="convertHrmsIdToUppercase()"  
+      />
+      <div *ngIf="userData.hrms_id && !hrmsIdPattern.test(userData.hrms_id)" class="error-message">
+        HRMS ID should only contain uppercase letters and digits.
+      </div>
     </div>
+    
     <div class="form-group">
       <label for="empname">Employee Name</label>
       <input type="text" id="empname" [(ngModel)]="userData.empname" placeholder="Enter Employee Name" required (focus)="onFocus('empname')" />

@@ -117,6 +117,7 @@ const {
   getScholarshipsByStatus,
   updateScholarship,
   updatestatus,
+  updateRemarks,
   deleteScholarship,
 } = require("../models/scholarshipModel");
 
@@ -303,6 +304,25 @@ exports.updateStatus = async (req, res) => {
     }
     await updatestatus(id, status);
     res.json({ message: "scholarship status updated successfully" });
+  } catch (err) {
+    res.status(500).json({ status: "error", error: err.message });
+  }
+};
+
+exports.updateRemarks = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { status, remarks } = req.body;
+
+    if (!status || !remarks) {
+      res
+        .status(400)
+        .json({ status: "success", message: "Remarks and Status is required" });
+    }
+    await updateRemarks(id, status, remarks);
+    res.json({
+      message: "scholarship remarks and  status updated successfully",
+    });
   } catch (err) {
     res.status(500).json({ status: "error", error: err.message });
   }

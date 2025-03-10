@@ -4,17 +4,47 @@
   Supervisor DashBoard
 </h1> -->
 <!-- Navbar with Dropdown -->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: bisque; font-style: italic;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ead7c3; font-style: italic;">
   <div class="container-fluid d-flex justify-content-between align-items-center">
     <!-- Dropdown Menu -->
+
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-        Schemes Data
+        Choose the Scheme
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          
+
+        <li><a class="dropdown-item" [routerLink]="['scholarship']">Education Scholarship</a></li>
+        <li><a class="dropdown-item" [routerLink]="['denture']">Dentures</a></li>
+        <li><a class="dropdown-item" [routerLink]="['spectacle']">Spectacles</a></li>
+        <li><a class="dropdown-item" [routerLink]="['medical']">Medical Assistance</a></li>
+        <li><a class="dropdown-item" [routerLink]="['maintenance']">Maintenance Grant</a></li>
+        <li><a class="dropdown-item" [routerLink]="['motor']">Motorized Tricycle </a></li>
+        <li><a class="dropdown-item" [routerLink]="['physically']">physically challenged</a></li>
+        <li><a class="dropdown-item" [routerLink]="['deafmental']">Deaf and Mentally Retarded </a></li>
+        <li><a class="dropdown-item" [routerLink]="['kithkin']">Kith & Kin </a></li>
+        <li><a class="dropdown-item" [routerLink]="['familyNorms']">Small Family Norms </a></li>
+      </ul>
+    </div>&nbsp;
+
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+       Approvals
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <li><a class="dropdown-item" [routerLink]="['scholarList']">Education Scholarship List</a></li>
         <li><a class="dropdown-item" [routerLink]="['kithkinList']"> Kithkin List</a></li>
-        <li><a class="dropdown-item" href="#">Option 3</a></li>
+        <li><a class="dropdown-item" [routerLink]="['spectacelList']"> spectacels List </a></li>
+        <li><a class="dropdown-item" [routerLink]="['denturesList']"> Dentures List </a></li>
+        <li><a class="dropdown-item" [routerLink]="['maintenanceGrantList']"> Maintenance Grant List</a></li>
+        <li><a class="dropdown-item" [routerLink]="['medicalList']"> Medical Assistance List</a></li>
+        <li><a class="dropdown-item" [routerLink]="['motorizedList']"> Motorized Tricycle List</a></li>
+        <li><a class="dropdown-item" [routerLink]="['physicallyChallengedList']"> Physically Challenged List</a></li>
+        
+        <li><a class="dropdown-item" [routerLink]="['deafList']"> Deaf and Mentally  RetardedList</a></li>
+      
       </ul>
     </div>
 

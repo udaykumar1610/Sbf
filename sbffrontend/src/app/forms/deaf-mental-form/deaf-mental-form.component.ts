@@ -4,12 +4,15 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { DeafMentalFormService } from '../../servicesForm/deaf-mental-form.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-deaf-mental-form',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,ToastModule],
+  providers: [MessageService],
   templateUrl: './deaf-mental-form.component.html',
   styleUrls: ['./deaf-mental-form.component.css']
 })

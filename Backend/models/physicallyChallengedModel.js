@@ -1,8 +1,18 @@
 const pool = require("../config/db");
 
 const PhysicallyChallenged = {
+  // getAll: async () => {
+  //   const [rows] = await pool.query("SELECT * FROM physicallyChallenged");
+  //   return rows;
+  // },
+
   getAll: async () => {
-    const [rows] = await pool.query("SELECT * FROM physicallyChallenged");
+    const baseUrl = process.env.BASE_URL;
+
+    const [rows] = await pool.query(
+      "SELECT *, CONCAT(?,  pdf_file) AS pdf_url FROM physicallyChallenged",
+      [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+    );
     return rows;
   },
 
@@ -32,8 +42,8 @@ const PhysicallyChallenged = {
         relationship_with_employee, school_child_dob, class_studying, 
         school_name, nature_of_disability, 
         financial_assistance_received_upto, financial_assistance_period_from, 
-        financial_assistance_period_to, status, pdf_file
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        financial_assistance_period_to, status, pdf_file,remarks
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
     `;
 
     const params = [
@@ -62,6 +72,7 @@ const PhysicallyChallenged = {
       data.financial_assistance_period_to,
       data.status || "Submitted",
       data.pdf_file || null,
+      data.remarks,
     ];
 
     const [result] = await pool.query(sql, params);
@@ -78,7 +89,7 @@ const PhysicallyChallenged = {
         relationship_with_employee=?, school_child_dob=?, class_studying=?, 
         school_name=?, nature_of_disability=?, 
         financial_assistance_received_upto=?, financial_assistance_period_from=?, 
-        financial_assistance_period_to=?, status=?, pdf_file=? 
+        financial_assistance_period_to=?, status=?, pdf_file=? ,remarks=?
       WHERE id=?
     `;
 
@@ -108,10 +119,44 @@ const PhysicallyChallenged = {
       data.financial_assistance_period_to,
       data.status,
       data.pdf_file,
+      data.remarks,
       id,
     ];
 
     await pool.query(sql, params);
+  },
+
+  updateStatus: async (id, status) => {
+    console.log("models", status, "id :", id);
+    const sql = `
+      UPDATE physicallyChallenged SET status=? WHERE id=?
+    `;
+    console.log(sql);
+    const params = [status, id];
+    console.log(" after models", status, "id :", id);
+
+    const result = await pool.query(sql, params);
+    console.log(result);
+  },
+
+  updateRemarks: async (id, status, remarks) => {
+    // Define the SQL query with proper column updates
+    const sql = `
+      UPDATE physicallyChallenged 
+      SET remarks = ?, status = ? 
+      WHERE id = ?
+    `;
+
+    // Prepare the parameters for the query
+    const params = [remarks, status, id];
+
+    // Execute the query
+    try {
+      const result = await pool.query(sql, params);
+      console.log(result); // Log the result
+    } catch (error) {
+      console.error("Error updating remarks:", error);
+    }
   },
 
   delete: async (id) => {

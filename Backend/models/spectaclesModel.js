@@ -1,8 +1,22 @@
 const pool = require("../config/db");
 
 const Spectacles = {
+  // const getAllScholarships = async () => {
+  //   const baseUrl = process.env.BASE_URL; // Access the environment variable here
+  //   const [rows] = await pool.query(
+  //     "SELECT *, CONCAT(?, '/', pdf_file_path) AS pdf_url FROM scholarships",
+  //     [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+  //   );
+  //   return rows;
+  // };
+
   getAll: async () => {
-    const [rows] = await pool.query("SELECT * FROM spectacles");
+    const baseUrl = process.env.BASE_URL;
+
+    const [rows] = await pool.query(
+      "SELECT *, CONCAT(?, '/',  pdf_file) AS pdf_url FROM spectacles",
+      [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+    );
     return rows;
   },
 
@@ -107,8 +121,8 @@ const Spectacles = {
             bill_unit_number, designation, office, division, pf_no, pay_band, 
             running_allowance, grade_pay_substantive, grade_pay_officiating_macp, 
             previous_application_details, receipt_number_date, cost_incurred, 
-            status, pdf_file
-          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`;
+            status, pdf_file,remarks
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)`;
 
             const params = [
               data.empname,
@@ -129,6 +143,7 @@ const Spectacles = {
               data.cost_incurred,
               data.status || "submitted",
               data.pdf_file || null,
+              data.remarks || null,
             ];
 
             // Insert the new application
@@ -150,8 +165,8 @@ const Spectacles = {
           bill_unit_number, designation, office, division, pf_no, pay_band, 
           running_allowance, grade_pay_substantive, grade_pay_officiating_macp, 
           previous_application_details, receipt_number_date, cost_incurred, 
-          status, pdf_file
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`;
+          status, pdf_file,remarks
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)`;
 
       const params = [
         data.empname,
@@ -172,6 +187,7 @@ const Spectacles = {
         data.cost_incurred,
         data.status || "submitted",
         data.pdf_file || null,
+        data.remarks || null,
       ];
 
       // Insert the new application
@@ -192,7 +208,7 @@ const Spectacles = {
         bill_unit_number=?, designation=?, office=?, division=?, pf_no=?, pay_band=?, 
         running_allowance=?, grade_pay_substantive=?, grade_pay_officiating_macp=?, 
         previous_application_details=?, receipt_number_date=?, cost_incurred=?, 
-        status=?, pdf_file=? WHERE id=?`;
+        status=?, pdf_file=? ,remarks=? WHERE id=?`;
 
     const params = [
       data.empname,
@@ -213,10 +229,44 @@ const Spectacles = {
       data.cost_incurred,
       data.status,
       data.pdf_file,
+      data.remarks,
       id,
     ];
 
     await pool.query(sql, params);
+  },
+
+  updateStatus: async (id, status) => {
+    console.log("models", status, "id :", id);
+    const sql = `
+      UPDATE spectacles SET status=? WHERE id=?
+    `;
+    console.log(sql);
+    const params = [status, id];
+    console.log(" after models", status, "id :", id);
+
+    const result = await pool.query(sql, params);
+    console.log(result);
+  },
+
+  updateRemarks: async (id, status, remarks) => {
+    // Define the SQL query with proper column updates
+    const sql = `
+      UPDATE spectacles 
+      SET remarks = ?, status = ? 
+      WHERE id = ?
+    `;
+
+    // Prepare the parameters for the query
+    const params = [remarks, status, id];
+
+    // Execute the query
+    try {
+      const result = await pool.query(sql, params);
+      console.log(result); // Log the result
+    } catch (error) {
+      console.error("Error updating remarks:", error);
+    }
   },
 
   delete: async (id) => {

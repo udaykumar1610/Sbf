@@ -74,6 +74,26 @@ export class PhysicallyChallengedFormService {
     return this.http.put<any>(`${this.apiUrl}/${id}`, formData, { headers: this.getAuthHeaders(true) });
   }
 
+
+  updateStatus(id: number, status: string): Observable<any> {
+    const url = `${this.apiUrl}/status/${id}`;
+    const body = { status };
+    return this.http.put(url, body, { headers: this.getAuthHeaders() });
+  }
+
+
+  updateRemarks(id: number, remarks: string, status: string): Observable<any> {
+
+
+  
+    const url = `${this.apiUrl}/remarks/${id}`;
+    const body = { remarks ,status};
+  
+  
+  
+    return this.http.put(url, body, { headers: this.getAuthHeaders() });
+  }
+
   // Delete a record
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/${id}`, { headers: this.getAuthHeaders() });

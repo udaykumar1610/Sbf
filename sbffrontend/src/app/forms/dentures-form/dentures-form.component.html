@@ -1,142 +1,270 @@
-<div class="card p-4 denture-form-card">
-    <h3 class="card-title text-center">Denture Application Form</h3>
-    <form #dentureForm="ngForm" (ngSubmit)="onSubmit(dentureForm)">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label>Employee Name</label>
-          <input type="text" class="form-control" name="empname" [(ngModel)]="userdata.empname" placeholder="Employee Name" required>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-center">
+      <h3>Denture Application Form</h3>
+    </div>
+    <div class="card-body">
+      <form #dentureForm="ngForm" (ngSubmit)="onSubmit(dentureForm)">
+        <!-- Employee Name and Date of Birth -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Employee Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="empname"
+              [(ngModel)]="userdata.empname"
+              placeholder="Enter Employee Name"
+              required
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Date of Birth:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="date_of_birth"
+              [(ngModel)]="userdata.date_of_birth"
+              required
+            />
+          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <label>Date of Birth</label>
-          <input type="date" class="form-control" name="date_of_birth" [(ngModel)]="userdata.date_of_birth" required>
+
+        <!-- Guardian Name and Date of Appointment -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>S/O (Wife of -> In case of female employee):</label>
+            <input
+              type="text"
+              class="form-control"
+              name="guardian_name"
+              [(ngModel)]="denture.guardian_name"
+              placeholder="Enter Guardian Name"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Date of Appointment:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="date_of_appointment"
+              [(ngModel)]="userdata.date_of_appointment"
+              required
+            />
+          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <label>S/O (Wife of -> In case of female employee)</label>
-          <input type="text" class="form-control" name="guardian_name" [(ngModel)]="denture.guardian_name" placeholder=" Name">
+
+        <!-- Bill Unit Number and Community -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Bill Unit Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="bill_unit_number"
+              [(ngModel)]="denture.bill_unit_number"
+              placeholder="Enter Bill Unit Number"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Community:</label>
+            <select
+              class="form-control"
+              name="community"
+              [(ngModel)]="denture.community"
+              required
+            >
+              <option value="SC">SC</option>
+              <option value="ST">ST</option>
+              <option value="OBC">OBC</option>
+              <option value="Muslim">Muslim</option>
+              <option value="Christian">Christian</option>
+              <option value="UR">UR</option>
+            </select>
+          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <label>Date of Appointment</label>
-          <input type="date" class="form-control" name="date_of_appointment" [(ngModel)]="userdata.date_of_appointment" required>
+
+        <!-- Designation and Office -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Designation:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="designation"
+              [(ngModel)]="userdata.designation"
+              placeholder="Enter Designation"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Office:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="office"
+              [(ngModel)]="userdata.office"
+              placeholder="Enter Office"
+            />
+          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <label>Bill Unit Number</label>
-          <input type="text" class="form-control" name="bill_unit_number" [(ngModel)]="denture.bill_unit_number" placeholder="Bill Unit Number">
+
+        <!-- Division and PF Number -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Division:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="division"
+              [(ngModel)]="userdata.division"
+              placeholder="Enter Division"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>PF Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="pf_no"
+              [(ngModel)]="userdata.pf_no"
+              placeholder="Enter PF Number"
+            />
+          </div>
         </div>
-        <div class="col-md-6 mb-3">
-          <label>Community</label>
-          <select class="form-control" name="community" [(ngModel)]="denture.community" required>
-            <option value="SC">SC</option>
-            <option value="ST">ST</option>
-            <option value="OBC">OBC</option>
-            <option value="Muslim">Muslim</option>
-            <option value="Christian">Christian</option>
-            <option value="UR">UR</option>
-          </select>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Designation</label>
-          <input type="text" class="form-control" name="designation" [(ngModel)]="userdata.designation" placeholder="Designation">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Office</label>
-          <input type="text" class="form-control" name="office" [(ngModel)]="userdata.office" placeholder="Office">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Division</label>
-          <input type="text" class="form-control" name="division" [(ngModel)]="userdata.division" placeholder="Division">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>PF Number</label>
-          <input type="text" class="form-control" name="pf_no" [(ngModel)]="userdata.pf_no" placeholder="PF Number">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Pay Band</label>
-          <input type="text" class="form-control" name="pay_band" [(ngModel)]="userdata.payband" placeholder="Pay Band">
-        </div>
-        <!-- <div class="col-md-6 mb-3">
-          <label>Running Allowance</label>
-          <input type="number" class="form-control" name="running_allowance" [(ngModel)]="denture.running_allowance" placeholder="Running Allowance">
-        </div> -->
-        <div class="col-md-6 mb-3">
-            <label>Running Allowance</label>
-            <input 
-              type="number" 
-              class="form-control" 
-              name="running_allowance" 
-              [(ngModel)]="userdata.running_allowance" 
-              placeholder="Running Allowance"
-              required 
-              pattern="^[0-9]{1,8}$" 
-              maxlength="8" 
+
+        <!-- Pay Band and Running Allowance -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Pay Band:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="pay_band"
+              [(ngModel)]="userdata.payband"
+              placeholder="Enter Pay Band"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Running Allowance:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="running_allowance"
+              [(ngModel)]="userdata.running_allowance"
+              placeholder="Enter Running Allowance"
+              required
+              pattern="^[0-9]{1,8}$"
+              maxlength="8"
               title="Please enter a number with up to 8 digits"
-              #runningAllowance="ngModel">
+              #runningAllowance="ngModel"
+            />
             <div *ngIf="runningAllowance.invalid && runningAllowance.touched" class="text-danger">
               Running allowance must be a number with up to 8 digits.
             </div>
           </div>
-        <div class="col-md-6 mb-3">
-          <label>Grade Pay Substantive</label>
-          <input type="text" class="form-control" name="grade_pay_substantive" [(ngModel)]="denture.grade_pay_substantive" placeholder="Grade Pay Substantive">
         </div>
-        <div class="col-md-6 mb-3">
-          <label>Grade Pay Officiating/MACP</label>
-          <input type="text" class="form-control" name="grade_pay_officiating_macp" [(ngModel)]="denture.grade_pay_officiating_macp" placeholder="Grade Pay Officiating/MACP">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Dentures Recommended</label>
-          <input type="text" class="form-control" name="dentures_recommended" [(ngModel)]="denture.dentures_recommended" placeholder="Dentures Recommended">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Receipt Number</label>
-          <input type="text" class="form-control" name="receipt_number" [(ngModel)]="denture.receipt_number" placeholder="Receipt Number">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label>Receipt Date</label>
-          <input type="date" class="form-control" name="receipt_date" [(ngModel)]="denture.receipt_date">
-        </div>
-        <!-- <div class="col-md-6 mb-3">
-          <label>Cost Incurred</label>
-          <input type="number" class="form-control" name="cost_incurred" [(ngModel)]="denture.cost_incurred" placeholder="Cost Incurred" required>
-        </div> -->
 
-        <div class="col-md-6 mb-3">
-            <label>Cost Incurred</label>
-            <input 
-              type="number" 
-              class="form-control" 
-              name="cost_incurred" 
-              [(ngModel)]="denture.cost_incurred" 
-              placeholder="Cost Incurred" 
+        <!-- Grade Pay Substantive and Grade Pay Officiating/MACP -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Grade Pay Substantive:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="grade_pay_substantive"
+              [(ngModel)]="denture.grade_pay_substantive"
+              placeholder="Enter Grade Pay Substantive"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Grade Pay Officiating/MACP:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="grade_pay_officiating_macp"
+              [(ngModel)]="denture.grade_pay_officiating_macp"
+              placeholder="Enter Grade Pay Officiating/MACP"
+            />
+          </div>
+        </div>
+
+        <!-- Dentures Recommended and Receipt Number -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Dentures Recommended:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="dentures_recommended"
+              [(ngModel)]="denture.dentures_recommended"
+              placeholder="Enter Dentures Recommended"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Receipt Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="receipt_number"
+              [(ngModel)]="denture.receipt_number"
+              placeholder="Enter Receipt Number"
+            />
+          </div>
+        </div>
+
+        <!-- Receipt Date and Cost Incurred -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Receipt Date:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="receipt_date"
+              [(ngModel)]="denture.receipt_date"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Cost Incurred:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="cost_incurred"
+              [(ngModel)]="denture.cost_incurred"
+              placeholder="Enter Cost Incurred"
               required
-              pattern="^[0-9]{1,8}$" 
-              maxlength="8" 
+              pattern="^[0-9]{1,8}$"
+              maxlength="8"
               title="Please enter a number with up to 8 digits"
-              #costIncurred="ngModel">
+              #costIncurred="ngModel"
+            />
             <div *ngIf="costIncurred.invalid && costIncurred.touched" class="text-danger">
               Cost incurred must be a number with up to 8 digits.
             </div>
           </div>
-        <!-- <div class="col-md-6 mb-3">
-          <label>Status</label>
-          <select class="form-control" name="status" [(ngModel)]="denture.status">
-            <option value="submitted">Submitted</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-          </select>
-        </div> -->
-        <div class="col-md-6 mb-3">
-          <label>PDF Upload(EMPIDCard,EmpPlaySlip,Prescription for the Treatment,Bil/Invoice,Railway Doctor’s Certification and merge all in one pdf, Max 5MB)</label>
-          <input type="file" class="form-control" (change)="onFileSelected($event)">
         </div>
 
+        <!-- File Upload -->
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label>Upload PDF (EMPIDCard, EmpPlaySlip, Prescription for the Treatment, Bill/Invoice, Railway Doctor’s Certification, merge all in one PDF, Max 5MB):</label>
+            <input
+              type="file"
+              class="form-control"
+              (change)="onFileSelected($event)"
+              accept="application/pdf"
+            />
+          </div>
+        </div>
+
+        <!-- Declaration Checkboxes -->
         <div class="form-row">
-          <div class="col-md-12">
+          <div class="col-md-12 mb-3">
             <div class="checkbox-container">
-              <input 
-                type="checkbox" 
-                [(ngModel)]="declarationChecked" 
-                [ngModelOptions]="{standalone: true}" 
-                id="declaration" 
+              <input
+                type="checkbox"
+                [(ngModel)]="declarationChecked"
+                [ngModelOptions]="{standalone: true}"
+                id="declaration"
                 required
               />
               <label for="declaration" class="checkbox-label">
@@ -144,30 +272,34 @@
               </label>
             </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-12">
+          <div class="col-md-12 mb-3">
             <div class="checkbox-container">
-              <input 
-                type="checkbox" 
-                [(ngModel)]="empDeclarationChecked" 
-                [ngModelOptions]="{standalone: true}" 
-                id="declaration" 
+              <input
+                type="checkbox"
+                [(ngModel)]="empDeclarationChecked"
+                [ngModelOptions]="{standalone: true}"
+                id="empDeclaration"
                 required
               />
-              <label for="declaration" class="checkbox-label">
-                	Declaration by employee stating that he has not availed the scheme entire in service.               </label>
+              <label for="empDeclaration" class="checkbox-label">
+                Declaration by employee stating that he has not availed the scheme entire in service.
+              </label>
             </div>
           </div>
         </div>
-      </div>
-      <button type="submit" [disabled]="!dentureForm.valid || !declarationChecked || !empDeclarationChecked" class="btn btn-primary w-100">Submit</button>
-    </form>
-  </div>
-  
 
-  <p-toast
-  [showTransformOptions]="'translateY(100%)'" 
-    [showTransitionOptions]="'1000ms'" 
-    [hideTransitionOptions]="'1000ms'" 
-    [showTransformOptions]="'translateX(100%)'"/>
+        <!-- Submit Button -->
+        <div class="form-group mt-4 text-center">
+          <button type="submit" class="btn btn-primary" [disabled]="!dentureForm.valid || !declarationChecked || !empDeclarationChecked">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<p-toast
+  [showTransformOptions]="'translateY(100%)'"
+  [showTransitionOptions]="'1000ms'"
+  [hideTransitionOptions]="'1000ms'"
+  [showTransformOptions]="'translateX(100%)'"
+/>

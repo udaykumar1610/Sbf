@@ -16,6 +16,7 @@
 .scheme-card {
   border: 1px solid #ddd;
   border-radius: 8px;
+ 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
   background-color: rgba(154, 182, 197, 0.8); /* Semi-transparent background */
@@ -24,6 +25,7 @@
   flex-direction: column;
   height: 100%;
   text-align: center;
+  justify-content: space-between; /* Ensures space is distributed evenly */
 }
 
 /* Hover effect for cards */
@@ -31,9 +33,10 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.scheme-index h5 {
+.scheme-index h6 {
   font-size: 1.2rem;
-  color: black; /* Text color inside the card */
+  color: black; 
+  
   margin-bottom: 10px;
   font-weight: bold;
 }
@@ -41,7 +44,7 @@
 /* Scheme Details Section */
 .scheme-body {
   margin-top: 10px;
-  text-align: left;
+  text-align: justify; 
   flex-grow: 1;
   color: black; /* Ensure the text is visible */
 }

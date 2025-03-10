@@ -1,0 +1,126 @@
+<div class="container">
+    <h2>Scholarship List</h2>
+  
+    <!-- Display Error Message if any -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Display the Data Table if Scholarships are available -->
+    <table class="table table-bordered table-striped table-hover" *ngIf="scholarships.length > 0">
+      <thead class="table thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Employee Name</th>
+          <th>Scholar Name</th>
+          <th>Relationship</th>
+          <th>Spouse Govt Employee Details</th>
+          <th>Date of Appointment </th>
+          <th>Designation</th>
+          <th>Division</th>
+          <th>Basic Pay</th>
+          <th>Course of Study</th>
+          <th>Institution Name</th>
+          <th>MACP Pay Level</th>
+          <th>Mobile Number</th>
+          <th>Office</th>
+          <th>Other Scholarships Value</th>
+          <th>Pay Level</th>
+          <th>PF No</th>
+          <th>Student Employment Status</th>
+          <th>Telephone Number</th>
+          <th>Tuition Fee Exemption</th>
+          <th>Year of Study</th>
+          <!-- <th>PDF File Path</th> -->
+          <th>PDF URL</th>
+          <!-- <th>status</th> -->
+          <th>Action</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let scholar of scholarships">
+          <td>{{ scholar.id }}</td>
+          <td>{{ scholar.empname }}</td>
+          <td>{{ scholar.scholar_name }}</td>
+          <td>{{ scholar.relationship }}</td>
+          <td>{{ scholar.spouse_govt_employee_details }}</td>
+          <td>{{ scholar.date_of_appointment  | date:"yyyy-MM-dd"  }}</td>
+          <td>{{ scholar.designation }}</td>
+          <td>{{ scholar.division }}</td>
+          <td>{{ scholar.basic_pay }}</td>
+          <td>{{ scholar.course_of_study }}</td>
+          <td>{{ scholar.institution_name }}</td>
+          <td>{{ scholar.macp_pay_level }}</td>
+          <td>{{ scholar.mobile_number }}</td>
+          <td>{{ scholar.office }}</td>
+          <td>{{ scholar.other_scholarships_value }}</td>
+          <td>{{ scholar.pay_level }}</td>
+          <td>{{ scholar.pf_no }}</td>
+          <td>{{ scholar.student_employment_status }}</td>
+          <td>{{ scholar.telephone_number }}</td>
+          <td>{{ scholar.tuition_fee_exemption }}</td>
+          <td>{{ scholar.year_of_study }}</td>
+         
+          <td>
+            <a [href]="scholar.pdf_url" target="_blank">View PDF</a>
+          </td>
+            
+          <!-- <td>{{ scholar.status}}</td> -->
+          <td class="button"> 
+            <!-- <button (click)="updateStatus(scholar.id, 'forwardBySupervisor')" class="btn btn-success">Forward</button>
+            <button (click)="updateStatus(scholar.id, 'reject')" class="btn btn-danger">Reject</button> -->
+          
+            <button 
+            (click)="updateStatus(scholar.id, 'forwardBySupervisor')" 
+            class="btn btn-success" 
+            [disabled]="scholar.isActionTaken || scholar.status == 'forwardBySupervisor' || scholar.status == 'reject'">
+            Forward
+          </button>
+          <button 
+          (click)="openRejectModal(scholar)"  
+            class="btn btn-danger" 
+            [disabled]="scholar.isActionTaken || scholar.status == 'forwardBySupervisor' || scholar.status == 'reject'">
+            Reject
+          </button>
+          </td>
+          <td>{{scholar.remarks}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- No data message if no scholarships are available -->
+    <div *ngIf="scholarships.length === 0" class="alert alert-info">
+      No scholarships found.
+    </div>
+  </div>
+  
+
+ 
+<!-- Modal for adding remarks -->
+<p-dialog 
+header="Enter Rejection Remarks" 
+[(visible)]="isRejectModalVisible" 
+[modal]="true" 
+[closable]="true" 
+[style]="{width: '300px'}">
+
+<div>
+  <label for="remarks">Remarks:</label>
+  <textarea id="remarks" [(ngModel)]="remarksText" rows="5" cols="30"></textarea>
+</div>
+
+<p-footer>
+  <button (click)="submitRejectRemarks()" label="Submit" icon="pi pi-check" class="p-button-success">Submit</button>
+  <button (click)="isRejectModalVisible = false" label="Cancel" icon="pi pi-times" class="p-button-danger">Close</button>
+</p-footer>
+</p-dialog>
+
+
+
+
+<p-toast
+[showTransformOptions]="'translateY(100%)'" 
+[showTransitionOptions]="'1000ms'" 
+[hideTransitionOptions]="'1000ms'" 
+[showTransformOptions]="'translateX(100%)'"/>

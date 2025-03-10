@@ -1,128 +1,133 @@
-<div class="container mt-4">
-    <h2 class="text-center mb-4">Kith & kin Form</h2>
-    <form #kithkinForm="ngForm" (ngSubmit)="onSubmit(kithkinForm)">
-      
-      <!-- Employee Name -->
-      <div class="mb-3">
-        <label for="empname" class="form-label">Employee Name:</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="empname" 
-          name="empname" 
-          [(ngModel)]="userdata.empname" 
-          required 
-          readonly>
-      </div>
-  
-      <!-- Designation -->
-      <div class="mb-3">
-        <label for="designation" class="form-label">Designation:</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="designation" 
-          name="designation" 
-          [(ngModel)]="userdata.designation" 
-          required 
-          readonly>
-      </div>
-  
-      <!-- Office -->
-      <div class="mb-3">
-        <label for="office" class="form-label">Office:</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="office" 
-          name="office" 
-          [(ngModel)]="userdata.office" 
-          required 
-          readonly>
-      </div>
-  
-      <!-- Division -->
-      <div class="mb-3">
-        <label for="division" class="form-label">Division:</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="division" 
-          name="division" 
-          [(ngModel)]="userdata.division" 
-          required 
-          readonly>
-      </div>
-  
-      <!-- PF Number -->
-      <div class="mb-3">
-        <label for="pf_no" class="form-label">PF Number:</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="pf_no" 
-          name="pf_no" 
-          [(ngModel)]="userdata.pf_no" 
-          required 
-          readonly>
-      </div>
-  
-      <!-- Date of Birth -->
-      <div class="mb-3">
-        <label for="date_of_death" class="form-label">Date of Death:</label>
-        <input 
-          type="date" 
-          class="form-control" 
-          id="date_of_death" 
-          name="date_of_death" 
-          [(ngModel)]="kithkinData.date_of_death" 
-          required>
-      </div>
-  
-      <!-- Address Last Rites -->
-      <div class="mb-3">
-        <label for="AaddressLastRites" class="form-label">Address for Last Rites:</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="AaddressLastRites" 
-          name="AaddressLastRites" 
-          [(ngModel)]="kithkinData.AaddressLastRites" 
-          required>
-      </div>
-  
-      <!-- PDF Upload -->
-      <div class="mb-3">
-        <label for="pdf_file" class="form-label">Upload PDF (EMPIDCard,EmpPlaySlip,,merge all in one pdf, Max 5MB):</label>
-        <input 
-          type="file" 
-          class="form-control" 
-          id="pdf_file" 
-          name="pdf_file" 
-          (change)="onFileSelected($event)" 
-          accept=".pdf">
-      </div>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-center">
+      <h3>Kith & Kin Form</h3>
+    </div>
+    <div class="card-body">
+      <form #kithkinForm="ngForm" (ngSubmit)="onSubmit(kithkinForm)">
+        <!-- Employee Name -->
+        <div class="mb-3">
+          <label>Employee Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="empname"
+            [(ngModel)]="userdata.empname"
+            required
+            readonly
+          />
+        </div>
 
-      <div class="form-row">
-        <div class="col-md-12">
-          <div class="checkbox-container">
-            <input 
-              type="checkbox" 
-              [(ngModel)]="declarationChecked" 
-              [ngModelOptions]="{standalone: true}" 
-              id="declaration" 
-              required
-            />
-            <label for="declaration" class="checkbox-label">
-              I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
-            </label>
+        <!-- Designation -->
+        <div class="mb-3">
+          <label>Designation:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="designation"
+            [(ngModel)]="userdata.designation"
+            required
+            readonly
+          />
+        </div>
+
+        <!-- Office -->
+        <div class="mb-3">
+          <label>Office:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="office"
+            [(ngModel)]="userdata.office"
+            required
+            readonly
+          />
+        </div>
+
+        <!-- Division -->
+        <div class="mb-3">
+          <label>Division:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="division"
+            [(ngModel)]="userdata.division"
+            required
+            readonly
+          />
+        </div>
+
+        <!-- PF Number -->
+        <div class="mb-3">
+          <label>PF Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="pf_no"
+            [(ngModel)]="userdata.pf_no"
+            required
+            readonly
+          />
+        </div>
+
+        <!-- Date of Death -->
+        <div class="mb-3">
+          <label>Date of Death:</label>
+          <input
+            type="date"
+            class="form-control"
+            name="date_of_death"
+            [(ngModel)]="kithkinData.date_of_death"
+            required
+          />
+        </div>
+
+        <!-- Address for Last Rites -->
+        <div class="mb-3">
+          <label>Address for Last Rites:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="AaddressLastRites"
+            [(ngModel)]="kithkinData.AaddressLastRites"
+            required
+          />
+        </div>
+
+        <!-- File Upload -->
+        <div class="mb-3">
+          <label>Upload PDF (EMPIDCard, EmpPlaySlip, merge all in one PDF, Max 5MB):</label>
+          <input
+            type="file"
+            class="form-control"
+            (change)="onFileSelected($event)"
+            accept="application/pdf"
+          />
+        </div>
+
+        <!-- Declaration Checkbox -->
+        <div class="form-row">
+          <div class="col-md-12 mb-3">
+            <div class="checkbox-container">
+              <input
+                type="checkbox"
+                [(ngModel)]="declarationChecked"
+                [ngModelOptions]="{standalone: true}"
+                id="declaration"
+                required
+              />
+              <label for="declaration" class="checkbox-label">
+                I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+              </label>
+            </div>
           </div>
         </div>
-      </div>
-  
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" [disabled]="!kithkinForm.valid || !declarationChecked">Submit</button>
-  
-    </form>
+
+        <!-- Submit Button -->
+        <div class="form-group mt-4 text-center">
+          <button type="submit" class="btn btn-primary" [disabled]="!kithkinForm.valid || !declarationChecked">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
-  
+</div>

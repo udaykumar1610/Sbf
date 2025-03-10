@@ -67,6 +67,40 @@ const updateDenture = async (req, res) => {
   }
 };
 
+const updateStatus = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { status } = req.body;
+
+    if (!status) {
+      res.status(400).json({ status: "error", message: "Status is required" });
+    }
+    await Dentures.updateStatus(id, status);
+    res.json({ message: "Denture status updated successfully" });
+  } catch (err) {
+    res.status(500).json({ status: "error", error: err.message });
+  }
+};
+
+const updateRemarks = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { status, remarks } = req.body;
+
+    if (!status || !remarks) {
+      res
+        .status(400)
+        .json({ status: "error", message: "Remarks and Status is required" });
+    }
+    await Dentures.updateRemarks(id, status, remarks);
+    res.json({
+      message: "Denture remarks and  status updated successfully",
+    });
+  } catch (err) {
+    res.status(500).json({ status: "error", error: err.message });
+  }
+};
+
 // Delete denture
 const deleteDenture = async (req, res) => {
   try {
@@ -84,5 +118,7 @@ module.exports = {
   getDentureById,
   createDenture,
   updateDenture,
+  updateRemarks,
+  updateStatus,
   deleteDenture,
 };

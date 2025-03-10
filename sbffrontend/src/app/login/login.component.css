@@ -13,6 +13,7 @@ body, html {
   align-items: center;
   font-family: Arial, sans-serif;
   background-color: #f4f7f6; /* Light background for the page */
+  padding: 20px; /* Add padding for small screens */
 }
 
 /* Login Container Styles */
@@ -25,6 +26,7 @@ body, html {
   width: 100%;
   max-width: 400px; /* Limits the width of the form */
   text-align: center;
+  box-sizing: border-box;
 }
 
 h2 {
@@ -97,6 +99,7 @@ button:hover {
   text-decoration: underline;
 }
 
+/* Password Container and Eye Icon */
 .password-container {
   position: relative;
   display: flex;
@@ -123,4 +126,80 @@ button:hover {
 
 .eye-icon.hide {
   color: #888;  /* Color when password is hidden */
+}
+
+.lock-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #888;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  .login-container {
+    padding: 20px;
+    margin: 50px auto; /* Adjust margin for smaller screens */
+    max-width: 100%; /* Ensure the form takes up the full width */
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  input[type="text"], input[type="password"] {
+    font-size: 14px; /* Slightly smaller text for small screens */
+    padding: 8px; /* Adjust padding */
+  }
+
+  button {
+    font-size: 14px; /* Slightly smaller font for button */
+  }
+
+  .error-message {
+    font-size: 12px; /* Make error message smaller */
+  }
+
+  .register-link {
+    font-size: 12px; /* Make register link text smaller */
+  }
+
+  .password-container input {
+    padding-right: 25px; /* Adjust padding for small screens */
+  }
+
+  .eye-icon {
+    font-size: 18px; /* Adjust icon size for small screens */
+  }
+}
+
+/* Additional adjustments for even smaller screens */
+@media screen and (max-width: 400px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  input[type="text"], input[type="password"] {
+    font-size: 12px; /* Further reduce font size */
+    padding: 6px; /* Adjust padding for very small screens */
+  }
+
+  button {
+    font-size: 12px; /* Adjust button font size */
+  }
+
+  .error-message {
+    font-size: 10px; /* Make error messages even smaller */
+  }
+
+  .register-link {
+    font-size: 10px; /* Make register link text smaller */
+  }
 }

@@ -1,0 +1,124 @@
+<div class="container">
+    <h2>Maintenance Grant Records</h2>
+  
+    <!-- Show loading indicator while data is being fetched -->
+    <div *ngIf="loading">Loading...</div>
+  
+    <!-- Show error message if there's an issue fetching data -->
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+    <!-- Display data in a table once it's available -->
+    <table *ngIf="!loading && !errorMessage" class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Employee Name</th>
+          <th>Son/Wife Of</th>
+          <th>Date of Appointment</th>
+          <th>Bill Unit Number</th>
+          <th>Community</th>
+          <th>Designation</th>
+          <th>Office</th>
+          <th>Division</th>
+          <th>PF Number</th>
+          <th>Pay Band</th>
+          <th>Running Allowance</th>
+          <th>Grade Pay Substantive</th>
+          <th>Grade Pay Officiating MACP</th>
+          <th>Period of Sickness with Pay From</th>
+          <th>Period of Sickness with Pay To</th>
+          <th>Period of Sickness with Half Pay From</th>
+          <th>Period of Sickness with Half Pay To</th>
+          <th>Period of Sickness without Pay From</th>
+          <th>Period of Sickness without Pay To</th>
+          <th>Sick Certificate Number & Date</th>
+          <th>Sick Certificate Issued By</th>
+         
+          <th>PDF File</th>
+          <th>Action</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let grant of maintenanceGrants">
+          <td>{{ grant.id }}</td>
+          <td>{{ grant.empname }}</td>
+          <td>{{ grant.son_or_wife_of }}</td>
+          <td>{{ grant.date_of_appointment | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ grant.bill_unit_number }}</td>
+          <td>{{ grant.community }}</td>
+          <td>{{ grant.designation }}</td>
+          <td>{{ grant.office }}</td>
+          <td>{{ grant.division }}</td>
+          <td>{{ grant.pf_no }}</td>
+          <td>{{ grant.pay_band }}</td>
+          <td>{{ grant.running_allowance | currency: 'INR' }}</td>
+          <td>{{ grant.grade_pay_substantive }}</td>
+          <td>{{ grant.grade_pay_officiating_macp }}</td>
+          <td>{{ grant.period_of_sickness_with_pay_from | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ grant.period_of_sickness_with_pay_to | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ grant.period_of_sickness_with_half_pay_from | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ grant.period_of_sickness_with_half_pay_to | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ grant.period_of_sickness_without_pay_from | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ grant.period_of_sickness_without_pay_to | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ grant.sick_certificate_number_date }}</td>
+          <td>{{ grant.sick_certificate_issued_by }}</td>
+          
+          <td><a [href]="grant.pdf_url" target="_blank">View PDF</a></td>
+          <td class="button"> 
+            
+          
+            <button 
+            (click)="updateStatus(grant.id, 'forwardBySupervisor')" 
+            class="btn btn-success" 
+            [disabled]="grant.isActionTaken || grant.status == 'forwardBySupervisor' && grant.status == 'reject'">
+            Forward
+          </button>
+          <button 
+          (click)="openRejectModal(grant)"  
+            class="btn btn-danger"  
+            [disabled]="grant.isActionTaken || grant.status == 'forwardBySupervisor' || grant.status == 'reject'">
+            Reject
+          </button>
+          </td>
+      
+          <td>{{ grant.remarks }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- No data message if no maintenance grants are available -->
+    <div *ngIf="maintenanceGrants.length === 0" class="alert alert-info">
+      No maintenance grants found.
+    </div>
+  </div>
+  
+
+  
+<!-- Modal for adding remarks -->
+<p-dialog 
+header="Enter Rejection Remarks" 
+[(visible)]="isRejectModalVisible" 
+[modal]="true" 
+[closable]="true" 
+[style]="{width: '300px'}">
+
+<div>
+  <label for="remarks">Remarks:</label>
+  <textarea id="remarks" [(ngModel)]="remarksText" rows="5" cols="30"></textarea>
+</div>
+
+<p-footer>
+  <button (click)="submitRejectRemarks()" label="Submit" icon="pi pi-check" class="p-button-success">Submit</button>
+  <button (click)="isRejectModalVisible = false" label="Cancel" icon="pi pi-times" class="p-button-danger">Close</button>
+</p-footer>
+</p-dialog>
+
+
+
+
+<p-toast
+[showTransformOptions]="'translateY(100%)'" 
+[showTransitionOptions]="'1000ms'" 
+[hideTransitionOptions]="'1000ms'" 
+[showTransformOptions]="'translateX(100%)'"/>

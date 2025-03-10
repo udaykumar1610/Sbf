@@ -24,6 +24,7 @@
   flex-direction: column;
   height: 100%;
   text-align: center;
+  justify-content: space-between; /* Ensures space is distributed evenly */
 }
 
 /* Hover effect for cards */
@@ -32,16 +33,18 @@
 }
 
 .scheme-index h6 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: black; /* Text color inside the card */
+  
   margin-bottom: 10px;
   font-weight: bold;
+  font-size: 20px;
 }
 
 /* Scheme Details Section */
 .scheme-body {
   margin-top: 10px;
-  text-align: left;
+  text-align: justify; /* Justified text alignment */
   flex-grow: 1;
   color: black; /* Ensure the text is visible */
 }
@@ -59,6 +62,7 @@
   justify-content: center;
   align-items: center;
   margin-top: auto; /* Pushes the footer to the bottom of the card */
+  
 }
 
 /* Styling for the Apply Button */

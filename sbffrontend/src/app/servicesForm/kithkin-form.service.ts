@@ -14,7 +14,8 @@ export class KithkinFormService {
 
   private getAuthHeaders(isFormData = false): HttpHeaders {
     const token = this.authService.getToken();
-    console.log("kith kin token :",token);
+    // console.log("token",token);
+    // console.log("kith kin token :",token);
     let headersConfig: any = {
       Authorization: `Bearer ${token}`
     };
@@ -85,6 +86,17 @@ export class KithkinFormService {
   
   const url = `${this.apiUrl}/status/${id}`;
   const body = { status };
+
+
+
+  return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
+}
+ updateRemarks(id: number, remarks: string, status: string): Observable<any> {
+
+
+  
+  const url = `${this.apiUrl}/remarks/${id}`;
+  const body = { remarks ,status};
 
 
 

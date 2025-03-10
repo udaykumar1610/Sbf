@@ -1,255 +1,422 @@
-<div class="container mt-4">
-    <div class="card">
-      <div class="card-header text-center">
-        <h3 class="card-title">Deaf and Mentally Retarded Form</h3>
-      </div>
-      <div class="card-body">
-        <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-    
-          <!-- Row 1 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="empname" class="form-label">Employee Name</label>
-              <input type="text" class="form-control" id="empname" name="empname" [(ngModel)]="userdata.empname" placeholder="Enter Employee Name" required>
-            </div>
-            <div class="col-md-6">
-              <label for="son_wife_of" class="form-label">S/O (Wife of -> In case of female employee)</label>
-              <input type="text" class="form-control" id="son_wife_of" name="son_wife_of" [(ngModel)]="deafMentalData.son_wife_of" placeholder="Enter Son/Wife of">
-            </div>
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header text-center">
+      <h3>Deaf and Mentally Retarded Form</h3>
+    </div>
+    <div class="card-body">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <!-- Employee Name and Son/Wife of -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Employee Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="empname"
+              [(ngModel)]="userdata.empname"
+              placeholder="Enter Employee Name"
+              required
+            />
           </div>
-    
-          <!-- Row 2 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="spouse_details" class="form-label">If spouse is a Railway/Government employee, details thereof.</label>
-              <input type="text" class="form-control" id="spouse_details" name="spouse_details" [(ngModel)]="deafMentalData.spouse_details" placeholder="Enter Spouse Details">
-            </div>
-            <div class="col-md-6">
-              <label for="date_of_appointment" class="form-label">Date of Appointment</label>
-              <input type="date" class="form-control" id="date_of_appointment" name="date_of_appointment" [(ngModel)]="userdata.date_of_appointment">
-            </div>
+          <div class="col-md-6 mb-3">
+            <label>S/O (Wife of -> In case of female employee):</label>
+            <input
+              type="text"
+              class="form-control"
+              name="son_wife_of"
+              [(ngModel)]="deafMentalData.son_wife_of"
+              placeholder="Enter Son/Wife of"
+            />
           </div>
-    
-          <!-- Row 3 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="bill_unit_number" class="form-label">Bill Unit Number</label>
-              <input type="text" class="form-control" id="bill_unit_number" name="bill_unit_number" [(ngModel)]="deafMentalData.bill_unit_number" placeholder="Enter Bill Unit Number">
-            </div>
-            <div class="col-md-6">
-              <label for="community" class="form-label">Community</label>
-              <select class="form-select" id="community" name="community" [(ngModel)]="deafMentalData.community">
-                <option value="SC">SC</option>
-                <option value="ST">ST</option>
-                <option value="OBC">OBC</option>
-                <option value="Muslim">Muslim</option>
-                <option value="Christian">Christian</option>
-                <option value="UR">UR</option>
-              </select>
-            </div>
-          </div>
-    
-          <!-- Row 4 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="designation" class="form-label">Designation</label>
-              <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="userdata.designation" placeholder="Enter Designation">
-            </div>
-            <div class="col-md-6">
-              <label for="office" class="form-label">Office</label>
-              <input type="text" class="form-control" id="office" name="office" [(ngModel)]="userdata.office" placeholder="Enter Office">
-            </div>
-          </div>
-    
-          <!-- Row 5 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="division" class="form-label">Division</label>
-              <input type="text" class="form-control" id="division" name="division" [(ngModel)]="userdata.division" placeholder="Enter Division">
-            </div>
-            <div class="col-md-6">
-              <label for="pf_no" class="form-label">PF Number</label>
-              <input type="text" class="form-control" id="pf_no" name="pf_no" [(ngModel)]="userdata.pf_no" placeholder="Enter PF Number">
-            </div>
-          </div>
-    
-          <!-- Row 6 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="pay_band" class="form-label">Pay Band</label>
-              <input type="text" class="form-control" id="pay_band" name="pay_band" [(ngModel)]="userdata.payband" placeholder="Enter Pay Band">
-            </div>
-            <!-- <div class="col-md-6">
-              <label for="running_allowance" class="form-label">Running Allowance</label>
-              <input type="text" class="form-control" id="running_allowance" name="running_allowance" [(ngModel)]="deafMentalData.running_allowance" placeholder="Enter Running Allowance">
-            </div> -->
-            <div class="col-md-6 mb-3">
-              <label>Running Allowance</label>
-              <input 
-                type="number" 
-                class="form-control" 
-                name="running_allowance" 
-                [(ngModel)]="userdata.running_allowance" 
-                placeholder="Running Allowance"
-                required 
-                pattern="^[0-9]{1,8}$" 
-                maxlength="8" 
-                title="Please enter a number with up to 8 digits"
-                #runningAllowance="ngModel">
-              <div *ngIf="runningAllowance.invalid && runningAllowance.touched" class="text-danger">
-                Running allowance must be a number with up to 8 digits.
-              </div>
-            </div>
-          </div>
-    
-          <!-- Row 7 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="grade_pay_substantive" class="form-label">Grade Pay Substantive</label>
-              <input type="text" class="form-control" id="grade_pay_substantive" name="grade_pay_substantive" [(ngModel)]="deafMentalData.grade_pay_substantive" placeholder="Enter Grade Pay Substantive">
-            </div>
-            <div class="col-md-6">
-              <label for="grade_pay_officiating_macp" class="form-label">Grade Pay Officiating / MACP</label>
-              <input type="text" class="form-control" id="grade_pay_officiating_macp" name="grade_pay_officiating_macp" [(ngModel)]="deafMentalData.grade_pay_officiating_macp" placeholder="Enter Grade Pay Officiating MACP">
-            </div>
-          </div>
-    
-          <!-- Row 8 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="physically_challenged_student_name" class="form-label">Name of the Deaf, Dumb, Blind or mentally retarded child</label>
-              <input type="text" class="form-control" id="physically_challenged_student_name" name="physically_challenged_student_name" [(ngModel)]="deafMentalData.physically_challenged_student_name" placeholder="Enter Student Name">
-            </div>
-            <div class="col-md-6">
-              <label for="relationship_with_employee" class="form-label">Relationship with Employee</label>
-              <input type="text" class="form-control" id="relationship_with_employee" name="relationship_with_employee" [(ngModel)]="deafMentalData.relationship_with_employee" placeholder="Enter Relationship">
-            </div>
-          </div>
-    
-          <!-- Row 9 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="school_child_dob" class="form-label">Child Date of Birth</label>
-              <input type="date" class="form-control" id="school_child_dob" name="school_child_dob" [(ngModel)]="deafMentalData.school_child_dob">
-            </div>
-            <div class="col-md-6">
-              <label for="school_name" class="form-label">School Name</label>
-              <input type="text" class="form-control" id="school_name" name="school_name" [(ngModel)]="deafMentalData.school_name" placeholder="Enter School Name">
-            </div>
-          </div>
-    
-          <!-- Row 10 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="tuition_fees_per_month" class="form-label">Tuition Fees per Month</label>
-              <input type="number" class="form-control" id="tuition_fees_per_month" name="tuition_fees_per_month" [(ngModel)]="deafMentalData.tuition_fees_per_month" placeholder="Enter Tuition Fees">
-            </div>
-            <div class="col-md-6">
-              <label for="transport_charges_per_month" class="form-label">Transport Charges per Month</label>
-              <input type="number" class="form-control" id="transport_charges_per_month" name="transport_charges_per_month" [(ngModel)]="deafMentalData.transport_charges_per_month" placeholder="Enter Transport Charges">
-            </div>
-          </div>
-    
-          <!-- Row 11 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="residential_fees_per_month" class="form-label">Residential Fees per Month</label>
-              <input type="number" class="form-control" id="residential_fees_per_month" name="residential_fees_per_month" [(ngModel)]="deafMentalData.residential_fees_per_month" placeholder="Enter Residential Fees">
-            </div>
-            <div class="col-md-6">
-              <label for="grant_sbcf_received_upto" class="form-label">Grant SBCF Received Upto</label>
-              <input type="date" class="form-control" id="grant_sbcf_received_upto" name="grant_sbcf_received_upto" [(ngModel)]="deafMentalData.grant_sbcf_received_upto">
-            </div>
-          </div>
-    
-          <!-- Row 12 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="amount_of_claim" class="form-label">Amount of Claim</label>
-              <input type="number" class="form-control" id="amount_of_claim" name="amount_of_claim" [(ngModel)]="deafMentalData.amount_of_claim" placeholder="Enter Amount of Claim">
-            </div>
-            <div class="col-md-6">
-              <label for="period_of_claim_from" class="form-label">Period of Claim From</label>
-              <input type="date" class="form-control" id="period_of_claim_from" name="period_of_claim_from" [(ngModel)]="deafMentalData.period_of_claim_from">
-            </div>
-          </div>
-    
-          <!-- Row 13 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="period_of_claim_to" class="form-label">Period of Claim To</label>
-              <input type="date" class="form-control" id="period_of_claim_to" name="period_of_claim_to" [(ngModel)]="deafMentalData.period_of_claim_to">
-            </div>
-            <div class="col-md-6">
-              <label for="tuition_fees_claimed" class="form-label">Tuition Fees Claimed</label>
-              <input type="number" class="form-control" id="tuition_fees_claimed" name="tuition_fees_claimed" [(ngModel)]="deafMentalData.tuition_fees_claimed" placeholder="Enter Tuition Fees Claimed">
-            </div>
-          </div>
-    
-          <!-- Row 14 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="residential_fees_claimed" class="form-label">Residential Fees Claimed</label>
-              <input type="number" class="form-control" id="residential_fees_claimed" name="residential_fees_claimed" [(ngModel)]="deafMentalData.residential_fees_claimed" placeholder="Enter Residential Fees Claimed">
-            </div>
-            <div class="col-md-6">
-              <label for="conveyance_charges_incurred" class="form-label">Conveyance Charges Incurred</label>
-              <input type="number" class="form-control" id="conveyance_charges_incurred" name="conveyance_charges_incurred" [(ngModel)]="deafMentalData.conveyance_charges_incurred" placeholder="Enter Conveyance Charges">
-            </div>
-          </div>
-    
-          <!-- Row 15 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="vouchers_enclosed" class="form-label">Whether Vouchers/stamped receipts enclosed.</label>
-              <input type="text" class="form-control" id="vouchers_enclosed" name="vouchers_enclosed" [(ngModel)]="deafMentalData.vouchers_enclosed" placeholder="Enter Vouchers Enclosed">
-            </div>
-            <div class="col-md-6">
-              <label for="other_financial_aid" class="form-label">is students have  receipt of any financial aid from any other source for this purpose, if so, full particulars</label>
-              <input type="text" class="form-control" id="other_financial_aid" name="other_financial_aid" [(ngModel)]="deafMentalData.other_financial_aid" placeholder="Enter Other Financial Aid">
-            </div>
-          </div>
-    
-          <!-- Row 16 -->
-          <!-- <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="status" class="form-label">Status</label>
-              <input type="text" class="form-control" id="status" name="status" [(ngModel)]="deafMentalData.status" placeholder="Enter Status">
-            </div>
-          </div> -->
-    
-          <!-- Row 17 -->
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="pdf_file" class="form-label">Upload PDF (EMPIDCard,EmpPlaySlip,Bill / Invoice for mode of transportation and Handicapped Certificate, then merge all in one pdf, Max 5MB)</label>
-              <input type="file" class="form-control" id="pdf_file" name="pdf_file" (change)="onFileSelected($event)" accept=".pdf">
-            </div>
-          </div>
+        </div>
 
+        <!-- Spouse Details and Date of Appointment -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>If spouse is a Railway/Government employee, details thereof:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="spouse_details"
+              [(ngModel)]="deafMentalData.spouse_details"
+              placeholder="Enter Spouse Details"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Date of Appointment:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="date_of_appointment"
+              [(ngModel)]="userdata.date_of_appointment"
+            />
+          </div>
+        </div>
 
-          <div class="form-row">
-            <div class="col-md-12">
-              <div class="checkbox-container">
-                <input 
-                  type="checkbox" 
-                  [(ngModel)]="declarationChecked" 
-                  [ngModelOptions]="{standalone: true}" 
-                  id="declaration" 
-                  required
-                />
-                <label for="declaration" class="checkbox-label">
-                  I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
-                </label>
-              </div>
+        <!-- Bill Unit Number and Community -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Bill Unit Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="bill_unit_number"
+              [(ngModel)]="deafMentalData.bill_unit_number"
+              placeholder="Enter Bill Unit Number"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Community:</label>
+            <select
+              class="form-control"
+              name="community"
+              [(ngModel)]="deafMentalData.community"
+            >
+              <option value="SC">SC</option>
+              <option value="ST">ST</option>
+              <option value="OBC">OBC</option>
+              <option value="Muslim">Muslim</option>
+              <option value="Christian">Christian</option>
+              <option value="UR">UR</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Designation and Office -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Designation:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="designation"
+              [(ngModel)]="userdata.designation"
+              placeholder="Enter Designation"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Office:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="office"
+              [(ngModel)]="userdata.office"
+              placeholder="Enter Office"
+            />
+          </div>
+        </div>
+
+        <!-- Division and PF Number -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Division:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="division"
+              [(ngModel)]="userdata.division"
+              placeholder="Enter Division"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>PF Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="pf_no"
+              [(ngModel)]="userdata.pf_no"
+              placeholder="Enter PF Number"
+            />
+          </div>
+        </div>
+
+        <!-- Pay Band and Running Allowance -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Pay Band:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="pay_band"
+              [(ngModel)]="userdata.payband"
+              placeholder="Enter Pay Band"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Running Allowance:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="running_allowance"
+              [(ngModel)]="userdata.running_allowance"
+              placeholder="Enter Running Allowance"
+              required
+              pattern="^[0-9]{1,8}$"
+              maxlength="8"
+              title="Please enter a number with up to 8 digits"
+              #runningAllowance="ngModel"
+            />
+            <div *ngIf="runningAllowance.invalid && runningAllowance.touched" class="text-danger">
+              Running allowance must be a number with up to 8 digits.
             </div>
           </div>
-    
-          <!-- Submit Button -->
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary" [disabled]="!form.valid  || !declarationChecked">Submit</button>
+        </div>
+
+        <!-- Grade Pay Substantive and Grade Pay Officiating/MACP -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Grade Pay Substantive:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="grade_pay_substantive"
+              [(ngModel)]="deafMentalData.grade_pay_substantive"
+              placeholder="Enter Grade Pay Substantive"
+            />
           </div>
-        </form>
-      </div>
+          <div class="col-md-6 mb-3">
+            <label>Grade Pay Officiating / MACP:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="grade_pay_officiating_macp"
+              [(ngModel)]="deafMentalData.grade_pay_officiating_macp"
+              placeholder="Enter Grade Pay Officiating MACP"
+            />
+          </div>
+        </div>
+
+        <!-- Name of the Deaf, Dumb, Blind or Mentally Retarded Child and Relationship with Employee -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Name of the Deaf, Dumb, Blind or Mentally Retarded Child:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="physically_challenged_student_name"
+              [(ngModel)]="deafMentalData.physically_challenged_student_name"
+              placeholder="Enter Student Name"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Relationship with Employee:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="relationship_with_employee"
+              [(ngModel)]="deafMentalData.relationship_with_employee"
+              placeholder="Enter Relationship"
+            />
+          </div>
+        </div>
+
+        <!-- Child Date of Birth and School Name -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Child Date of Birth:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="school_child_dob"
+              [(ngModel)]="deafMentalData.school_child_dob"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>School Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="school_name"
+              [(ngModel)]="deafMentalData.school_name"
+              placeholder="Enter School Name"
+            />
+          </div>
+        </div>
+
+        <!-- Tuition Fees per Month and Transport Charges per Month -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Tuition Fees per Month:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="tuition_fees_per_month"
+              [(ngModel)]="deafMentalData.tuition_fees_per_month"
+              placeholder="Enter Tuition Fees"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Transport Charges per Month:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="transport_charges_per_month"
+              [(ngModel)]="deafMentalData.transport_charges_per_month"
+              placeholder="Enter Transport Charges"
+            />
+          </div>
+        </div>
+
+        <!-- Residential Fees per Month and Grant SBCF Received Upto -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Residential Fees per Month:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="residential_fees_per_month"
+              [(ngModel)]="deafMentalData.residential_fees_per_month"
+              placeholder="Enter Residential Fees"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Grant SBCF Received Upto:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="grant_sbcf_received_upto"
+              [(ngModel)]="deafMentalData.grant_sbcf_received_upto"
+            />
+          </div>
+        </div>
+
+        <!-- Amount of Claim and Period of Claim From -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Amount of Claim:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="amount_of_claim"
+              [(ngModel)]="deafMentalData.amount_of_claim"
+              placeholder="Enter Amount of Claim"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Period of Claim From:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="period_of_claim_from"
+              [(ngModel)]="deafMentalData.period_of_claim_from"
+            />
+          </div>
+        </div>
+
+        <!-- Period of Claim To and Tuition Fees Claimed -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Period of Claim To:</label>
+            <input
+              type="date"
+              class="form-control"
+              name="period_of_claim_to"
+              [(ngModel)]="deafMentalData.period_of_claim_to"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Tuition Fees Claimed:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="tuition_fees_claimed"
+              [(ngModel)]="deafMentalData.tuition_fees_claimed"
+              placeholder="Enter Tuition Fees Claimed"
+            />
+          </div>
+        </div>
+
+        <!-- Residential Fees Claimed and Conveyance Charges Incurred -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Residential Fees Claimed:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="residential_fees_claimed"
+              [(ngModel)]="deafMentalData.residential_fees_claimed"
+              placeholder="Enter Residential Fees Claimed"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Conveyance Charges Incurred:</label>
+            <input
+              type="number"
+              class="form-control"
+              name="conveyance_charges_incurred"
+              [(ngModel)]="deafMentalData.conveyance_charges_incurred"
+              placeholder="Enter Conveyance Charges"
+            />
+          </div>
+        </div>
+
+        <!-- Vouchers Enclosed and Other Financial Aid -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Whether Vouchers/stamped receipts enclosed:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="vouchers_enclosed"
+              [(ngModel)]="deafMentalData.vouchers_enclosed"
+              placeholder="Enter Vouchers Enclosed"
+            />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Is student receiving financial aid from any other source? If so, provide details:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="other_financial_aid"
+              [(ngModel)]="deafMentalData.other_financial_aid"
+              placeholder="Enter Other Financial Aid"
+            />
+          </div>
+        </div>
+
+        <!-- File Upload -->
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label>Upload PDF (EMPIDCard, EmpPlaySlip, Bill / Invoice for mode of transportation, Handicapped Certificate, merge all in one PDF, Max 5MB):</label>
+            <input
+              type="file"
+              class="form-control"
+              (change)="onFileSelected($event)"
+              accept="application/pdf"
+            />
+          </div>
+        </div>
+
+        <!-- Declaration Checkbox -->
+        <div class="form-row">
+          <div class="col-md-12 mb-3">
+            <div class="checkbox-container">
+              <input
+                type="checkbox"
+                [(ngModel)]="declarationChecked"
+                [ngModelOptions]="{standalone: true}"
+                id="declaration"
+                required
+              />
+              <label for="declaration" class="checkbox-label">
+                I hereby declare that all the above particulars furnished by me are true and correct. If any irregularities are noticed at any stage, I am liable for disciplinary action by the administration.
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group mt-4 text-center">
+          <button type="submit" class="btn btn-primary" [disabled]="!form.valid || !declarationChecked">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>
+
+<p-toast
+  [showTransformOptions]="'translateY(100%)'"
+  [showTransitionOptions]="'1000ms'"
+  [hideTransitionOptions]="'1000ms'"
+  [showTransformOptions]="'translateX(100%)'"
+/>

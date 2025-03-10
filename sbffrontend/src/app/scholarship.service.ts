@@ -42,7 +42,7 @@ export class ScholarshipService {
 
   private getAuthHeaders(isFormData = false): HttpHeaders {
     const token = this.authService.getToken();
-    console.log("scholar token :",token);
+    console.log("scholar token! :",token);
     let headersConfig: any = {
       Authorization: `Bearer ${token}`
     };
@@ -103,6 +103,20 @@ export class ScholarshipService {
     const body = { status };
     return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
   }
+
+
+  updateRemarks(id: number, remarks: string, status: string): Observable<any> {
+
+
+  
+    const url = `${this.apiUrl}/remarks/${id}`;
+    const body = { remarks ,status};
+  
+  
+  
+    return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
+  }
+  
 
   // Delete a scholarship (Protected)
   deleteScholarship(id: number): Observable<any> {

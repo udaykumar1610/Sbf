@@ -13,7 +13,9 @@ export class SpectaclesFormService {
   constructor( private http: HttpClient,private authService:AuthService){}
   
     private getAuthHeaders(isFormData = false): HttpHeaders {
-        const token = this.authService.getToken();
+     const token = this.authService.getToken();
+       // const token=localStorage.getItem('token')
+        console.log("token _spec",token)
         let headersConfig = {
           Authorization: `Bearer ${token}`
         };
@@ -23,6 +25,8 @@ export class SpectaclesFormService {
         //   headersConfig['Content-Type'] = 'application/json';
         // }
     
+
+        
         return new HttpHeaders(headersConfig);
       }
 
@@ -71,6 +75,26 @@ export class SpectaclesFormService {
     }
     
     return this.http.put<any>(`${this.apiUrl}/${id}`, formData);
+  }
+
+  // Method to update the status of a scholarship record by ID
+  updateStatus(id: number, status: string): Observable<any> {
+    const url = `${this.apiUrl}/status/${id}`;
+    const body = { status };
+    return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
+  }
+
+
+  updateRemarks(id: number, remarks: string, status: string): Observable<any> {
+
+
+  
+    const url = `${this.apiUrl}/remarks/${id}`;
+    const body = { remarks ,status};
+  
+  
+  
+    return this.http.put(url, body, { headers: this.getAuthHeaders(true) });
   }
   
  

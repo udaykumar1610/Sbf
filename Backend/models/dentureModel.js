@@ -1,8 +1,18 @@
 const db = require("../config/db");
 
 // Get all dentures
-const getAllDentures = () => {
-  return db.query("SELECT * FROM Dentures");
+// const getAllDentures = () => {
+//   return db.query("SELECT * FROM Dentures");
+// };
+
+const getAllDentures = async () => {
+  const baseUrl = process.env.BASE_URL;
+
+  const rows = await db.query(
+    "SELECT *, CONCAT(?,  pdfFilePath) AS pdf_url FROM Dentures",
+    [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+  );
+  return rows;
 };
 
 // Get dentures by status
@@ -39,6 +49,39 @@ const updateDenture = (id, updatedData) => {
   return db.query("UPDATE Dentures SET ? WHERE id = ?", [updatedData, id]);
 };
 
+const updateStatus = async (id, status) => {
+  console.log("models", status, "id :", id);
+  const sql = `
+      UPDATE Dentures SET status=? WHERE id=?
+    `;
+  console.log(sql);
+  const params = [status, id];
+  console.log(" after models", status, "id :", id);
+
+  const result = await db.query(sql, params);
+  console.log(result);
+};
+
+const updateRemarks = async (id, status, remarks) => {
+  // Define the SQL query with proper column updates
+  const sql = `
+      UPDATE Dentures 
+      SET remarks = ?, status = ? 
+      WHERE id = ?
+    `;
+
+  // Prepare the parameters for the query
+  const params = [remarks, status, id];
+
+  // Execute the query
+  try {
+    const result = await db.query(sql, params);
+    console.log(result); // Log the result
+  } catch (error) {
+    console.error("Error updating remarks:", error);
+  }
+};
+
 // Delete denture
 const deleteDenture = (id) => {
   return db.query("DELETE FROM Dentures WHERE id = ?", [id]);
@@ -50,5 +93,7 @@ module.exports = {
   getDentureById,
   createDenture,
   updateDenture,
+  updateStatus,
+  updateRemarks,
   deleteDenture,
 };

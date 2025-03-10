@@ -1,8 +1,17 @@
 const pool = require("../config/db");
 
 const MaintenanceGrant = {
+  // getAll: async () => {
+  //   const [rows] = await pool.query("SELECT * FROM maintenanceGrant");
+  //   return rows;
+  // },
   getAll: async () => {
-    const [rows] = await pool.query("SELECT * FROM maintenanceGrant");
+    const baseUrl = process.env.BASE_URL;
+
+    const [rows] = await pool.query(
+      "SELECT *, CONCAT(?,  pdf_file) AS pdf_url FROM maintenanceGrant",
+      [baseUrl] // Pass the BASE_URL as a parameter to prevent SQL injection
+    );
     return rows;
   },
 
@@ -32,8 +41,8 @@ const MaintenanceGrant = {
         period_of_sickness_with_half_pay_from, period_of_sickness_with_half_pay_to, 
         period_of_sickness_without_pay_from, period_of_sickness_without_pay_to, 
         sick_certificate_number_date, sick_certificate_issued_by, 
-        status, pdf_file
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        status, pdf_file,remarks
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`;
 
     const params = [
       data.empname,
@@ -59,6 +68,7 @@ const MaintenanceGrant = {
       data.sick_certificate_issued_by,
       data.status || "Pending",
       data.pdf_file || null,
+      data.remarks || null,
     ];
 
     const [result] = await pool.query(sql, params);
@@ -75,7 +85,7 @@ const MaintenanceGrant = {
         period_of_sickness_with_half_pay_from=?, period_of_sickness_with_half_pay_to=?, 
         period_of_sickness_without_pay_from=?, period_of_sickness_without_pay_to=?, 
         sick_certificate_number_date=?, sick_certificate_issued_by=?, 
-        status=?, pdf_file=? WHERE id=?`;
+        status=?, pdf_file=?, remarks=? WHERE id=?`;
 
     const params = [
       data.empname,
@@ -101,10 +111,44 @@ const MaintenanceGrant = {
       data.sick_certificate_issued_by,
       data.status,
       data.pdf_file,
+      data.remarks,
       id,
     ];
 
     await pool.query(sql, params);
+  },
+
+  updateStatus: async (id, status) => {
+    console.log("models", status, "id :", id);
+    const sql = `
+      UPDATE maintenanceGrant SET status=? WHERE id=?
+    `;
+    console.log(sql);
+    const params = [status, id];
+    console.log(" after models", status, "id :", id);
+
+    const result = await pool.query(sql, params);
+    console.log(result);
+  },
+
+  updateRemarks: async (id, status, remarks) => {
+    // Define the SQL query with proper column updates
+    const sql = `
+      UPDATE maintenanceGrant 
+      SET remarks = ?, status = ? 
+      WHERE id = ?
+    `;
+
+    // Prepare the parameters for the query
+    const params = [remarks, status, id];
+
+    // Execute the query
+    try {
+      const result = await pool.query(sql, params);
+      console.log(result); // Log the result
+    } catch (error) {
+      console.error("Error updating remarks:", error);
+    }
   },
 
   delete: async (id) => {
